@@ -1,4 +1,4 @@
-# Athlete Stock Market
+# Jock Exchange
 
 A marketplace where users buy and sell shares of professional athletes — building portfolios the way you'd trade stocks.
 
