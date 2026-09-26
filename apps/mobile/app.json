@@ -1,0 +1,27 @@
+{
+  "expo": {
+    "name": "Jock Exchange",
+    "slug": "jock-exchange",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "scheme": "jockexchange",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#07111F",
+    "newArchEnabled": true,
+    "android": {
+      "backgroundColor": "#07111F"
+    },
+    "ios": {
+      "backgroundColor": "#07111F"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "single",
+      "backgroundColor": "#07111F"
+    },
+    "plugins": ["expo-router", "expo-system-ui"],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

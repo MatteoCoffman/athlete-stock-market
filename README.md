@@ -1,24 +1,118 @@
 # Jock Exchange
 
-A marketplace where users buy and sell shares of professional athletes — building portfolios the way you'd trade stocks.
+Stock market for NFL athletes — buy and sell shares with virtual credits, earn stub performance dividends.
 
-## Concept
+## What's running (prototype)
 
-Each athlete has a **fixed supply of shares**. Prices move with supply and demand as traders react to performance, hype, injuries, age, and news.
+- **Expo app** (`apps/mobile`) — navy + orange UI for web / iOS / Android (**Expo SDK 57**, matches current Expo Go)
+- **Local API** (`backend`) — Express + JWT auth + JSON store (same handler path packages for Lambda)
+- **AWS CDK** (`infra`) — Cognito, API Gateway, Lambda, DynamoDB stack ready to deploy when AWS credentials are available
 
-### How you make money
+New accounts receive **100,000** virtual credits. Trading uses instant market orders with price impact against a fixed 10,000-share float per player.
 
-1. **Trade** — Buy low, sell high as market sentiment shifts.
-2. **Hold for dividends** — Share holders receive periodic payouts tied to that athlete's real-world performance. Dividends are funded by platform revenue/fees (not by new buyers alone), so shares have intrinsic value beyond speculation.
+## Quick start
+
+### 1. Backend
+
+```bash
+cd backend
+npm install
+npm run reset   # wipe users/trades/holdings + reseed prices (Mahomes = $100 base)
+npm start
+```
+
+Or from the repo root: `npm run backend:reset` then `npm run backend`.
+
+API: http://localhost:4000  
+Health: `GET /health`
+
+On start, the API launches a **bot market** (12 bots by default) that buys/sells through the real trade engine so prices, % chips, and charts move on their own. Bots only run while this process is up. Disable with `BOTS_ENABLED=0`.
+
+```bash
+BOTS_ENABLED=0 npm start          # humans only
+BOT_COUNT=20 BOT_INTERVAL_MS=1500 npm start
+```
+
+### 2. Mobile / web app
+
+```bash
+cd apps/mobile
+npm install
+npm run web          # browser
+# or: npm start      # Expo Go / simulator
+```
+
+The app auto-targets the API on the same machine as Metro (LAN IP for phones, `localhost` for web / iOS simulator). Keep the backend running on port **4000**.
+
+### Demo path
+
+1. Create an account (gets 100k credits)
+2. **Portfolio** tab (home) — holdings + popular movers
+3. **Search** tab — find players, sorted by movers by default
+4. Open a player → large chart + Buy / Sell
+5. **Account** — cash + logout
+
+### Paying dividends (admin / outside the app)
+
+Dividends are **not** exposed in the mobile UI. Trigger them from the backend:
+
+```bash
+cd backend
+npm run dividend -- mahomes 2
+# or: node src/pay-dividends.js mahomes 1.5
+```
+
+Or via API:
+
+```bash
+curl -X POST http://localhost:4000/dividends/pay \
+  -H "Content-Type: application/json" \
+  -H "x-admin-token: jock-admin-demo" \
+  -d '{"playerId":"mahomes","payoutPerShare":1.5}'
+```
+
+Default admin token: `jock-admin-demo`
+
+## API overview
+
+| Method | Path | Auth | Description |
+|--------|------|------|-------------|
+| POST | `/auth/signup` | — | Create user + starting cash |
+| POST | `/auth/login` | — | Login |
+| GET | `/auth/me` | Bearer | Current user |
+| GET | `/players` | — | NFL offense market |
+| GET | `/players/:id` | — | Player + recent trades |
+| POST | `/trades` | Bearer | `{ playerId, side: "buy"\|"sell", qty }` |
+| GET | `/portfolio` | Bearer | Cash + positions |
+| POST | `/dividends/pay` | `x-admin-token` | Pay holders `payoutPerShare` |
+| POST | `/dividends/score` | `x-admin-token` | Set performance score |
+
+Admin dividend endpoints use token `jock-admin-demo` (CLI/API only — not shown in the app).
+
+## AWS deploy (when credentials work)
+
+```bash
+cd infra
+npm install
+npx cdk bootstrap   # once per account/region
+npm run deploy
+```
+
+Outputs: API URL, Cognito User Pool ID / Client ID, DynamoDB table name.
+
+> Local prototype uses JWT + JSON file store so you can demo without AWS. The CDK stack provisions the planned cloud resources; wiring Cognito + DynamoDB into the Lambda data layer is the next hardening step.
 
 ## Branches
 
 | Branch | Purpose |
 |--------|---------|
-| `master` | Stable / production-ready. Merge access restricted. |
-| `alpha` | Early experimental work. |
-| `beta` | Feature-complete candidates heading toward release. |
+| `master` | Stable (protected) |
+| `alpha` | Active prototype work |
+| `beta` | Pre-release |
 
-## Status
+## Product notes
 
-Repo scaffolding only — product development TBD.
+- NFL offensive players only (QB / RB / WR / TE)
+- Fake currency only
+- No live NFL stats feed yet — dividends are admin/script triggered
+- Local **bot traders** simulate market flow (weighted toward higher-priced stars, with mild mean reversion)

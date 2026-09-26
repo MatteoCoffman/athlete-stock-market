@@ -1,0 +1,21 @@
+{
+  "name": "jock-exchange-backend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "seed": "node src/seed.js",
+    "reset": "node src/reset.js",
+    "dividend": "node src/pay-dividends.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "serverless-http": "^3.2.0",
+    "uuid": "^11.0.5"
+  }
+}

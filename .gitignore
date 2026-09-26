@@ -1,9 +1,7 @@
 # Dependencies
 node_modules/
-.venv/
-venv/
-__pycache__/
-*.pyc
+
+# Env / secrets
 .env
 .env.*
 !.env.example
@@ -13,10 +11,33 @@ __pycache__/
 .idea/
 .vscode/
 *.swp
+*.log
 
-# Build
+# Expo / Metro / caches
+.expo/
+.expo-home/
+.fake-home/
+.npm-cache/
 dist/
 build/
-.next/
-out/
+web-build/
 coverage/
+*.tsbuildinfo
+apps/mobile/expo-env.d.ts
+apps/mobile/npm-install.log
+
+# Backend local JSON DB (recreate with npm run reset)
+backend/data/store.json
+backend/data/*.json
+!backend/data/.gitkeep
+
+# AWS CDK
+cdk.out/
+infra/cdk.out/
+.aws-sam/
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
