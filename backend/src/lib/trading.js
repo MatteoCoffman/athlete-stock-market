@@ -1,4 +1,5 @@
 import { PRICE_IMPACT_K } from "./config.js";
+import { portfolioTotalValue, recordEquitySnapshot } from "./equity.js";
 import { appendPricePoint } from "./history.js";
 
 export function freeFloat(player) {
@@ -36,6 +37,9 @@ export function playerPublic(player) {
     performanceScore: player.performanceScore,
     priceHistory: history,
     sparkline: history.slice(-24).map((h) => h.price),
+    headshotUrl: player.headshotUrl || null,
+    sleeperId: player.sleeperId || null,
+    gsisId: player.gsisId || null,
   };
 }
 
@@ -120,6 +124,8 @@ export function executeTrade(store, { userId, playerId, side, qty }) {
   };
   store.trades.unshift(trade);
   store.trades = store.trades.slice(0, 500);
+
+  recordEquitySnapshot(user, portfolioTotalValue(store, userId));
 
   return { trade, player: playerPublic(player), cashBalance: user.cashBalance, holding };
 }

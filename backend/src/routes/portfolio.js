@@ -1,6 +1,12 @@
 import { Router } from "express";
 import { authMiddleware, publicUser } from "../lib/auth.js";
-import { loadStore } from "../lib/store.js";
+import {
+  dayChangePct,
+  equityChartSeries,
+  portfolioTotalValue,
+  recordEquitySnapshot,
+} from "../lib/equity.js";
+import { loadStore, saveStore } from "../lib/store.js";
 import { playerPublic } from "../lib/trading.js";
 
 const router = Router();
@@ -25,12 +31,23 @@ router.get("/", authMiddleware, (req, res) => {
     })
     .sort((a, b) => (b.marketValue || 0) - (a.marketValue || 0));
 
-  const positionsValue = positions.reduce((s, p) => s + p.marketValue, 0);
+  const positionsValue = Number(
+    positions.reduce((s, p) => s + p.marketValue, 0).toFixed(2)
+  );
+  const totalValue = Number((user.cashBalance + positionsValue).toFixed(2));
+
+  recordEquitySnapshot(user, totalValue);
+  saveStore(store);
+
+  const dayPct = dayChangePct(user.equityHistory, totalValue);
+
   res.json({
     user: publicUser(user),
     cashBalance: user.cashBalance,
-    positionsValue: Number(positionsValue.toFixed(2)),
-    totalValue: Number((user.cashBalance + positionsValue).toFixed(2)),
+    positionsValue,
+    totalValue,
+    dayChangePct: dayPct,
+    equityHistory: equityChartSeries(user.equityHistory),
     positions,
   });
 });

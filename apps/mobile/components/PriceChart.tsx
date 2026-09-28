@@ -15,7 +15,7 @@ type Point = { t?: string; price: number } | number;
 
 export type ChartRangeKey = "24h" | "1w" | "1m" | "6m" | "1y";
 
-type RangeOption = {
+export type RangeOption = {
   key: ChartRangeKey;
   label: string;
   short: string;
@@ -30,6 +30,14 @@ const RANGE_OPTIONS: RangeOption[] = [
   { key: "1y", label: "Last year", short: "1Y", ms: 365 * 24 * 60 * 60 * 1000 },
 ];
 
+/** Day / Week / Month / Year for portfolio performance */
+export const PERFORMANCE_RANGES: RangeOption[] = [
+  { key: "24h", label: "Day", short: "Day", ms: 24 * 60 * 60 * 1000 },
+  { key: "1w", label: "Week", short: "Week", ms: 7 * 24 * 60 * 60 * 1000 },
+  { key: "1m", label: "Month", short: "Month", ms: 30 * 24 * 60 * 60 * 1000 },
+  { key: "1y", label: "Year", short: "Year", ms: 365 * 24 * 60 * 60 * 1000 },
+];
+
 type Props = {
   data: Point[];
   height?: number;
@@ -40,6 +48,9 @@ type Props = {
   /** Fired while the user is scrubbing — parent should disable ScrollView. */
   onScrubChange?: (active: boolean) => void;
   defaultRange?: ChartRangeKey;
+  /** Override dropdown ranges (e.g. PERFORMANCE_RANGES). */
+  ranges?: RangeOption[];
+  emptyLabel?: string;
 };
 
 type ChartPt = { x: number; y: number; price: number; t?: string; ms: number };
@@ -130,7 +141,10 @@ export function PriceChart({
   compact = false,
   onScrubChange,
   defaultRange = "24h",
+  ranges,
+  emptyLabel = "Chart unlocks after price moves",
 }: Props) {
+  const rangeOptions = ranges?.length ? ranges : RANGE_OPTIONS;
   const { width: windowWidth } = useWindowDimensions();
   const [chartWidth, setChartWidth] = useState(Math.max(280, Math.min(windowWidth - 64, 680)));
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
@@ -140,7 +154,7 @@ export function PriceChart({
   const padX = 8;
   const padY = 16;
   const padRight = 52;
-  const rangeOpt = RANGE_OPTIONS.find((r) => r.key === rangeKey) ?? RANGE_OPTIONS[0];
+  const rangeOpt = rangeOptions.find((r) => r.key === rangeKey) ?? rangeOptions[0];
 
   const series = useMemo(() => filterByRange(normalize(data), rangeOpt.ms), [data, rangeOpt.ms]);
 
@@ -230,7 +244,7 @@ export function PriceChart({
   if (!geometry) {
     return (
       <View style={[styles.empty, { height }]}>
-        <Text style={styles.emptyText}>Chart unlocks after price moves</Text>
+        <Text style={styles.emptyText}>{emptyLabel}</Text>
       </View>
     );
   }
@@ -265,7 +279,7 @@ export function PriceChart({
             </Pressable>
             {menuOpen ? (
               <View style={styles.dropdownMenu}>
-                {RANGE_OPTIONS.map((opt) => {
+                {rangeOptions.map((opt) => {
                   const selected = opt.key === rangeKey;
                   return (
                     <Pressable

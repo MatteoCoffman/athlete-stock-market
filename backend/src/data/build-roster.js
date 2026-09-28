@@ -132,6 +132,8 @@ const roster = [...byId.values()]
       position,
       price: openingPrice(name, position),
       gsisId: r.gsis_id || null,
+      sleeperId: r.sleeper_id ? String(r.sleeper_id).trim() : null,
+      espnId: r.espn_id ? String(r.espn_id).trim() : null,
       headshotUrl: r.headshot_url || null,
     };
   })

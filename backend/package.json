@@ -7,6 +7,7 @@
     "start": "node src/server.js",
     "dev": "node --watch src/server.js",
     "roster": "node src/data/build-roster.js",
+    "import-roster": "node src/import-roster.js",
     "seed": "node src/seed.js",
     "reset": "node src/reset.js",
     "dividend": "node src/pay-dividends.js"

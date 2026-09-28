@@ -1,11 +1,18 @@
 /**
- * Full wipe: users, holdings, trades, players — then reseed opening prices.
+ * Full wipe: users, holdings, trades, players — then reseed from SQL roster.
  * Usage: npm run reset
  */
-import { SEED_PLAYERS } from "./data/players.js";
-import { SHARES_OUTSTANDING } from "./lib/config.js";
-import { buildPriceHistory } from "./lib/history.js";
+import { openDb } from "./db/index.js";
+import { syncMarketPlayers } from "./lib/marketPlayers.js";
+import { playerLibrary } from "./lib/playerLibrary.js";
 import { saveStore } from "./lib/store.js";
+
+openDb();
+
+if (playerLibrary.count({ activeOnly: true }) === 0) {
+  console.warn("No players in SQLite. Run: npm run roster && npm run import-roster");
+  process.exit(1);
+}
 
 const store = {
   users: {},
@@ -14,30 +21,12 @@ const store = {
   trades: [],
 };
 
-for (const p of SEED_PLAYERS) {
-  store.players[p.id] = {
-    id: p.id,
-    name: p.name,
-    team: p.team,
-    position: p.position,
-    price: p.price,
-    openPrice: p.price,
-    sharesOutstanding: SHARES_OUTSTANDING,
-    sharesHeld: 0,
-    performanceScore: 0,
-    priceHistory: buildPriceHistory(p.price),
-  };
-}
-
+const { total } = syncMarketPlayers(store, { rebuildHistory: true });
 saveStore(store);
 
-const top = [...SEED_PLAYERS].sort((a, b) => b.price - a.price).slice(0, 8);
-const priced = top.map((p) => `${p.name} $${p.price}`).join("\n  ");
 console.log(`Reset complete.
   Users: 0
   Holdings: 0
   Trades: 0
-  Players: ${SEED_PLAYERS.length} (active offense; Mahomes base $100 where seeded)
-  Top priced:
-  ${priced}
+  Players: ${total} (from SQL roster)
 `);

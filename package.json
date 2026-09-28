@@ -8,6 +8,7 @@
     "backend:reset": "npm run reset --prefix backend",
     "mobile": "npm run start --prefix apps/mobile",
     "mobile:web": "npm run web --prefix apps/mobile",
+    "web": "npm run web --prefix apps/mobile",
     "infra:synth": "npm run synth --prefix infra",
     "infra:deploy": "npm run deploy --prefix infra"
   }

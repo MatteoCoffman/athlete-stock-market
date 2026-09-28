@@ -43,6 +43,7 @@ export function signup(email, password) {
     passwordHash: bcrypt.hashSync(password, 10),
     cashBalance: STARTING_CASH,
     createdAt: new Date().toISOString(),
+    equityHistory: [{ t: new Date().toISOString(), value: STARTING_CASH }],
   };
   store.users[user.id] = user;
   saveStore(store);

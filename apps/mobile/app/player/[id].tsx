@@ -2,6 +2,7 @@ import { useLocalSearchParams } from "expo-router";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   ActivityIndicator,
+  Image,
   ScrollView,
   StyleSheet,
   Text,
@@ -14,13 +15,14 @@ import { PressScale } from "../../components/PressScale";
 import { PriceChart } from "../../components/PriceChart";
 import { enterDown } from "../../constants/motion";
 import { colors, money, radii, spacing, changeColor, changeSoft, changeBorder } from "../../constants/theme";
-import { api, Player } from "../../lib/api";
+import { api, Player, PlayerProfile } from "../../lib/api";
 import { useAuth } from "../../lib/auth-context";
 
 export default function PlayerScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const { refresh, user } = useAuth();
   const [player, setPlayer] = useState<Player | null>(null);
+  const [profile, setProfile] = useState<PlayerProfile | null>(null);
   const [trades, setTrades] = useState<{ side: string; qty: number; price: number; ts: string }[]>([]);
   const [holding, setHolding] = useState<{ shares: number; avgCost: number; marketValue: number } | null>(
     null
@@ -36,9 +38,14 @@ export default function PlayerScreen() {
     if (!id) return;
     try {
       setError(null);
-      const [data, folio] = await Promise.all([api.player(id), api.portfolio()]);
+      const [data, folio, profileData] = await Promise.all([
+        api.player(id),
+        api.portfolio(),
+        api.playerProfile(id).catch(() => null),
+      ]);
       setPlayer(data.player);
       setTrades(data.recentTrades);
+      if (profileData) setProfile(profileData);
       const pos = folio.positions.find((p) => p.playerId === id);
       setHolding(
         pos
@@ -56,13 +63,26 @@ export default function PlayerScreen() {
     load();
   }, [load]);
 
-  // Poll so bot trades show up on the chart without leaving the screen.
+  // Poll market data so bot trades show up; leave profile alone between polls.
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      load();
+    const intervalId = setInterval(async () => {
+      if (!id) return;
+      try {
+        const [data, folio] = await Promise.all([api.player(id), api.portfolio()]);
+        setPlayer(data.player);
+        setTrades(data.recentTrades);
+        const pos = folio.positions.find((p) => p.playerId === id);
+        setHolding(
+          pos
+            ? { shares: pos.shares, avgCost: pos.avgCost, marketValue: pos.marketValue }
+            : null
+        );
+      } catch {
+        /* ignore poll errors */
+      }
     }, 4000);
     return () => clearInterval(intervalId);
-  }, [load]);
+  }, [id]);
 
   async function trade(side: "buy" | "sell") {
     if (!id) return;
@@ -88,6 +108,8 @@ export default function PlayerScreen() {
     return [];
   }, [player, trades]);
 
+  const headshot = profile?.player.headshotUrl || player?.headshotUrl || null;
+
   if (loading) {
     return (
       <View style={styles.center}>
@@ -112,17 +134,33 @@ export default function PlayerScreen() {
       style={styles.container}
       contentContainerStyle={styles.content}
       scrollEnabled={!chartScrubbing}
-      // Keep momentum from fighting the chart scrub gesture.
       nestedScrollEnabled={false}
       showsVerticalScrollIndicator={false}
       showsHorizontalScrollIndicator={false}
     >
       <Animated.View entering={enterDown(0)} style={styles.header}>
-        <View style={styles.posTeam}>
-          <Text style={styles.pos}>{player.position}</Text>
-          <Text style={styles.team}>{player.team}</Text>
+        <View style={styles.identityRow}>
+          {headshot ? (
+            <Image source={{ uri: headshot }} style={styles.headshot} />
+          ) : (
+            <View style={[styles.headshot, styles.headshotFallback]}>
+              <Text style={styles.headshotInitials}>
+                {player.name
+                  .split(" ")
+                  .map((n) => n[0])
+                  .join("")
+                  .slice(0, 2)}
+              </Text>
+            </View>
+          )}
+          <View style={styles.identityText}>
+            <View style={styles.posTeam}>
+              <Text style={styles.pos}>{player.position}</Text>
+              <Text style={styles.team}>{player.team}</Text>
+            </View>
+            <Text style={styles.name}>{player.name}</Text>
+          </View>
         </View>
-        <Text style={styles.name}>{player.name}</Text>
         <View style={styles.priceRow}>
           <Text style={styles.price}>{money(player.price)}</Text>
           <View
@@ -146,6 +184,46 @@ export default function PlayerScreen() {
           <Text style={styles.cashHint}>Cash · {money(user?.cashBalance ?? 0)}</Text>
         )}
       </Animated.View>
+
+      {profile ? (
+        <ElevatedCard float delay={20} style={styles.profileCard}>
+          <Text style={styles.sectionTitle}>
+            SEASON STATS
+            {profile.season != null ? ` · ${profile.season}` : ""}
+          </Text>
+          {profile.statsAvailable && profile.seasonChips.length > 0 ? (
+            <>
+              <View style={styles.chipRow}>
+                {profile.seasonChips.map((c) => (
+                  <View key={c.label} style={styles.statChip}>
+                    <Text style={styles.statChipLabel}>{c.label}</Text>
+                    <Text style={styles.statChipValue}>{c.value}</Text>
+                  </View>
+                ))}
+              </View>
+              {profile.recentGames.length > 0 ? (
+                <>
+                  <Text style={[styles.sectionTitle, styles.recentTitle]}>RECENT GAMES</Text>
+                  {profile.recentGames.map((g) => (
+                    <View key={`${g.season}-${g.week}`} style={styles.gameRow}>
+                      <Text style={styles.gameWeek}>W{g.week}</Text>
+                      <Text style={styles.gameDetail} numberOfLines={2}>
+                        {g.chips.length
+                          ? g.chips.map((c) => `${c.label} ${c.value}`).join(" · ")
+                          : "No counted stats"}
+                      </Text>
+                    </View>
+                  ))}
+                </>
+              ) : null}
+            </>
+          ) : (
+            <Text style={styles.statsEmpty}>
+              No basic stats available for this player yet.
+            </Text>
+          )}
+        </ElevatedCard>
+      ) : null}
 
       <ElevatedCard float delay={40} style={styles.chartCard}>
         <Text style={styles.chartTitle}>PRICE HISTORY</Text>
@@ -223,6 +301,18 @@ const styles = StyleSheet.create({
   content: { padding: spacing.md, paddingBottom: spacing.xl },
   center: { flex: 1, backgroundColor: colors.bg, alignItems: "center", justifyContent: "center" },
   header: { marginBottom: spacing.md },
+  identityRow: { flexDirection: "row", alignItems: "center", gap: 14 },
+  identityText: { flex: 1 },
+  headshot: {
+    width: 72,
+    height: 72,
+    borderRadius: 16,
+    backgroundColor: colors.surface,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  headshotFallback: { alignItems: "center", justifyContent: "center" },
+  headshotInitials: { color: colors.orange, fontWeight: "800", fontSize: 20 },
   posTeam: { flexDirection: "row", alignItems: "center", gap: 8 },
   pos: {
     color: colors.orange,
@@ -237,12 +327,44 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,122,26,0.28)",
   },
   team: { color: colors.textMuted, fontWeight: "700", letterSpacing: 0.5 },
-  name: { color: colors.text, fontSize: 28, fontWeight: "800", marginTop: 10 },
-  priceRow: { flexDirection: "row", alignItems: "center", gap: 12, marginTop: 8 },
+  name: { color: colors.text, fontSize: 26, fontWeight: "800", marginTop: 6 },
+  priceRow: { flexDirection: "row", alignItems: "center", gap: 12, marginTop: 12 },
   price: { color: colors.text, fontSize: 40, fontWeight: "800", fontVariant: ["tabular-nums"] },
   chip: { borderRadius: radii.pill, paddingHorizontal: 10, paddingVertical: 4, borderWidth: 1 },
   youHold: { color: colors.textMuted, marginTop: 10, fontSize: 13, lineHeight: 18 },
   cashHint: { color: colors.textMuted, marginTop: 10 },
+  profileCard: { marginBottom: spacing.md, zIndex: 3 },
+  sectionTitle: {
+    color: colors.textMuted,
+    fontWeight: "800",
+    fontSize: 11,
+    letterSpacing: 1,
+    marginBottom: spacing.sm,
+  },
+  recentTitle: { marginTop: spacing.md },
+  chipRow: { flexDirection: "row", flexWrap: "wrap", gap: 8 },
+  statChip: {
+    backgroundColor: colors.bgElevated,
+    borderRadius: radii.sm,
+    borderWidth: 1,
+    borderColor: colors.border,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    minWidth: 72,
+  },
+  statChipLabel: { color: colors.textMuted, fontSize: 10, fontWeight: "700" },
+  statChipValue: { color: colors.text, fontSize: 15, fontWeight: "800", marginTop: 2 },
+  gameRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+    paddingVertical: 8,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopColor: colors.border,
+  },
+  gameWeek: { color: colors.orange, fontWeight: "800", width: 36 },
+  gameDetail: { flex: 1, color: colors.textMuted, fontSize: 12 },
+  statsEmpty: { color: colors.textMuted, fontSize: 13, lineHeight: 18 },
   chartCard: { marginBottom: spacing.md, zIndex: 4 },
   chartTitle: {
     color: colors.textMuted,

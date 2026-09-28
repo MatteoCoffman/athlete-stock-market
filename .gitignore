@@ -29,6 +29,8 @@ apps/mobile/npm-install.log
 # Backend local JSON DB (recreate with npm run reset)
 backend/data/store.json
 backend/data/*.json
+backend/data/*.db
+backend/data/*.db-*
 !backend/data/.gitkeep
 
 # AWS CDK

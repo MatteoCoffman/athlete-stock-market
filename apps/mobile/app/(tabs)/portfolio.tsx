@@ -13,7 +13,7 @@ import { ElevatedCard } from "../../components/ElevatedCard";
 import { PlayerRow } from "../../components/PlayerRow";
 import { PressScale } from "../../components/PressScale";
 import { enterDown } from "../../constants/motion";
-import { colors, money, radii, sortMovers, spacing } from "../../constants/theme";
+import { colors, money, radii, sortMovers, spacing, changeColor, changeSoft, changeBorder } from "../../constants/theme";
 import { api, Player } from "../../lib/api";
 import { useAuth } from "../../lib/auth-context";
 
@@ -30,6 +30,7 @@ export default function PortfolioScreen() {
   const [cash, setCash] = useState(0);
   const [positionsValue, setPositionsValue] = useState(0);
   const [total, setTotal] = useState(0);
+  const [dayChangePct, setDayChangePct] = useState(0);
   const [positions, setPositions] = useState<Holding[]>([]);
   const [popular, setPopular] = useState<Player[]>([]);
   const [loading, setLoading] = useState(true);
@@ -38,10 +39,11 @@ export default function PortfolioScreen() {
   const load = useCallback(async () => {
     try {
       setError(null);
-      const [folio, market] = await Promise.all([api.portfolio(), api.players()]);
+      const [folio, market] = await Promise.all([api.portfolio(), api.players({ limit: 500 })]);
       setCash(folio.cashBalance);
       setPositionsValue(folio.positionsValue);
       setTotal(folio.totalValue);
+      setDayChangePct(folio.dayChangePct ?? 0);
       setPositions(folio.positions);
       const heldIds = new Set(folio.positions.map((p) => p.playerId));
       setPopular(sortMovers(market.players.filter((p) => !heldIds.has(p.id))).slice(0, 8));
@@ -79,8 +81,24 @@ export default function PortfolioScreen() {
     >
       <ElevatedCard float delay={40} style={styles.summaryCard}>
         <Text style={styles.kicker}>PORTFOLIO</Text>
-        <Text style={styles.total}>{money(total)}</Text>
-        <Text style={styles.totalLabel}>Total value</Text>
+        <View style={styles.totalRow}>
+          <Text style={styles.total}>{money(total)}</Text>
+          <View
+            style={[
+              styles.dayChip,
+              {
+                backgroundColor: changeSoft(dayChangePct),
+                borderColor: changeBorder(dayChangePct),
+              },
+            ]}
+          >
+            <Text style={{ color: changeColor(dayChangePct), fontWeight: "800", fontSize: 13 }}>
+              {dayChangePct > 0 ? "+" : ""}
+              {dayChangePct.toFixed(2)}%
+            </Text>
+          </View>
+        </View>
+        <Text style={styles.totalLabel}>Total value · today</Text>
         <View style={styles.rowStats}>
           <View style={styles.statBox}>
             <Text style={styles.label}>Cash</Text>
@@ -142,7 +160,14 @@ const styles = StyleSheet.create({
   center: { flex: 1, backgroundColor: colors.bg, alignItems: "center", justifyContent: "center" },
   summaryCard: { marginTop: spacing.md, marginBottom: spacing.md },
   kicker: { color: colors.orange, fontSize: 11, fontWeight: "800", letterSpacing: 1.2 },
-  total: { color: colors.text, fontSize: 34, fontWeight: "800", marginTop: 6 },
+  totalRow: { flexDirection: "row", alignItems: "center", gap: 12, marginTop: 6 },
+  total: { color: colors.text, fontSize: 34, fontWeight: "800" },
+  dayChip: {
+    borderRadius: radii.pill,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderWidth: 1,
+  },
   totalLabel: { color: colors.textMuted, marginTop: 2, fontSize: 13 },
   rowStats: { flexDirection: "row", gap: 10, marginTop: spacing.md },
   statBox: {

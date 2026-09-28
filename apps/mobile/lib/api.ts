@@ -24,6 +24,33 @@ export type Player = {
   performanceScore: number;
   priceHistory?: { t: string; price: number }[];
   sparkline?: number[];
+  headshotUrl?: string | null;
+  sleeperId?: string | null;
+  gsisId?: string | null;
+};
+
+export type StatChip = { label: string; value: string };
+
+export type PlayerProfile = {
+  player: {
+    id: string;
+    name: string;
+    team: string;
+    position: string;
+    headshotUrl?: string | null;
+    sleeperId?: string | null;
+  };
+  season: number | null;
+  week: number | null;
+  seasonStats: Record<string, number>;
+  seasonChips: StatChip[];
+  recentGames: {
+    week: number;
+    season: number;
+    stats: Record<string, number>;
+    chips: StatChip[];
+  }[];
+  statsAvailable: boolean;
 };
 
 async function getToken() {
@@ -68,12 +95,31 @@ export const api = {
       body: JSON.stringify({ email, password }),
     }),
   me: () => request<{ user: User }>("/auth/me", {}, true),
-  players: () => request<{ players: Player[] }>("/players"),
+  players: (opts?: {
+    q?: string;
+    team?: string;
+    position?: string | string[];
+    limit?: number;
+    offset?: number;
+  }) => {
+    const params = new URLSearchParams();
+    if (opts?.q) params.set("q", opts.q);
+    if (opts?.team) params.set("team", opts.team);
+    if (opts?.position) {
+      const pos = Array.isArray(opts.position) ? opts.position.join(",") : opts.position;
+      if (pos) params.set("position", pos);
+    }
+    if (opts?.limit != null) params.set("limit", String(opts.limit));
+    if (opts?.offset != null) params.set("offset", String(opts.offset));
+    const qs = params.toString();
+    return request<{ players: Player[]; total?: number }>(`/players${qs ? `?${qs}` : ""}`);
+  },
   player: (id: string) =>
     request<{
       player: Player;
       recentTrades: { id: string; side: string; qty: number; price: number; ts: string }[];
     }>(`/players/${id}`),
+  playerProfile: (id: string) => request<PlayerProfile>(`/players/${id}/profile`),
   trade: (playerId: string, side: "buy" | "sell", qty: number) =>
     request<{
       trade: unknown;
@@ -92,6 +138,8 @@ export const api = {
       cashBalance: number;
       positionsValue: number;
       totalValue: number;
+      dayChangePct: number;
+      equityHistory: { t: string; price: number }[];
       positions: {
         playerId: string;
         shares: number;
