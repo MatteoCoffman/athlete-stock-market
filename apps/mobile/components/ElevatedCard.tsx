@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Platform, StyleSheet, View, ViewProps, ViewStyle } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 import Animated from "react-native-reanimated";
 import { enterDown } from "../constants/motion";
 import { colors, elevation, radii } from "../constants/theme";
@@ -13,9 +14,12 @@ type Props = ViewProps & {
   padded?: boolean;
 };
 
+/** Soft top light → surface → slightly deeper base (clipped by overflow:hidden). */
+const FILL = ["#1A2C4A", colors.surface, "#0E1A2E"] as const;
+const FILL_FLOAT = ["#1E334F", colors.surface, "#0E1A2E"] as const;
+
 /**
- * Clean elevated panel — one face, border, shadow. No inset rim (avoids edge overlap).
- * Default overflow is visible so nested menus (e.g. chart range dropdown) are not clipped.
+ * Clean elevated panel — one face, border, shadow, soft vertical fill for depth.
  */
 export function ElevatedCard({
   children,
@@ -32,12 +36,19 @@ export function ElevatedCard({
         styles.card,
         float ? styles.cardFloat : null,
         float ? elevation.float : elevation.card,
-        padded && styles.padded,
         style,
       ]}
       {...rest}
     >
-      {children}
+      <LinearGradient
+        colors={float ? [...FILL_FLOAT] : [...FILL]}
+        locations={[0, 0.42, 1]}
+        start={{ x: 0.5, y: 0 }}
+        end={{ x: 0.5, y: 1 }}
+        style={StyleSheet.absoluteFill}
+        pointerEvents="none"
+      />
+      <View style={padded ? styles.padded : undefined}>{children}</View>
     </Animated.View>
   );
 }
@@ -56,7 +67,6 @@ const styles = StyleSheet.create({
       : null),
   },
   cardFloat: {
-    backgroundColor: colors.surface,
     borderColor: "rgba(255,122,26,0.28)",
     ...(Platform.OS === "web"
       ? ({

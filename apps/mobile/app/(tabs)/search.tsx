@@ -3,6 +3,7 @@ import { useCallback, useMemo, useState } from "react";
 import {
   ActivityIndicator,
   FlatList,
+  Platform,
   StyleSheet,
   Text,
   TextInput,
@@ -20,6 +21,7 @@ export default function SearchScreen() {
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [searchFocused, setSearchFocused] = useState(false);
 
   const load = useCallback(async () => {
     try {
@@ -68,7 +70,7 @@ export default function SearchScreen() {
       <Animated.Text entering={enterDown(50)} style={styles.title}>
         Find players
       </Animated.Text>
-      <ElevatedCard delay={70} padded={false} style={styles.searchWrap}>
+      <ElevatedCard delay={70} padded={false} style={[styles.searchWrap, searchFocused && styles.searchWrapFocused,]}>
         <TextInput
           style={styles.input}
           value={query}
@@ -79,6 +81,8 @@ export default function SearchScreen() {
           autoCorrect={false}
           clearButtonMode="while-editing"
           selectionColor={colors.orange}
+          onFocus={() => setSearchFocused(true)}
+          onBlur={() => setSearchFocused(false)}
         />
       </ElevatedCard>
       {error ? <Text style={styles.error}>{error}</Text> : null}
@@ -119,11 +123,16 @@ const styles = StyleSheet.create({
   },
   title: { color: colors.text, fontSize: 26, fontWeight: "800", marginTop: 4, marginBottom: spacing.md },
   searchWrap: { marginBottom: spacing.sm },
+  searchWrapFocused: {borderColor: colors.orange,},
   input: {
     color: colors.text,
     paddingHorizontal: spacing.md,
     paddingVertical: 14,
     fontSize: 16,
+    // web focus ring
+    ...(Platform.OS === "web"
+      ? ({ outlineWidth: 0, outlineStyle: "none" } as object)
+      : null),
   },
   count: { color: colors.textMuted, fontSize: 12, marginBottom: spacing.sm, fontWeight: "600" },
   listCard: {

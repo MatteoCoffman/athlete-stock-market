@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
   chip: { borderRadius: radii.pill, paddingHorizontal: 10, paddingVertical: 4, borderWidth: 1 },
   youHold: { color: colors.textMuted, marginTop: 10, fontSize: 13, lineHeight: 18 },
   cashHint: { color: colors.textMuted, marginTop: 10 },
-  chartCard: { marginBottom: spacing.md, overflow: "visible", zIndex: 4 },
+  chartCard: { marginBottom: spacing.md, zIndex: 4 },
   chartTitle: {
     color: colors.textMuted,
     fontWeight: "800",
