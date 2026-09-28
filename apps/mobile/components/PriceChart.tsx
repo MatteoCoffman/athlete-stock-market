@@ -73,6 +73,8 @@ function filterByRange(series: SeriesPt[], rangeMs: number): SeriesPt[] {
     .filter((s) => !Number.isNaN(s.ms))
     .sort((a, b) => a.ms - b.ms);
 
+  // Need ≥2 timestamps to filter by range. Otherwise keep the original series;
+  // geometry will use an index axis unless every point is dated.
   if (dated.length < 2) return series;
 
   const inRange = dated.filter((s) => s.ms >= cutoff);
@@ -91,7 +93,7 @@ function filterByRange(series: SeriesPt[], rangeMs: number): SeriesPt[] {
     out = inRange.map(({ price, t }) => ({ price, t }));
   }
 
-  return out.length >= 2 ? out : series;
+  return out.length >= 2 ? out : dated.map(({ price, t }) => ({ price, t }));
 }
 
 function formatWhen(iso: string | undefined, rangeKey: ChartRangeKey) {
@@ -164,24 +166,27 @@ export function PriceChart({
     const innerW = chartWidth - padX - padRight;
     const innerH = height - padY * 2;
 
-    const timed = series.map((s, i) => {
+    const timed = series.map((s) => {
       const parsed = s.t ? new Date(s.t).getTime() : NaN;
       return {
         price: s.price,
         t: s.t,
-        ms: Number.isNaN(parsed) ? i : parsed,
+        ms: parsed,
       };
     });
-    const t0 = timed[0].ms;
-    const t1 = timed[timed.length - 1].ms;
+    // Only use a time axis when every point has a real timestamp — never mix
+    // epoch ms with index placeholders (that collapses undated points to x≈0).
+    const allDated = timed.every((s) => !Number.isNaN(s.ms));
+    const t0 = allDated ? timed[0].ms : 0;
+    const t1 = allDated ? timed[timed.length - 1].ms : 0;
     const timeSpan = t1 - t0;
-    const useTimeAxis = timeSpan > 0;
+    const useTimeAxis = allDated && timeSpan > 0;
 
     const pts: ChartPt[] = timed.map((s, i) => {
       const xRatio = useTimeAxis ? (s.ms - t0) / timeSpan : i / (timed.length - 1);
       const x = padX + xRatio * innerW;
       const y = padY + (1 - (s.price - lo) / priceRange) * innerH;
-      return { x, y, price: s.price, t: s.t, ms: s.ms };
+      return { x, y, price: s.price, t: s.t, ms: useTimeAxis ? s.ms : i };
     });
     const line = pts.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x.toFixed(2)} ${p.y.toFixed(2)}`).join(" ");
     const area = `${line} L ${pts[pts.length - 1].x.toFixed(2)} ${height - 2} L ${pts[0].x.toFixed(2)} ${height - 2} Z`;
