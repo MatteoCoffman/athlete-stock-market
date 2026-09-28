@@ -6,9 +6,22 @@ import tradesRoutes from "./routes/trades.js";
 import portfolioRoutes from "./routes/portfolio.js";
 import dividendsRoutes from "./routes/dividends.js";
 
+/** Comma-separated origins, or empty = reflect any (local demo). */
+function corsOrigin() {
+  const raw = process.env.CORS_ORIGINS?.trim();
+  if (!raw) return true;
+  const list = raw.split(",").map((s) => s.trim()).filter(Boolean);
+  return list.length ? list : true;
+}
+
 export function createApp() {
   const app = express();
-  app.use(cors());
+  app.use(
+    cors({
+      origin: corsOrigin(),
+      credentials: true,
+    })
+  );
   app.use(express.json());
 
   app.get("/health", (_req, res) => {

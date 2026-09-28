@@ -10,6 +10,7 @@
     "mobile:web": "npm run web --prefix apps/mobile",
     "web": "npm run web --prefix apps/mobile",
     "infra:synth": "npm run synth --prefix infra",
-    "infra:deploy": "npm run deploy --prefix infra"
+    "infra:deploy": "npm run deploy:market --prefix infra",
+    "infra:destroy": "npm run destroy:market --prefix infra"
   }
 }

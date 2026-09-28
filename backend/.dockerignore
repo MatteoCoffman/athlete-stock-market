@@ -1,0 +1,9 @@
+node_modules
+data/store.json
+data/*.json.bak
+src/data/roster_2026.csv
+src/data/build-roster.js
+*.md
+.env
+.env.*
+.DS_Store

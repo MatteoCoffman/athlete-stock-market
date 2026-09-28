@@ -5,8 +5,9 @@ Stock market for NFL athletes — buy and sell shares with virtual credits, earn
 ## What's running (prototype)
 
 - **Expo app** (`apps/mobile`) — navy + orange UI for web / iOS / Android (**Expo SDK 57**, matches current Expo Go)
-- **Local API** (`backend`) — Express + JWT auth + JSON store (same handler path packages for Lambda)
-- **AWS CDK** (`infra`) — Cognito, API Gateway, Lambda, DynamoDB stack ready to deploy when AWS credentials are available
+- **Local API** (`backend`) — Express + JWT auth + JSON store + bots
+- **Shared deploy** — EC2 `t3.micro` (Docker + bots) + Cloudflare Tunnel HTTPS + **Vercel** web — see [docs/DEPLOY.md](docs/DEPLOY.md)
+- **AWS CDK** (`infra`) — `JockExchangeMarketStack` (always-on market) and legacy `JockExchangeStack` (Lambda/Dynamo skeleton, not required for bots)
 
 New accounts receive **100,000** virtual credits. Trading uses instant market orders with price impact against a fixed 10,000-share float per player.
 
@@ -47,6 +48,8 @@ npm run web          # browser
 
 The app auto-targets the API on the same machine as Metro (LAN IP for phones, `localhost` for web / iOS simulator). Keep the backend running on port **4000**.
 
+For a **hosted** API, set `EXPO_PUBLIC_API_URL` (see `.env.example` and [docs/DEPLOY.md](docs/DEPLOY.md)).
+
 ### Demo path
 
 1. Create an account (gets 100k credits)
@@ -61,8 +64,8 @@ Dividends are **not** exposed in the mobile UI. Trigger them from the backend:
 
 ```bash
 cd backend
-npm run dividend -- mahomes 2
-# or: node src/pay-dividends.js mahomes 1.5
+npm run dividend -- gsis-00-0033873 2
+# (use a real player id from roster.json / Search)
 ```
 
 Or via API:
@@ -71,7 +74,7 @@ Or via API:
 curl -X POST http://localhost:4000/dividends/pay \
   -H "Content-Type: application/json" \
   -H "x-admin-token: jock-admin-demo" \
-  -d '{"playerId":"mahomes","payoutPerShare":1.5}'
+  -d '{"playerId":"gsis-00-0033873","payoutPerShare":1.5}'
 ```
 
 Default admin token: `jock-admin-demo`
@@ -92,18 +95,23 @@ Default admin token: `jock-admin-demo`
 
 Admin dividend endpoints use token `jock-admin-demo` (CLI/API only — not shown in the app).
 
-## AWS deploy (when credentials work)
+## Shared deploy (AWS + Vercel)
+
+Full steps: **[docs/DEPLOY.md](docs/DEPLOY.md)**
+
+Summary:
 
 ```bash
-cd infra
-npm install
-npx cdk bootstrap   # once per account/region
-npm run deploy
+# 1) EC2 market + bots (~$5–10/mo). Set budget email!
+cd infra && npm install && npx cdk bootstrap
+JOCK_BUDGET_EMAIL=you@example.com npm run deploy:market
+
+# 2) Cloudflare Tunnel → http://127.0.0.1:4000 (HTTPS URL for the app)
+
+# 3) Vercel: root apps/mobile, env EXPO_PUBLIC_API_URL=https://<tunnel-host>
 ```
 
-Outputs: API URL, Cognito User Pool ID / Client ID, DynamoDB table name.
-
-> Local prototype uses JWT + JSON file store so you can demo without AWS. The CDK stack provisions the planned cloud resources; wiring Cognito + DynamoDB into the Lambda data layer is the next hardening step.
+Pause costs: stop the EC2 instance, or `cd infra && npm run destroy:market`.
 
 ## Branches
 
@@ -118,4 +126,4 @@ Outputs: API URL, Cognito User Pool ID / Client ID, DynamoDB table name.
 - NFL offensive players only (QB / RB / WR / TE) — seeded from nflverse `roster_2026.csv` (~455 ACT)
 - Fake currency only
 - No live NFL stats feed yet — dividends are admin/script triggered
-- Local **bot traders** simulate market flow (weighted toward higher-priced stars, with mild mean reversion)
+- Local / shared **bot traders** simulate market flow (weighted toward higher-priced stars, with mild mean reversion)

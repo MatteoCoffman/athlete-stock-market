@@ -5,8 +5,11 @@
   "scripts": {
     "build": "tsc",
     "synth": "cdk synth",
-    "deploy": "cdk deploy --require-approval never",
-    "diff": "cdk diff"
+    "deploy": "cdk deploy JockExchangeMarketStack --require-approval never",
+    "deploy:market": "cdk deploy JockExchangeMarketStack --require-approval never",
+    "deploy:serverless": "cdk deploy JockExchangeStack --require-approval never",
+    "destroy:market": "cdk destroy JockExchangeMarketStack --force",
+    "diff": "cdk diff JockExchangeMarketStack"
   },
   "dependencies": {
     "aws-cdk-lib": "^2.178.2",
