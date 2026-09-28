@@ -1,6 +1,6 @@
 import { SEED_PLAYERS } from "./data/players.js";
 import { SHARES_OUTSTANDING } from "./lib/config.js";
-import { buildPriceHistory } from "./lib/history.js";
+import { buildPriceHistory, ensureLongHistory } from "./lib/history.js";
 import { loadStore, saveStore } from "./lib/store.js";
 
 const store = loadStore();
@@ -26,10 +26,9 @@ for (const p of SEED_PLAYERS) {
   }
 
   const existing = store.players[p.id];
-  if (!Array.isArray(existing.priceHistory) || existing.priceHistory.length < 2) {
-    existing.priceHistory = buildPriceHistory(existing.price);
-    updated += 1;
-  }
+  const before = existing.priceHistory?.length ?? 0;
+  ensureLongHistory(existing);
+  if ((existing.priceHistory?.length ?? 0) !== before) updated += 1;
 }
 
 saveStore(store);

@@ -15,6 +15,7 @@ type Props = ViewProps & {
 
 /**
  * Clean elevated panel — one face, border, shadow. No inset rim (avoids edge overlap).
+ * Default overflow is visible so nested menus (e.g. chart range dropdown) are not clipped.
  */
 export function ElevatedCard({
   children,
@@ -36,7 +37,6 @@ export function ElevatedCard({
       ]}
       {...rest}
     >
-      <View style={styles.highlightTop} pointerEvents="none" />
       {children}
     </Animated.View>
   );
@@ -63,15 +63,6 @@ const styles = StyleSheet.create({
           boxShadow: "0 18px 44px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,122,26,0.1)",
         } as object)
       : null),
-  },
-  highlightTop: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    height: StyleSheet.hairlineWidth,
-    backgroundColor: "rgba(255,255,255,0.12)",
-    zIndex: 2,
   },
   padded: {
     padding: 16,

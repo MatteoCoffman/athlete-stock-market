@@ -6,7 +6,7 @@ import {
   BOT_INTERVAL_MS,
   BOTS_ENABLED,
 } from "./config.js";
-import { buildPriceHistory } from "./history.js";
+import { ensureLongHistory } from "./history.js";
 import { withStore } from "./store.js";
 import { executeTrade, freeFloat, holdingKey } from "./trading.js";
 
@@ -31,12 +31,6 @@ function pickWeighted(items, weightFn) {
   return items[items.length - 1];
 }
 
-function ensurePriceHistory(player) {
-  if (!Array.isArray(player.priceHistory) || player.priceHistory.length < 2) {
-    player.priceHistory = buildPriceHistory(player.price);
-  }
-}
-
 /**
  * Create / top-up bot accounts. Marked with isBot so demos stay obvious in the store.
  */
@@ -44,7 +38,7 @@ export function ensureBots(store) {
   const players = Object.values(store.players);
   if (players.length === 0) return [];
 
-  for (const player of players) ensurePriceHistory(player);
+  for (const player of players) ensureLongHistory(player);
 
   const bots = [];
   for (let i = 1; i <= BOT_COUNT; i += 1) {
@@ -212,7 +206,7 @@ export function startBotMarket() {
     ensureBots(store);
     for (const player of Object.values(store.players)) {
       player.openPrice = player.price;
-      ensurePriceHistory(player);
+      ensureLongHistory(player);
     }
   });
 
