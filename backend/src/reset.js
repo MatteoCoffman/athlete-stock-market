@@ -31,11 +31,13 @@ for (const p of SEED_PLAYERS) {
 
 saveStore(store);
 
-const priced = SEED_PLAYERS.map((p) => `${p.name} $${p.price}`).join("\n  ");
+const top = [...SEED_PLAYERS].sort((a, b) => b.price - a.price).slice(0, 8);
+const priced = top.map((p) => `${p.name} $${p.price}`).join("\n  ");
 console.log(`Reset complete.
   Users: 0
   Holdings: 0
   Trades: 0
-  Players: ${SEED_PLAYERS.length} (Mahomes base $100)
+  Players: ${SEED_PLAYERS.length} (active offense; Mahomes base $100 where seeded)
+  Top priced:
   ${priced}
 `);

@@ -17,7 +17,10 @@ New accounts receive **100,000** virtual credits. Trading uses instant market or
 ```bash
 cd backend
 npm install
-npm run reset   # wipe users/trades/holdings + reseed prices (Mahomes = $100 base)
+npm run reset   # wipe users/trades/holdings + reseed from roster.json
+# Optional: rebuild roster.json from CSV after updating the dump
+# npm run roster
+
 npm start
 ```
 
@@ -112,7 +115,7 @@ Outputs: API URL, Cognito User Pool ID / Client ID, DynamoDB table name.
 
 ## Product notes
 
-- NFL offensive players only (QB / RB / WR / TE)
+- NFL offensive players only (QB / RB / WR / TE) — seeded from nflverse `roster_2026.csv` (~455 ACT)
 - Fake currency only
 - No live NFL stats feed yet — dividends are admin/script triggered
 - Local **bot traders** simulate market flow (weighted toward higher-priced stars, with mild mean reversion)

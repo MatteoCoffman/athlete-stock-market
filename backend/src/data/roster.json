@@ -1,0 +1,4097 @@
+[
+  {
+    "id": "gsis-00-0034857",
+    "name": "Josh Allen",
+    "team": "BUF",
+    "position": "QB",
+    "price": 108,
+    "gsisId": "00-0034857",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/mjwbioajzldkq1vzoz2d"
+  },
+  {
+    "id": "gsis-00-0034796",
+    "name": "Lamar Jackson",
+    "team": "BAL",
+    "position": "QB",
+    "price": 102,
+    "gsisId": "00-0034796",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/eno6s5qzl9grbfbfwhoa"
+  },
+  {
+    "id": "gsis-00-0033873",
+    "name": "Patrick Mahomes",
+    "team": "KC",
+    "position": "QB",
+    "price": 100,
+    "gsisId": "00-0033873",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wdckwtob1lybvkmxnf7p"
+  },
+  {
+    "id": "gsis-00-0036442",
+    "name": "Joe Burrow",
+    "team": "CIN",
+    "position": "QB",
+    "price": 88,
+    "gsisId": "00-0036442",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gnnvcgui1cijybukk2w7"
+  },
+  {
+    "id": "gsis-00-0036389",
+    "name": "Jalen Hurts",
+    "team": "PHI",
+    "position": "QB",
+    "price": 84,
+    "gsisId": "00-0036389",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xow5yvxjeqa6witmofmp"
+  },
+  {
+    "id": "gsis-00-0023459",
+    "name": "Aaron Rodgers",
+    "team": "PIT",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0023459",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dypvakakxhccxs67tb0y"
+  },
+  {
+    "id": "gsis-00-0027973",
+    "name": "Andy Dalton",
+    "team": "PHI",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0027973",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/sfsneh0bn46e2kwve7sr"
+  },
+  {
+    "id": "gsis-00-0039164",
+    "name": "Anthony Richardson",
+    "team": "IND",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0039164",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wrddeyklfcgk9qybgofq"
+  },
+  {
+    "id": "gsis-00-0041117",
+    "name": "Athan Kaliakmanis",
+    "team": "WAS",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0041117",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ahtbv63jyg8ampmyrxn9"
+  },
+  {
+    "id": "gsis-00-0034855",
+    "name": "Baker Mayfield",
+    "team": "TB",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0034855",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gjb8e69jtt1ffqf1afue"
+  },
+  {
+    "id": "gsis-00-0039732",
+    "name": "Bo Nix",
+    "team": "DEN",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0039732",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zvo9xatffmqn9lnukpgk"
+  },
+  {
+    "id": "gsis-00-0037834",
+    "name": "Brock Purdy",
+    "team": "SF",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0037834",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xs2fyj1sqdgwvt9ihbri"
+  },
+  {
+    "id": "gsis-00-0039150",
+    "name": "Bryce Young",
+    "team": "CAR",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0039150",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vcvhmxvxw2a3armle0af"
+  },
+  {
+    "id": "gsis-00-0039163",
+    "name": "C.J. Stroud",
+    "team": "HOU",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0039163",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tt4zrtxlhifaljhj0rn7"
+  },
+  {
+    "id": "gsis-00-0041056",
+    "name": "Cade Klubnik",
+    "team": "NYJ",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0041056",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/sqsxavkryojbysy4kq85"
+  },
+  {
+    "id": "gsis-00-0039918",
+    "name": "Caleb Williams",
+    "team": "CHI",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0039918",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/h4qs11kutwiw7whekmyt"
+  },
+  {
+    "id": "gsis-00-0040676",
+    "name": "Cam Ward",
+    "team": "TEN",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0040676",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/l7switu6stlwd2irm8yo"
+  },
+  {
+    "id": "gsis-00-0032950",
+    "name": "Carson Wentz",
+    "team": "MIN",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0032950",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vuolixdvigc8axelug66"
+  },
+  {
+    "id": "gsis-00-0028986",
+    "name": "Case Keenum",
+    "team": "CHI",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0028986",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/weixhyzal4ntsyszyepu"
+  },
+  {
+    "id": "gsis-00-0040891",
+    "name": "Cole Payton",
+    "team": "PHI",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0040891",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qt8hajjwkvpynr8nwepz"
+  },
+  {
+    "id": "gsis-00-0033077",
+    "name": "Dak Prescott",
+    "team": "DAL",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0033077",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yvscmqq1qki8zfsemmcd"
+  },
+  {
+    "id": "gsis-00-0035710",
+    "name": "Daniel Jones",
+    "team": "IND",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0035710",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ohvvctuykzwrpqer7xgl"
+  },
+  {
+    "id": "gsis-00-0036898",
+    "name": "Davis Mills",
+    "team": "HOU",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0036898",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jh9e97vjzmeafx8jz0sn"
+  },
+  {
+    "id": "gsis-00-0033537",
+    "name": "Deshaun Watson",
+    "team": "CLE",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0033537",
+    "headshotUrl": "https://static.www.nfl.com/image/private/f_auto,q_auto/league/otfs2docj6eahaebo5xn"
+  },
+  {
+    "id": "gsis-00-0039851",
+    "name": "Drake Maye",
+    "team": "NE",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0039851",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/s1nmoon2xnrc3bnyulv4"
+  },
+  {
+    "id": "gsis-00-0035704",
+    "name": "Drew Lock",
+    "team": "SEA",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0035704",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vdixnkk1uglfpwowalf8"
+  },
+  {
+    "id": "gsis-00-0041562",
+    "name": "Fernando Mendoza",
+    "team": "LV",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0041562",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/umygvel2pumkyvxt3jm9"
+  },
+  {
+    "id": "gsis-00-0035289",
+    "name": "Gardner Minshew",
+    "team": "ARI",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0035289",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/knlacyr7rqfkcxiriudj"
+  },
+  {
+    "id": "gsis-00-0030565",
+    "name": "Geno Smith",
+    "team": "NYJ",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0030565",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zppfqqcyjfma14jjif3a"
+  },
+  {
+    "id": "gsis-00-0033119",
+    "name": "Jacoby Brissett",
+    "team": "ARI",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0033119",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qjswiunczrn5xmdiqhlz"
+  },
+  {
+    "id": "gsis-00-0038998",
+    "name": "Jake Haener",
+    "team": "NYG",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0038998",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jfxyp1qkekty7jwh5kcr"
+  },
+  {
+    "id": "gsis-00-0041251",
+    "name": "Jalon Daniels",
+    "team": "TB",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0041251",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hwhfl6i5drktwjvslfpn"
+  },
+  {
+    "id": "gsis-00-0031503",
+    "name": "Jameis Winston",
+    "team": "NYG",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0031503",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/e5qyxnibbyawi0pvfpjl"
+  },
+  {
+    "id": "gsis-00-0033106",
+    "name": "Jared Goff",
+    "team": "DET",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0033106",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/kaicbot8qhzrvddilbtp"
+  },
+  {
+    "id": "gsis-00-0035264",
+    "name": "Jarrett Stidham",
+    "team": "DEN",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0035264",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/uzdn86skeienyyqxyiuw"
+  },
+  {
+    "id": "gsis-00-0026158",
+    "name": "Joe Flacco",
+    "team": "CIN",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0026158",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dre1d2f2d6dxqohzn5l2"
+  },
+  {
+    "id": "gsis-00-0036264",
+    "name": "Jordan Love",
+    "team": "GB",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0036264",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/thz8stjkbjwddxqnozi5"
+  },
+  {
+    "id": "gsis-00-0033949",
+    "name": "Joshua Dobbs",
+    "team": "DET",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0033949",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/twaqqjexyi0vgyfbvzis"
+  },
+  {
+    "id": "gsis-00-0036945",
+    "name": "Justin Fields",
+    "team": "KC",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0036945",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/npjrombgxkc5vjkctcgy"
+  },
+  {
+    "id": "gsis-00-0036355",
+    "name": "Justin Herbert",
+    "team": "LAC",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0036355",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jnkspnntgebegzp4ghve"
+  },
+  {
+    "id": "gsis-00-0038102",
+    "name": "Kenny Pickett",
+    "team": "CAR",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0038102",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gw6lyiuevyuspfkglnmj"
+  },
+  {
+    "id": "gsis-00-0029604",
+    "name": "Kirk Cousins",
+    "team": "LV",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0029604",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/za7cynvpwlsro1tsaijk"
+  },
+  {
+    "id": "gsis-00-0034577",
+    "name": "Kyle Allen",
+    "team": "BUF",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0034577",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/s3vbqdcoc6oc6yh460v9"
+  },
+  {
+    "id": "gsis-00-0040014",
+    "name": "Kyle McCord",
+    "team": "MIA",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0040014",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/smdh2mmu457aammcblth"
+  },
+  {
+    "id": "gsis-00-0035228",
+    "name": "Kyler Murray",
+    "team": "MIN",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0035228",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/btfruyf33adgnjzpcuen"
+  },
+  {
+    "id": "gsis-00-0036972",
+    "name": "Mac Jones",
+    "team": "SF",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0036972",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/mbdwfwiuhl0ib5ajtmzq"
+  },
+  {
+    "id": "gsis-00-0038128",
+    "name": "Malik Willis",
+    "team": "MIA",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0038128",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/txvgdbwbryzyyqq6gfet"
+  },
+  {
+    "id": "gsis-00-0032268",
+    "name": "Marcus Mariota",
+    "team": "WAS",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0032268",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/grx6m1fmu1odltjo3y31"
+  },
+  {
+    "id": "gsis-00-0034771",
+    "name": "Mason Rudolph",
+    "team": "PIT",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0034771",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/oadtxde6hxz1jgrs618o"
+  },
+  {
+    "id": "gsis-00-0026498",
+    "name": "Matthew Stafford",
+    "team": "LA",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0026498",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jwpkjfrkzufdyh8u1mg7"
+  },
+  {
+    "id": "gsis-00-0039917",
+    "name": "Michael Penix Jr.",
+    "team": "ATL",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0039917",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/mip4kogkqxwkkya6mvmh"
+  },
+  {
+    "id": "gsis-00-0033869",
+    "name": "Mitchell Trubisky",
+    "team": "TEN",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0033869",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yxs7ix2pmcfv5k1qn1sk"
+  },
+  {
+    "id": "gsis-00-0040234",
+    "name": "Quinn Ewers",
+    "team": "JAX",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0040234",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/bbcwyjuhyijtqe7jo274"
+  },
+  {
+    "id": "gsis-00-0034869",
+    "name": "Sam Darnold",
+    "team": "SEA",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0034869",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/fyay8vruj0cqmhopufzk"
+  },
+  {
+    "id": "gsis-00-0037077",
+    "name": "Sam Howell",
+    "team": "DAL",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0037077",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/sx77bippywnl0dx6m8q9"
+  },
+  {
+    "id": "gsis-00-0040668",
+    "name": "Shedeur Sanders",
+    "team": "CLE",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0040668",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/joe08hz6to2madpko8zl"
+  },
+  {
+    "id": "gsis-00-0039376",
+    "name": "Spencer Rattler",
+    "team": "NO",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0039376",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gcgmcf4kex3jsl4rlrng"
+  },
+  {
+    "id": "gsis-00-0039107",
+    "name": "Stetson Bennett",
+    "team": "LA",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0039107",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/s0eo3fstv6rkitzbefzu"
+  },
+  {
+    "id": "gsis-00-0038400",
+    "name": "Tanner McKee",
+    "team": "PHI",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0038400",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/oveivzhzv13jrfvkp8zg"
+  },
+  {
+    "id": "gsis-00-0038476",
+    "name": "Tommy DeVito",
+    "team": "NE",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0038476",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hb3m2zbfb5aprw6vdqx8"
+  },
+  {
+    "id": "gsis-00-0036971",
+    "name": "Trevor Lawrence",
+    "team": "JAX",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0036971",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/k9uzdernqkx7oquy7dkg"
+  },
+  {
+    "id": "gsis-00-0037012",
+    "name": "Trey Lance",
+    "team": "LAC",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0037012",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/j3psmvvxo13kmbgi60ej"
+  },
+  {
+    "id": "gsis-00-0036212",
+    "name": "Tua Tagovailoa",
+    "team": "ATL",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0036212",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tmm4ohds7qci0vqoobhm"
+  },
+  {
+    "id": "gsis-00-0035993",
+    "name": "Tyler Huntley",
+    "team": "BAL",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0035993",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/fxyjf9d5qkwqjdd8ypvv"
+  },
+  {
+    "id": "gsis-00-0040743",
+    "name": "Tyler Shough",
+    "team": "NO",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0040743",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/toiafc7qighw86geo7jf"
+  },
+  {
+    "id": "gsis-00-0028118",
+    "name": "Tyrod Taylor",
+    "team": "GB",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0028118",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/whpztm9akd7yefplp37r"
+  },
+  {
+    "id": "gsis-00-0038416",
+    "name": "Tyson Bagent",
+    "team": "CHI",
+    "position": "QB",
+    "price": 55,
+    "gsisId": "00-0038416",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ymimvligfyrucu0v3p6a"
+  },
+  {
+    "id": "gsis-00-0033280",
+    "name": "Christian McCaffrey",
+    "team": "SF",
+    "position": "RB",
+    "price": 96,
+    "gsisId": "00-0033280",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/st82s2ytyzanatcmkqck"
+  },
+  {
+    "id": "gsis-00-0034844",
+    "name": "Saquon Barkley",
+    "team": "PHI",
+    "position": "RB",
+    "price": 92,
+    "gsisId": "00-0034844",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qcayrzjpura2zydszonh"
+  },
+  {
+    "id": "gsis-00-0038542",
+    "name": "Bijan Robinson",
+    "team": "ATL",
+    "position": "RB",
+    "price": 88,
+    "gsisId": "00-0038542",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/esii5yb8yn9edboi4mlq"
+  },
+  {
+    "id": "gsis-00-0039139",
+    "name": "Jahmyr Gibbs",
+    "team": "DET",
+    "position": "RB",
+    "price": 86,
+    "gsisId": "00-0039139",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cursejnmmp1i9hnxihkj"
+  },
+  {
+    "id": "gsis-00-0032764",
+    "name": "Derrick Henry",
+    "team": "BAL",
+    "position": "RB",
+    "price": 78,
+    "gsisId": "00-0032764",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tm79x0iknqg6hms3ypyt"
+  },
+  {
+    "id": "gsis-00-0033293",
+    "name": "Aaron Jones",
+    "team": "MIN",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0033293",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/bktkfvgfwujkdbzkcfim"
+  },
+  {
+    "id": "gsis-00-0036727",
+    "name": "Adam Prentice",
+    "team": "DEN",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0036727",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xuvyqidnso9ga1dfefoy"
+  },
+  {
+    "id": "gsis-00-0036265",
+    "name": "AJ Dillon",
+    "team": "CAR",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0036265",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/imxxt8yrbrxptoxr1hw5"
+  },
+  {
+    "id": "gsis-00-0035125",
+    "name": "Alec Ingold",
+    "team": "LAC",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0035125",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/saqgxmq3xrr68byket0r"
+  },
+  {
+    "id": "gsis-00-0033906",
+    "name": "Alvin Kamara",
+    "team": "NO",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0033906",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yxebpuskandivlh2iil4"
+  },
+  {
+    "id": "gsis-00-0032104",
+    "name": "Ameer Abdullah",
+    "team": "JAX",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0032104",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/k8teyeiqchljlm0h5te4"
+  },
+  {
+    "id": "gsis-00-0034959",
+    "name": "Andrew Beck",
+    "team": "NYJ",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0034959",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zv8xb3nfxamq7sqa1xqt"
+  },
+  {
+    "id": "gsis-00-0040394",
+    "name": "Anthony Tyus III",
+    "team": "CAR",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0040394",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ycph0v6jfxwkcycuztk0"
+  },
+  {
+    "id": "gsis-00-0040122",
+    "name": "Ashton Jeanty",
+    "team": "LV",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0040122",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/syspis1mntov9kgspb7r"
+  },
+  {
+    "id": "gsis-00-0037157",
+    "name": "Bam Knight",
+    "team": "ARI",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0037157",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/mjxnlzlnnwlfqayeybut"
+  },
+  {
+    "id": "gsis-00-0038489",
+    "name": "Ben VanSumeren",
+    "team": "KC",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0038489",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ncnb1nwr2b1usus557xy"
+  },
+  {
+    "id": "gsis-00-0040719",
+    "name": "Bhayshul Tuten",
+    "team": "JAX",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0040719",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ryjnphuyjbedmgpx5qqj"
+  },
+  {
+    "id": "gsis-00-0039738",
+    "name": "Blake Corum",
+    "team": "LA",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0039738",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/axzqbqjkrbwfzodwwakq"
+  },
+  {
+    "id": "gsis-00-0038488",
+    "name": "Brady Russell",
+    "team": "SEA",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0038488",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vfz3osmr3fgeoyu5us80"
+  },
+  {
+    "id": "gsis-00-0039794",
+    "name": "Braelon Allen",
+    "team": "NYJ",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0039794",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/fmpzgmfjmcbrv1gmqbdn"
+  },
+  {
+    "id": "gsis-00-0040078",
+    "name": "Brashard Smith",
+    "team": "KC",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0040078",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xnf4x6b9a2yunsc0gaej"
+  },
+  {
+    "id": "gsis-00-0038120",
+    "name": "Breece Hall",
+    "team": "NYJ",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0038120",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/i01xtqbfajfq68lb6orh"
+  },
+  {
+    "id": "gsis-00-0037746",
+    "name": "Brian Robinson",
+    "team": "ATL",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0037746",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/n1xhex1ytisxcbcggqu7"
+  },
+  {
+    "id": "gsis-00-0039603",
+    "name": "British Brooks",
+    "team": "HOU",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0039603",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jethzcwj6oeitvdprnk8"
+  },
+  {
+    "id": "gsis-00-0039361",
+    "name": "Bucky Irving",
+    "team": "TB",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0039361",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vkc00rvnix3f2b96vkwo"
+  },
+  {
+    "id": "gsis-00-0040715",
+    "name": "Cam Skattebo",
+    "team": "NYG",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0040715",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hlggiqdfvj1f4kntkafr"
+  },
+  {
+    "id": "gsis-00-0038597",
+    "name": "Chase Brown",
+    "team": "CIN",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0038597",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tch3y6jlj7khvyi9jg0c"
+  },
+  {
+    "id": "gsis-00-0038685",
+    "name": "Chris Brooks",
+    "team": "GB",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0038685",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ityat7ltppdxe9t0imjd"
+  },
+  {
+    "id": "gsis-00-0038611",
+    "name": "Chris Rodriguez Jr.",
+    "team": "JAX",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0038611",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pknd5uajvpvfd8c744im"
+  },
+  {
+    "id": "gsis-00-0036555",
+    "name": "Chuba Hubbard",
+    "team": "CAR",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0036555",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/rzsvnt0pxsaize2ndhxm"
+  },
+  {
+    "id": "gsis-00-0041326",
+    "name": "CJ Donaldson",
+    "team": "NO",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0041326",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/lwl0pyoz7mbjcne0stsx"
+  },
+  {
+    "id": "gsis-00-0037304",
+    "name": "Connor Heyward",
+    "team": "LV",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0037304",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/nbbhxtutzvbj0ejljyyp"
+  },
+  {
+    "id": "gsis-00-0040556",
+    "name": "Corey Kiner",
+    "team": "NE",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0040556",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tpnamrgzfbytwlzhhyf8"
+  },
+  {
+    "id": "gsis-00-0036275",
+    "name": "D'Andre Swift",
+    "team": "CHI",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0036275",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/owpmwzoilitcodc6cmxo"
+  },
+  {
+    "id": "gsis-00-0035685",
+    "name": "David Montgomery",
+    "team": "HOU",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0035685",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/csz0c9roa4pqsccothxg"
+  },
+  {
+    "id": "gsis-00-0039040",
+    "name": "De'Von Achane",
+    "team": "MIA",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0039040",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xk1xwio0bryfxo1ylweu"
+  },
+  {
+    "id": "gsis-00-0041415",
+    "name": "Dean Connors",
+    "team": "LA",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0041415",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/fgsgqkdsnliwujjtvvw3"
+  },
+  {
+    "id": "gsis-00-0036425",
+    "name": "DeeJay Dallas",
+    "team": "MIN",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0036425",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qrvemj4m3g2mqlbgy352"
+  },
+  {
+    "id": "gsis-00-0041104",
+    "name": "Demond Claiborne",
+    "team": "MIN",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0041104",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vmozbbdzgcaqq1yrixeb"
+  },
+  {
+    "id": "gsis-00-0041436",
+    "name": "DJ Herman",
+    "team": "MIA",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0041436",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/snacspvu9hic30y1vd8m"
+  },
+  {
+    "id": "gsis-00-0039407",
+    "name": "Dylan Laube",
+    "team": "LV",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0039407",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/lpizdza73bgksstymv5t"
+  },
+  {
+    "id": "gsis-00-0038797",
+    "name": "Emanuel Wilson",
+    "team": "SEA",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0038797",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/uorruvczsxzvffpbxu8z"
+  },
+  {
+    "id": "gsis-00-0041013",
+    "name": "Emmett Johnson",
+    "team": "KC",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0041013",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/avdz4njz1slqn7ktqcuq"
+  },
+  {
+    "id": "gsis-00-0039299",
+    "name": "George Holani",
+    "team": "SEA",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0039299",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pgwvv5qhcmnwf3tomy1a"
+  },
+  {
+    "id": "gsis-00-0038738",
+    "name": "Hunter Luepke",
+    "team": "DAL",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0038738",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/m28qafff4o5vb3aaumiv"
+  },
+  {
+    "id": "gsis-00-0039798",
+    "name": "Isaiah Davis",
+    "team": "NYJ",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0039798",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/x6r9a5xhtaklbvnqmtw7"
+  },
+  {
+    "id": "gsis-00-0036158",
+    "name": "J.K. Dobbins",
+    "team": "DEN",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0036158",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cevotvl3ho5h1mioruyg"
+  },
+  {
+    "id": "gsis-00-0038896",
+    "name": "Jacob Saylors",
+    "team": "DET",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0038896",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wunm6abfmikwaewmwkp7"
+  },
+  {
+    "id": "gsis-00-0040242",
+    "name": "Jacory Croskey-Merritt",
+    "team": "WAS",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0040242",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qew4qhlj4yuf50voko61"
+  },
+  {
+    "id": "gsis-00-0041512",
+    "name": "Jadarian Price",
+    "team": "SEA",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0041512",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/toy90i08oumgbdlvctja"
+  },
+  {
+    "id": "gsis-00-0038794",
+    "name": "Jaleel McLaughlin",
+    "team": "CLE",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0038794",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jlzkji7mfkcmkyz2tygj"
+  },
+  {
+    "id": "gsis-00-0037248",
+    "name": "James Cook",
+    "team": "BUF",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0037248",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/anjbznqb9i21wzcgrtbs"
+  },
+  {
+    "id": "gsis-00-0036997",
+    "name": "Javonte Williams",
+    "team": "DAL",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0036997",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xvwroirev2kie6oiphtz"
+  },
+  {
+    "id": "gsis-00-0037228",
+    "name": "Jaylen Warren",
+    "team": "PIT",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0037228",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dkiteytgnxar1mpaxcxv"
+  },
+  {
+    "id": "gsis-00-0041027",
+    "name": "Jeremiyah Love",
+    "team": "ARI",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0041027",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/b12gtjsylmql5v7iyyla"
+  },
+  {
+    "id": "gsis-00-0036223",
+    "name": "Jonathan Taylor",
+    "team": "IND",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0036223",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yw46ky6akdm7h7siofu8"
+  },
+  {
+    "id": "gsis-00-0040177",
+    "name": "Jordan James",
+    "team": "SF",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0040177",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/un9cfqnwdzugrcy8caoh"
+  },
+  {
+    "id": "gsis-00-0037594",
+    "name": "Julius Chestnut",
+    "team": "TEN",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0037594",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/bkhv6hpjogvs5b31wwrs"
+  },
+  {
+    "id": "gsis-00-0034975",
+    "name": "Justice Hill",
+    "team": "BAL",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0034975",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/fuodbrwvianete2gy5ag"
+  },
+  {
+    "id": "gsis-00-0041052",
+    "name": "Kaelon Black",
+    "team": "SF",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0041052",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/nwgkzr1ysr32jc79zfnt"
+  },
+  {
+    "id": "gsis-00-0040142",
+    "name": "Kaleb Johnson",
+    "team": "GB",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0040142",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zpzc4oobxi8nr5dyonob"
+  },
+  {
+    "id": "gsis-00-0041096",
+    "name": "Kaytron Allen",
+    "team": "WAS",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0041096",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vbhwkqty94alwjyz8cin"
+  },
+  {
+    "id": "gsis-00-0038454",
+    "name": "Keaton Mitchell",
+    "team": "LAC",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0038454",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ztciwwpbyaffmckwrzdk"
+  },
+  {
+    "id": "gsis-00-0038551",
+    "name": "Kendre Miller",
+    "team": "NO",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0038551",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vclaomtslw55smksopku"
+  },
+  {
+    "id": "gsis-00-0038134",
+    "name": "Kenneth Walker III",
+    "team": "KC",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0038134",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vk6nruaqdewdglofcwwg"
+  },
+  {
+    "id": "gsis-00-0036919",
+    "name": "Kenny Gainwell",
+    "team": "TB",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0036919",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/eo62l8ec8e3lzt86ihth"
+  },
+  {
+    "id": "gsis-00-0039391",
+    "name": "Kimani Vidal",
+    "team": "LAC",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0039391",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tqdctdun0bv60d5ziwtl"
+  },
+  {
+    "id": "gsis-00-0029892",
+    "name": "Kyle Juszczyk",
+    "team": "SF",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0029892",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tsejiiddtouukwyyqr9q"
+  },
+  {
+    "id": "gsis-00-0040236",
+    "name": "Kyle Monangai",
+    "team": "CHI",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0040236",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/bkkk3uuouhcobydqawro"
+  },
+  {
+    "id": "gsis-00-0037840",
+    "name": "Kyren Williams",
+    "team": "LA",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0037840",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xti3pek6rmojqchakxpy"
+  },
+  {
+    "id": "gsis-00-0040238",
+    "name": "LeQuint Allen Jr.",
+    "team": "JAX",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0040238",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/i0utigksuuvo2njb9wtk"
+  },
+  {
+    "id": "gsis-00-0038409",
+    "name": "Lew Nichols III",
+    "team": "PIT",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0038409",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/plqg1yngo8vvs8ths7aw"
+  },
+  {
+    "id": "gsis-00-0039811",
+    "name": "MarShawn Lloyd",
+    "team": "GB",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0039811",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xp8sd4enimuk4zd0aqgu"
+  },
+  {
+    "id": "gsis-00-0041081",
+    "name": "Max Bredeson",
+    "team": "MIN",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0041081",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/fl3inwpzgb7fgzpaezw1"
+  },
+  {
+    "id": "gsis-00-0031595",
+    "name": "Michael Burton",
+    "team": "CLE",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0031595",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ibyeabk3yu68mgipxklr"
+  },
+  {
+    "id": "gsis-00-0040878",
+    "name": "Mike Washington Jr.",
+    "team": "LV",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0040878",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ocdjq5ohmtgdghqdh5m4"
+  },
+  {
+    "id": "gsis-00-0036893",
+    "name": "Najee Harris",
+    "team": "NYG",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0036893",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/grfxgbvqnzz40r7rdtvk"
+  },
+  {
+    "id": "gsis-00-0040886",
+    "name": "Nicholas Singleton",
+    "team": "TEN",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0040886",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ztwqbc0s69cbz5ow0r0q"
+  },
+  {
+    "id": "gsis-00-0040198",
+    "name": "Ollie Gordon II",
+    "team": "MIA",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0040198",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/bv33rgypaauv7sealwkr"
+  },
+  {
+    "id": "gsis-00-0040666",
+    "name": "Omarion Hampton",
+    "team": "LAC",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0040666",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/lf2jxvxnbexlinoydbej"
+  },
+  {
+    "id": "gsis-00-0033376",
+    "name": "Patrick Ricard",
+    "team": "NYG",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0033376",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/nm7ezh46zd5bdxaxz6a9"
+  },
+  {
+    "id": "gsis-00-0040784",
+    "name": "Quinshon Judkins",
+    "team": "CLE",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0040784",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ojtce2im0wp2ltyel0vc"
+  },
+  {
+    "id": "gsis-00-0037256",
+    "name": "Rachaad White",
+    "team": "WAS",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0037256",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wtdhs50gcl2p6vngsnre"
+  },
+  {
+    "id": "gsis-00-0040466",
+    "name": "Raheim Sanders",
+    "team": "CLE",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0040466",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/bopoof9uczgpvpggeahp"
+  },
+  {
+    "id": "gsis-00-0039796",
+    "name": "Rasheen Ali",
+    "team": "BAL",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0039796",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zwjrkzu3ia3cfrwgotqt"
+  },
+  {
+    "id": "gsis-00-0039875",
+    "name": "Ray Davis",
+    "team": "BUF",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0039875",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xibwzhrl6q5xkgh3utug"
+  },
+  {
+    "id": "gsis-00-0036187",
+    "name": "Reggie Gilliam",
+    "team": "NE",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0036187",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jjntivnnkczvlclkiwwm"
+  },
+  {
+    "id": "gsis-00-0036875",
+    "name": "Rhamondre Stevenson",
+    "team": "NE",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0036875",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zmpuirvuw4r04inxth5i"
+  },
+  {
+    "id": "gsis-00-0041398",
+    "name": "Riley Nowakowski",
+    "team": "PIT",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0041398",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/nhyd8plaetjoosbq1btb"
+  },
+  {
+    "id": "gsis-00-0040730",
+    "name": "RJ Harvey",
+    "team": "DEN",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0040730",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/szxmro5enrxlscvv67xg"
+  },
+  {
+    "id": "gsis-00-0039021",
+    "name": "Roschon Johnson",
+    "team": "CHI",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0039021",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xbham6uvckkshpntb8oj"
+  },
+  {
+    "id": "gsis-00-0033526",
+    "name": "Samaje Perine",
+    "team": "CIN",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0033526",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/fllwhcdovol5i7xxahf6"
+  },
+  {
+    "id": "gsis-00-0038951",
+    "name": "Sean Tucker",
+    "team": "TB",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0038951",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wiarwjvy8p6bojlratp4"
+  },
+  {
+    "id": "gsis-00-0041125",
+    "name": "Seth McGowan",
+    "team": "IND",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0041125",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qkwvvygwu9pan88sivzb"
+  },
+  {
+    "id": "gsis-00-0039364",
+    "name": "Sione Vaki",
+    "team": "DET",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0039364",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/abqcluf2gbejhiyjjtoz"
+  },
+  {
+    "id": "gsis-00-0040208",
+    "name": "Tahj Brooks",
+    "team": "CIN",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0040208",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/s89clgkij0ytcmrkdydt"
+  },
+  {
+    "id": "gsis-00-0038555",
+    "name": "Tank Bigsby",
+    "team": "PHI",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0038555",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vfkdjfpiyrcuzahrmfvn"
+  },
+  {
+    "id": "gsis-00-0035261",
+    "name": "Tony Pollard",
+    "team": "TEN",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0035261",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/mb2xdrqiys6ktlcuah2n"
+  },
+  {
+    "id": "gsis-00-0036973",
+    "name": "Travis Etienne",
+    "team": "NO",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0036973",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pwko5dybmjie8qqo4qz2"
+  },
+  {
+    "id": "gsis-00-0035594",
+    "name": "Travis Homer",
+    "team": "PIT",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0035594",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dyyclvfaagspov2ydf3i"
+  },
+  {
+    "id": "gsis-00-0040734",
+    "name": "TreVeyon Henderson",
+    "team": "NE",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0040734",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ebcjvwytgu2y4kqm8ihv"
+  },
+  {
+    "id": "gsis-00-0035537",
+    "name": "Ty Johnson",
+    "team": "BUF",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0035537",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zruhihypizhtgpvsaj3c"
+  },
+  {
+    "id": "gsis-00-0039032",
+    "name": "Tyjae Spears",
+    "team": "TEN",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0039032",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pkly3nkohty1tuijtwty"
+  },
+  {
+    "id": "gsis-00-0037263",
+    "name": "Tyler Allgeier",
+    "team": "ARI",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0037263",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/sp9lhhmpv4qy3xy2msxd"
+  },
+  {
+    "id": "gsis-00-0037085",
+    "name": "Tyler Badie",
+    "team": "DEN",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0037085",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ghhul5piv9vzeih6atsj"
+  },
+  {
+    "id": "gsis-00-0037120",
+    "name": "Tyler Goodson",
+    "team": "DAL",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0037120",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zqmesi6fwv82lhfzlht6"
+  },
+  {
+    "id": "gsis-00-0039384",
+    "name": "Tyrone Tracy Jr.",
+    "team": "NYG",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0039384",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/b9nje50lohbprf06xoom"
+  },
+  {
+    "id": "gsis-00-0037745",
+    "name": "Velus Jones Jr.",
+    "team": "SEA",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0037745",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/d4y5fxivhcxk34q7stpb"
+  },
+  {
+    "id": "gsis-00-0039746",
+    "name": "Will Shipley",
+    "team": "PHI",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0039746",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pvpaepncsdfgzdubkuhg"
+  },
+  {
+    "id": "gsis-00-0040583",
+    "name": "Woody Marks",
+    "team": "HOU",
+    "position": "RB",
+    "price": 42,
+    "gsisId": "00-0040583",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/y5ntpcenhhhv98uz2fys"
+  },
+  {
+    "id": "gsis-00-0039338",
+    "name": "Brock Bowers",
+    "team": "LV",
+    "position": "TE",
+    "price": 85,
+    "gsisId": "00-0039338",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/waorceny0ggpaeckaol8"
+  },
+  {
+    "id": "gsis-00-0037744",
+    "name": "Trey McBride",
+    "team": "ARI",
+    "position": "TE",
+    "price": 74,
+    "gsisId": "00-0037744",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/psasp10nn5pcvkli9kil"
+  },
+  {
+    "id": "gsis-00-0030506",
+    "name": "Travis Kelce",
+    "team": "KC",
+    "position": "TE",
+    "price": 70,
+    "gsisId": "00-0030506",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dpxovcfku6ud2aohgf6a"
+  },
+  {
+    "id": "gsis-00-0033288",
+    "name": "George Kittle",
+    "team": "SF",
+    "position": "TE",
+    "price": 68,
+    "gsisId": "00-0033288",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vkicdglglkyukgyxtmpx"
+  },
+  {
+    "id": "gsis-00-0039065",
+    "name": "Sam LaPorta",
+    "team": "DET",
+    "position": "TE",
+    "price": 64,
+    "gsisId": "00-0039065",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wxlk7ysg2nfq6h6ntdcu"
+  },
+  {
+    "id": "gsis-00-0036422",
+    "name": "Adam Trautman",
+    "team": "DEN",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0036422",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/bqsgkwkfolczyrxmdp1j"
+  },
+  {
+    "id": "gsis-00-0039793",
+    "name": "AJ Barner",
+    "team": "SEA",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0039793",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/i0esiguve9if4ts5mm1q"
+  },
+  {
+    "id": "gsis-00-0037292",
+    "name": "Andrew Ogletree",
+    "team": "IND",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0037292",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wvcrk0ygv3coprxj4cnt"
+  },
+  {
+    "id": "gsis-00-0032392",
+    "name": "Austin Hooper",
+    "team": "ATL",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0032392",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dd0j9ccd8fxokl48alzg"
+  },
+  {
+    "id": "gsis-00-0041094",
+    "name": "Bauer Sharp",
+    "team": "TB",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0041094",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xqj8rk6okp7eobbv5hps"
+  },
+  {
+    "id": "gsis-00-0039912",
+    "name": "Ben Sinnott",
+    "team": "WAS",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0039912",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ilkrv6dqajndnlsbmv8f"
+  },
+  {
+    "id": "gsis-00-0038710",
+    "name": "Blake Whiteheart",
+    "team": "CLE",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0038710",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/senw8edxu2ovkg1dbdxs"
+  },
+  {
+    "id": "gsis-00-0038643",
+    "name": "Brayden Willis",
+    "team": "SF",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0038643",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/sdifjifrgrvunhiigdub"
+  },
+  {
+    "id": "gsis-00-0038935",
+    "name": "Brenton Strange",
+    "team": "JAX",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0038935",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/devxzxwf1sfficgncggm"
+  },
+  {
+    "id": "gsis-00-0039530",
+    "name": "Brevyn Spann-Ford",
+    "team": "DAL",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0039530",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/sko2pmuqociwa92ep1ad"
+  },
+  {
+    "id": "gsis-00-0036754",
+    "name": "Brock Wright",
+    "team": "DET",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0036754",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ghmaeofuj87fm97yhvcp"
+  },
+  {
+    "id": "gsis-00-0038129",
+    "name": "Cade Otton",
+    "team": "TB",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0038129",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yanr6h9aplae3jyzimf7"
+  },
+  {
+    "id": "gsis-00-0039359",
+    "name": "Cade Stover",
+    "team": "HOU",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0039359",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ur3ihcg0rkeqbfiksj5y"
+  },
+  {
+    "id": "gsis-00-0038564",
+    "name": "Cameron Latu",
+    "team": "NE",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0038564",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hquihmithkmhoncvkqwt"
+  },
+  {
+    "id": "gsis-00-0041131",
+    "name": "Carsen Ryan",
+    "team": "CLE",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0041131",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qiqiqjw4vyhv2xpxt2np"
+  },
+  {
+    "id": "gsis-00-0036429",
+    "name": "Charlie Woerner",
+    "team": "ATL",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0036429",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tuzldnhk23mvsapfejqd"
+  },
+  {
+    "id": "gsis-00-0031484",
+    "name": "Chris Manhertz",
+    "team": "NYG",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0031484",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/bw0kytk1nwrdln9t3wzg"
+  },
+  {
+    "id": "gsis-00-0036244",
+    "name": "Colby Parkinson",
+    "team": "LA",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0036244",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qsyrgtfjj06wryahnxc9"
+  },
+  {
+    "id": "gsis-00-0036290",
+    "name": "Cole Kmet",
+    "team": "CHI",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0036290",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ysnui8mzlu2fo70ub0yt"
+  },
+  {
+    "id": "gsis-00-0039686",
+    "name": "Colson Yankoff",
+    "team": "WAS",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0039686",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cgsxdjqy6l2zuqaftbd6"
+  },
+  {
+    "id": "gsis-00-0040126",
+    "name": "Colston Loveland",
+    "team": "CHI",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0040126",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cnxiyi76jeahgx94nh6d"
+  },
+  {
+    "id": "gsis-00-0034351",
+    "name": "Dallas Goedert",
+    "team": "PHI",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0034351",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/bafepstxu7vvxb9v5vua"
+  },
+  {
+    "id": "gsis-00-0038933",
+    "name": "Dalton Kincaid",
+    "team": "BUF",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0038933",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/z7k857flehljboaixj8m"
+  },
+  {
+    "id": "gsis-00-0034383",
+    "name": "Dalton Schultz",
+    "team": "HOU",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0034383",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ym8sbkev8l4scnrc0vd8"
+  },
+  {
+    "id": "gsis-00-0038115",
+    "name": "Daniel Bellinger",
+    "team": "TEN",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0038115",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/nvabdu88h2cvroeygabo"
+  },
+  {
+    "id": "gsis-00-0038558",
+    "name": "Darnell Washington",
+    "team": "PIT",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0038558",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/inwx7uipfktapaump5pj"
+  },
+  {
+    "id": "gsis-00-0031610",
+    "name": "Darren Waller",
+    "team": "CAR",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0031610",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/loyehiyzcu2lexjk7plq"
+  },
+  {
+    "id": "gsis-00-0039648",
+    "name": "David Martin-Robinson",
+    "team": "TEN",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0039648",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/imh2h5q6jmoqno5xlpwm"
+  },
+  {
+    "id": "gsis-00-0039074",
+    "name": "Davis Allen",
+    "team": "LA",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0039074",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/iweydtcrfchsl3mt6jtd"
+  },
+  {
+    "id": "gsis-00-0035689",
+    "name": "Dawson Knox",
+    "team": "BUF",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0035689",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/k8bi9ppahwfmoxs8ij4w"
+  },
+  {
+    "id": "gsis-00-0035631",
+    "name": "Drew Sample",
+    "team": "CIN",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0035631",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/mmxrr2k7gdfowqpyxtr7"
+  },
+  {
+    "id": "gsis-00-0034798",
+    "name": "Durham Smythe",
+    "team": "BAL",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0034798",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pwcuy1ntmris98x8xmxi"
+  },
+  {
+    "id": "gsis-00-0038498",
+    "name": "E.J. Jenkins",
+    "team": "PHI",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0038498",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jmhuk0gcnyotcjhdxo6v"
+  },
+  {
+    "id": "gsis-00-0040739",
+    "name": "Elijah Arroyo",
+    "team": "SEA",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0040739",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/m5rdyemjoxl4cuz9yun8"
+  },
+  {
+    "id": "gsis-00-0039041",
+    "name": "Elijah Higgins",
+    "team": "ARI",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0039041",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qgvtaa0gekopg4ad6vqe"
+  },
+  {
+    "id": "gsis-00-0033576",
+    "name": "Eric Saubert",
+    "team": "SEA",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0033576",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/czzieyox5rht6ae3g5tx"
+  },
+  {
+    "id": "gsis-00-0039814",
+    "name": "Erick All",
+    "team": "CIN",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0039814",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ifkhcxze7lnxkpzjvsmk"
+  },
+  {
+    "id": "gsis-00-0033881",
+    "name": "Evan Engram",
+    "team": "DEN",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0033881",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/nucl2dxmpvhlywhyro8o"
+  },
+  {
+    "id": "gsis-00-0036825",
+    "name": "Feleipe Franks",
+    "team": "CAR",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0036825",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/nbn1wxlh6los4y2am3ro"
+  },
+  {
+    "id": "gsis-00-0034981",
+    "name": "Foster Moreau",
+    "team": "HOU",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0034981",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/daymhftrwf00siu0iviy"
+  },
+  {
+    "id": "gsis-00-0040215",
+    "name": "Gavin Bartholomew",
+    "team": "MIN",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0040215",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vezjblfvo9gduiyonlum"
+  },
+  {
+    "id": "gsis-00-0037252",
+    "name": "Greg Dulcich",
+    "team": "MIA",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0037252",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/kw4cwgjl4kywh6le4sfh"
+  },
+  {
+    "id": "gsis-00-0040584",
+    "name": "Gunnar Helm",
+    "team": "TEN",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0040584",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hewm6ztgka7xkbl6ybvb"
+  },
+  {
+    "id": "gsis-00-0040663",
+    "name": "Harold Fannin Jr.",
+    "team": "CLE",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0040663",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/fxublmpnxx9uggsddwik"
+  },
+  {
+    "id": "gsis-00-0039489",
+    "name": "Hayden Rucci",
+    "team": "LAC",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0039489",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vkscrzclmd0tboxpi8lk"
+  },
+  {
+    "id": "gsis-00-0033090",
+    "name": "Hunter Henry",
+    "team": "NE",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0033090",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cvlunbqgztudbhjrug7l"
+  },
+  {
+    "id": "gsis-00-0037004",
+    "name": "Hunter Long",
+    "team": "ARI",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0037004",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wlj6sdfj5qcy8bt2qyxb"
+  },
+  {
+    "id": "gsis-00-0034365",
+    "name": "Ian Thomas",
+    "team": "LV",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0034365",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gvpwnq0mjefjlekgzxro"
+  },
+  {
+    "id": "gsis-00-0037838",
+    "name": "Isaiah Likely",
+    "team": "NYG",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0037838",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/b1pahldt9ixp9lssxi2d"
+  },
+  {
+    "id": "gsis-00-0040194",
+    "name": "Jackson Hawes",
+    "team": "BUF",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0040194",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gl3easmpg7rn6e5siya2"
+  },
+  {
+    "id": "gsis-00-0040390",
+    "name": "Jackson Meeks",
+    "team": "DET",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0040390",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ot3dsyhfhos9epmkqdip"
+  },
+  {
+    "id": "gsis-00-0040081",
+    "name": "Jake Briningstool",
+    "team": "KC",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0040081",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/q7n84oth87v1glz5a5sz"
+  },
+  {
+    "id": "gsis-00-0038041",
+    "name": "Jake Ferguson",
+    "team": "DAL",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0038041",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xpykb0tbosfwsn6dqstb"
+  },
+  {
+    "id": "gsis-00-0037755",
+    "name": "Jelani Woods",
+    "team": "NYJ",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0037755",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/bnezem4laynlarqnpyc5"
+  },
+  {
+    "id": "gsis-00-0037805",
+    "name": "Jeremy Ruckert",
+    "team": "NYJ",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0037805",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/bcqcta7r1uee3rqhejdh"
+  },
+  {
+    "id": "gsis-00-0036628",
+    "name": "John Bates",
+    "team": "WAS",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0036628",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/sqaiwpind6kk4ns4acql"
+  },
+  {
+    "id": "gsis-00-0033246",
+    "name": "Johnny Mundt",
+    "team": "PHI",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0033246",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gbsnomwbzavt5124vvaz"
+  },
+  {
+    "id": "gsis-00-0033858",
+    "name": "Jonnu Smith",
+    "team": "GB",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0033858",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/egd6llghj3n5wfdrqacw"
+  },
+  {
+    "id": "gsis-00-0040887",
+    "name": "Josh Cuevas",
+    "team": "BAL",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0040887",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/maktufaiogxfm5ewjsi9"
+  },
+  {
+    "id": "gsis-00-0035249",
+    "name": "Josh Oliver",
+    "team": "MIN",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0035249",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/awdb5xedlbq0ebpptgzb"
+  },
+  {
+    "id": "gsis-00-0038589",
+    "name": "Josh Whyle",
+    "team": "GB",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0038589",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/an9hxzbzmg6kgkdai022"
+  },
+  {
+    "id": "gsis-00-0041077",
+    "name": "Justin Joly",
+    "team": "MIA",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0041077",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vglffv5obtvktndulobu"
+  },
+  {
+    "id": "gsis-00-0036040",
+    "name": "Juwan Johnson",
+    "team": "NO",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0036040",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ahzqkvhjot6lygwr4ccb"
+  },
+  {
+    "id": "gsis-00-0040363",
+    "name": "Keleki Latu",
+    "team": "BUF",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0040363",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vebjjfyrrrbwaqjlyvun"
+  },
+  {
+    "id": "gsis-00-0041032",
+    "name": "Kenyon Sadiq",
+    "team": "NYJ",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0041032",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/mnswulwto4yqkgmugoiq"
+  },
+  {
+    "id": "gsis-00-0037311",
+    "name": "Ko Kieft",
+    "team": "TB",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0037311",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/whd4f9mav6qqckqltqwu"
+  },
+  {
+    "id": "gsis-00-0036970",
+    "name": "Kyle Pitts",
+    "team": "ATL",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0036970",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xczipzxvytnmvgznhhb4"
+  },
+  {
+    "id": "gsis-00-0036887",
+    "name": "Luke Farrell",
+    "team": "SF",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0036887",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/kdq2zratulrdsv4ykugy"
+  },
+  {
+    "id": "gsis-00-0038547",
+    "name": "Luke Schoonmaker",
+    "team": "DAL",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0038547",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/g1slhy5joxxfeudlzrh9"
+  },
+  {
+    "id": "gsis-00-0034753",
+    "name": "Mark Andrews",
+    "team": "BAL",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0034753",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/u4xzz7tclch0tpzm9hhz"
+  },
+  {
+    "id": "gsis-00-0040598",
+    "name": "Mark Redman",
+    "team": "GB",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0040598",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/m20wrukxvkgbvs70qpai"
+  },
+  {
+    "id": "gsis-00-0041472",
+    "name": "Marlin Klein",
+    "team": "HOU",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0041472",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ek2nzhrwqxl6psbm2iic"
+  },
+  {
+    "id": "gsis-00-0040879",
+    "name": "Matthew Hibner",
+    "team": "BAL",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0040879",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/kkkia0wl2sqsjiwecde0"
+  },
+  {
+    "id": "gsis-00-0041510",
+    "name": "Max Klare",
+    "team": "LA",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0041510",
+    "headshotUrl": null
+  },
+  {
+    "id": "gsis-00-0039066",
+    "name": "Michael Mayer",
+    "team": "LV",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0039066",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/twnkr9uq1phvukxb5jmh"
+  },
+  {
+    "id": "gsis-00-0034829",
+    "name": "Mike Gesicki",
+    "team": "CIN",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0034829",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dykckg6we3cnw9yhpggi"
+  },
+  {
+    "id": "gsis-00-0040187",
+    "name": "Mitchell Evans",
+    "team": "CAR",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0040187",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yruhsxdnyfaa7iswn1dp"
+  },
+  {
+    "id": "gsis-00-0033217",
+    "name": "Mo Alie-Cox",
+    "team": "IND",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0033217",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ivdxijcqlhfwsydxh6ox"
+  },
+  {
+    "id": "gsis-00-0038783",
+    "name": "Nate Adkins",
+    "team": "DEN",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0038783",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hedaw0ksq5qdzp9uhe3w"
+  },
+  {
+    "id": "gsis-00-0041503",
+    "name": "Nate Boerkircher",
+    "team": "JAX",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0041503",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/bxglkvzpx2y40u25xaso"
+  },
+  {
+    "id": "gsis-00-0040058",
+    "name": "Nick Kallerup",
+    "team": "SEA",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0040058",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/eetx8ba2ztsmk9wabbzp"
+  },
+  {
+    "id": "gsis-00-0037317",
+    "name": "Nick Muse",
+    "team": "ATL",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0037317",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cdidnsvt1we5d7ffnjbo"
+  },
+  {
+    "id": "gsis-00-0035644",
+    "name": "Noah Fant",
+    "team": "NO",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0035644",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/lijnonbrcmplvkcb5kqv"
+  },
+  {
+    "id": "gsis-00-0036637",
+    "name": "Noah Gray",
+    "team": "KC",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0036637",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/bpmlguml8jth2rbdfyp5"
+  },
+  {
+    "id": "gsis-00-0040189",
+    "name": "Oronde Gadsden II",
+    "team": "LAC",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0040189",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/r8b4oghjwhw8x9nv1wbs"
+  },
+  {
+    "id": "gsis-00-0041041",
+    "name": "Oscar Delp",
+    "team": "NO",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0041041",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/a7tu8cb3rnd5ncgbtok5"
+  },
+  {
+    "id": "gsis-00-0036894",
+    "name": "Pat Freiermuth",
+    "team": "PIT",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0036894",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pyrdsypgggjshiaygkr7"
+  },
+  {
+    "id": "gsis-00-0040331",
+    "name": "Patrick Herbert",
+    "team": "LAC",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0040331",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ozp6mlkzvpqbvuldsm32"
+  },
+  {
+    "id": "gsis-00-0039050",
+    "name": "Payne Durham",
+    "team": "TB",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0039050",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/emibbexzjbzvopbvo1at"
+  },
+  {
+    "id": "gsis-00-0036590",
+    "name": "Quintin Morris",
+    "team": "JAX",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0036590",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/auqtvapzdtpdxg6myw6b"
+  },
+  {
+    "id": "gsis-00-0033757",
+    "name": "Robert Tonyan",
+    "team": "PIT",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0033757",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/m8h8rzmxq4sjywitqnyb"
+  },
+  {
+    "id": "gsis-00-0041558",
+    "name": "Sam Roush",
+    "team": "CHI",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0041558",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jqkmmguw4934lyjgvuip"
+  },
+  {
+    "id": "gsis-00-0041579",
+    "name": "Seydou Traore",
+    "team": "MIA",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0041579",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/kzpmm2zoctywb276zqt4"
+  },
+  {
+    "id": "gsis-00-0035229",
+    "name": "T.J. Hockenson",
+    "team": "MIN",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0035229",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/rs8o65x0u0n9xzde0fd6"
+  },
+  {
+    "id": "gsis-00-0041314",
+    "name": "Tanner Arkin",
+    "team": "NE",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0041314",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vgc4lne9seywphzadlav"
+  },
+  {
+    "id": "gsis-00-0034613",
+    "name": "Tanner Hudson",
+    "team": "CIN",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0034613",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pyl2bpjw0vy4idcseama"
+  },
+  {
+    "id": "gsis-00-0041084",
+    "name": "Tanner Koziol",
+    "team": "JAX",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0041084",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yx0na9fufgv3snuyecbd"
+  },
+  {
+    "id": "gsis-00-0040737",
+    "name": "Terrance Ferguson",
+    "team": "LA",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0040737",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/w5o0s5yf6j5dsmiwdtfg"
+  },
+  {
+    "id": "gsis-00-0039847",
+    "name": "Theo Johnson",
+    "team": "NYG",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0039847",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/fv2jbzlocr1o3ahkru43"
+  },
+  {
+    "id": "gsis-00-0037005",
+    "name": "Tommy Tremble",
+    "team": "CAR",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0037005",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/t7wjikfv09d3o1q7wjdx"
+  },
+  {
+    "id": "gsis-00-0038996",
+    "name": "Tucker Kraft",
+    "team": "GB",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0038996",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/n6vu44jbq31rydoaadaq"
+  },
+  {
+    "id": "gsis-00-0033110",
+    "name": "Tyler Higbee",
+    "team": "LA",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0033110",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/x1d4osiefibd04df6gow"
+  },
+  {
+    "id": "gsis-00-0040128",
+    "name": "Tyler Warren",
+    "team": "IND",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0040128",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/f1mfwwrr3qvnxuiackgq"
+  },
+  {
+    "id": "gsis-00-0041524",
+    "name": "Will Kacmarek",
+    "team": "MIA",
+    "position": "TE",
+    "price": 36,
+    "gsisId": "00-0041524",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/erqascuieblamkhf2vbs"
+  },
+  {
+    "id": "gsis-00-0036900",
+    "name": "Ja'Marr Chase",
+    "team": "CIN",
+    "position": "WR",
+    "price": 98,
+    "gsisId": "00-0036900",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qya3dtjb5kgofcuj2tuw"
+  },
+  {
+    "id": "gsis-00-0036322",
+    "name": "Justin Jefferson",
+    "team": "MIN",
+    "position": "WR",
+    "price": 96,
+    "gsisId": "00-0036322",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/htjevkugzk6ietrjysny"
+  },
+  {
+    "id": "gsis-00-0036358",
+    "name": "CeeDee Lamb",
+    "team": "DAL",
+    "position": "WR",
+    "price": 90,
+    "gsisId": "00-0036358",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/mbblzwtynxr15ovzkevi"
+  },
+  {
+    "id": "gsis-00-0036963",
+    "name": "Amon-Ra St. Brown",
+    "team": "DET",
+    "position": "WR",
+    "price": 87,
+    "gsisId": "00-0036963",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/fd8nwhm6pvxfyzphzl6i"
+  },
+  {
+    "id": "gsis-00-0039337",
+    "name": "Malik Nabers",
+    "team": "NYG",
+    "position": "WR",
+    "price": 82,
+    "gsisId": "00-0039337",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/w3edoyyuomqlovvp9ixc"
+  },
+  {
+    "id": "gsis-00-0039816",
+    "name": "Anthony Gould",
+    "team": "IND",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0039816",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/irctulz9pij3tzpokih0"
+  },
+  {
+    "id": "gsis-00-0041040",
+    "name": "Antonio Williams",
+    "team": "WAS",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0041040",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/noywrsgaqoqlv64c12yw"
+  },
+  {
+    "id": "gsis-00-0036862",
+    "name": "Ben Skowronek",
+    "team": "PIT",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0036862",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/etozk8ja4u8lpjcvvo6l"
+  },
+  {
+    "id": "gsis-00-0037091",
+    "name": "Bo Melton",
+    "team": "GB",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0037091",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/d7hxvsyeufobjykcxhls"
+  },
+  {
+    "id": "gsis-00-0034419",
+    "name": "Braxton Berrios",
+    "team": "NYG",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0034419",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/striwxmn9t0ixherw7l8"
+  },
+  {
+    "id": "gsis-00-0039893",
+    "name": "Brian Thomas Jr.",
+    "team": "JAX",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0039893",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/plnekkriys4cm11rnxwl"
+  },
+  {
+    "id": "gsis-00-0037132",
+    "name": "Britain Covey",
+    "team": "PHI",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0037132",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jgvgr3prtme8ua28bfxi"
+  },
+  {
+    "id": "gsis-00-0041067",
+    "name": "Bryce Lance",
+    "team": "NO",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0041067",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/lzh0hbhllbouh97ffpp6"
+  },
+  {
+    "id": "gsis-00-0038840",
+    "name": "Brycen Tremayne",
+    "team": "CAR",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0038840",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/isc094ihkf69vzrlkiql"
+  },
+  {
+    "id": "gsis-00-0034837",
+    "name": "Calvin Ridley",
+    "team": "TEN",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0034837",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zrv8bjm7zdtboyka2jvr"
+  },
+  {
+    "id": "gsis-00-0041438",
+    "name": "Carnell Tate",
+    "team": "TEN",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0041438",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ghpmpzcnigxrdbyvcxke"
+  },
+  {
+    "id": "gsis-00-0040705",
+    "name": "Chimere Dike",
+    "team": "TEN",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040705",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cbcpv4931dqmgsu3anvo"
+  },
+  {
+    "id": "gsis-00-0041525",
+    "name": "Chris Bell",
+    "team": "MIA",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0041525",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zgbku18zemqyryvyahd4"
+  },
+  {
+    "id": "gsis-00-0036463",
+    "name": "Chris Blair",
+    "team": "ATL",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0036463",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gfkhv6k1wr45fnhl0p1d"
+  },
+  {
+    "id": "gsis-00-0033921",
+    "name": "Chris Godwin Jr.",
+    "team": "TB",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0033921",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ilkheljdx4hbjpisulke"
+  },
+  {
+    "id": "gsis-00-0032398",
+    "name": "Chris Moore",
+    "team": "BAL",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0032398",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/o0s29hnpztyxqotqdx8h"
+  },
+  {
+    "id": "gsis-00-0037239",
+    "name": "Chris Olave",
+    "team": "NO",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0037239",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/onmxufsprtvglhejg94o"
+  },
+  {
+    "id": "gsis-00-0038124",
+    "name": "Christian Watson",
+    "team": "GB",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0038124",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tumeg4d32sirkab2xzu5"
+  },
+  {
+    "id": "gsis-00-0035891",
+    "name": "Cody White",
+    "team": "LV",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0035891",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qaxlehtrp722qleo48sc"
+  },
+  {
+    "id": "gsis-00-0041069",
+    "name": "Colbie Young",
+    "team": "CIN",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0041069",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/n4irmipxyl87b6jmudte"
+  },
+  {
+    "id": "gsis-00-0033908",
+    "name": "Cooper Kupp",
+    "team": "SEA",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0033908",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/kjixprihktsfog6wx9sq"
+  },
+  {
+    "id": "gsis-00-0034348",
+    "name": "Courtland Sutton",
+    "team": "DEN",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0034348",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/kqwmqcrlrwmqcvfuguhs"
+  },
+  {
+    "id": "gsis-00-0040890",
+    "name": "Cyrus Allen",
+    "team": "KC",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040890",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qput6hanukjbatuao8ca"
+  },
+  {
+    "id": "gsis-00-0037093",
+    "name": "Dareke Young",
+    "team": "LV",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0037093",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xd0585sr1fy1wpry0ued"
+  },
+  {
+    "id": "gsis-00-0040024",
+    "name": "Darius Cooper",
+    "team": "PHI",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040024",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pe71oe4eoyyfnq80fkxc"
+  },
+  {
+    "id": "gsis-00-0036309",
+    "name": "Darnell Mooney",
+    "team": "NYG",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0036309",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/eaejonwaflt9drrs9ika"
+  },
+  {
+    "id": "gsis-00-0031381",
+    "name": "Davante Adams",
+    "team": "LA",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0031381",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tdzluk4xau3arxqk9zsl"
+  },
+  {
+    "id": "gsis-00-0033589",
+    "name": "David Moore",
+    "team": "CAR",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0033589",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/iyawzolvibsds35fwapv"
+  },
+  {
+    "id": "gsis-00-0035719",
+    "name": "Deebo Samuel Sr.",
+    "team": "SF",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0035719",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ntgyhqg6hq7fanhhsqiw"
+  },
+  {
+    "id": "gsis-00-0041132",
+    "name": "Deion Burks",
+    "team": "IND",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0041132",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/mbejyq733jilg3bkpzur"
+  },
+  {
+    "id": "gsis-00-0038621",
+    "name": "DeMario Douglas",
+    "team": "NE",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0038621",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cm9vnzqu5phlmsocjwgc"
+  },
+  {
+    "id": "gsis-00-0041037",
+    "name": "Denzel Boston",
+    "team": "CLE",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0041037",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ybkny6eh5eegq3bqmony"
+  },
+  {
+    "id": "gsis-00-0038573",
+    "name": "Derius Davis",
+    "team": "LAC",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0038573",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ykmeihbr6903smvblzgc"
+  },
+  {
+    "id": "gsis-00-0039424",
+    "name": "Devaughn Vele",
+    "team": "NO",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0039424",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/fa3dwsu8nxzkbf2knczm"
+  },
+  {
+    "id": "gsis-00-0036331",
+    "name": "Devin Duvernay",
+    "team": "ARI",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0036331",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tj3t166iwsxbnyzxcyyl"
+  },
+  {
+    "id": "gsis-00-0036912",
+    "name": "DeVonta Smith",
+    "team": "PHI",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0036912",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/k724kq3hyv7jc0y9s03x"
+  },
+  {
+    "id": "gsis-00-0039792",
+    "name": "Devontez Walker",
+    "team": "BAL",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0039792",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/x3x3k5ispk44ms0f7vrv"
+  },
+  {
+    "id": "gsis-00-0034827",
+    "name": "DJ Moore",
+    "team": "BUF",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0034827",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/lsavpxtqoqu25emwcnvy"
+  },
+  {
+    "id": "gsis-00-0035640",
+    "name": "DK Metcalf",
+    "team": "PIT",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0035640",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/kxql4sjfelubhxawu2zh"
+  },
+  {
+    "id": "gsis-00-0040785",
+    "name": "Dohnte Meyers",
+    "team": "CIN",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040785",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xkxpqhtebubkbv1irlkc"
+  },
+  {
+    "id": "gsis-00-0038393",
+    "name": "Dontayvion Wicks",
+    "team": "PHI",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0038393",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/v1lt8kpvkn0qw5elyaoz"
+  },
+  {
+    "id": "gsis-00-0037238",
+    "name": "Drake London",
+    "team": "ATL",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0037238",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/mcllowcfrmmdeo4zy3g1"
+  },
+  {
+    "id": "gsis-00-0036626",
+    "name": "Dyami Brown",
+    "team": "WAS",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0036626",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/addv9eheok1jj7amfkpb"
+  },
+  {
+    "id": "gsis-00-0040563",
+    "name": "Efton Chism III",
+    "team": "NE",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040563",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zbnf3ujmwprzgjnwdtlo"
+  },
+  {
+    "id": "gsis-00-0040170",
+    "name": "Elic Ayomanor",
+    "team": "TEN",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040170",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jjmscqt6v4ecasveugoh"
+  },
+  {
+    "id": "gsis-00-0036980",
+    "name": "Elijah Moore",
+    "team": "PHI",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0036980",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wax90oyx9vs0x9j4nt5n"
+  },
+  {
+    "id": "gsis-00-0040129",
+    "name": "Emeka Egbuka",
+    "team": "TB",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040129",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/z224kbzs62rjuykc0vha"
+  },
+  {
+    "id": "gsis-00-0037740",
+    "name": "Garrett Wilson",
+    "team": "NYJ",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0037740",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/upxwxmhdd8xluztgqwhe"
+  },
+  {
+    "id": "gsis-00-0037247",
+    "name": "George Pickens",
+    "team": "DAL",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0037247",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cbpyykoguf7rsxezqzvk"
+  },
+  {
+    "id": "gsis-00-0041489",
+    "name": "Germie Bernard",
+    "team": "PIT",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0041489",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/rsbtypbsvxux94vokb5q"
+  },
+  {
+    "id": "gsis-00-0035500",
+    "name": "Greg Dortch",
+    "team": "BUF",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0035500",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pylafoddjiqh4rhjlhpf"
+  },
+  {
+    "id": "gsis-00-0040669",
+    "name": "Isaac TeSlaa",
+    "team": "DET",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040669",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ducfhbiy2a8loytcjymn"
+  },
+  {
+    "id": "gsis-00-0040782",
+    "name": "Isaiah Bond",
+    "team": "CLE",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040782",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/piv889pkizjvgrtpfkxm"
+  },
+  {
+    "id": "gsis-00-0039451",
+    "name": "Isaiah Williams",
+    "team": "NYJ",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0039451",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/rj2etltwzmlxyz1cfkeo"
+  },
+  {
+    "id": "gsis-00-0040948",
+    "name": "J. Michael Sturdivant",
+    "team": "GB",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040948",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jpcewjixipg3iuu2ucyq"
+  },
+  {
+    "id": "gsis-00-0040729",
+    "name": "Jack Bech",
+    "team": "LV",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040729",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/feplgtl0x1svqen9szwv"
+  },
+  {
+    "id": "gsis-00-0039365",
+    "name": "Jacob Cowing",
+    "team": "SF",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0039365",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/uarciagmnzmyzs102dv6"
+  },
+  {
+    "id": "gsis-00-0037741",
+    "name": "Jahan Dotson",
+    "team": "ATL",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0037741",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gwuibfw7ljxudxtldcvh"
+  },
+  {
+    "id": "gsis-00-0040277",
+    "name": "Jahdae Walker",
+    "team": "CHI",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040277",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cr13mo2xrpdkksy8fveq"
+  },
+  {
+    "id": "gsis-00-0034960",
+    "name": "Jakobi Meyers",
+    "team": "JAX",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0034960",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zrs4ij8mvw7wr1uujwew"
+  },
+  {
+    "id": "gsis-00-0038640",
+    "name": "Jalen Brooks",
+    "team": "ARI",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0038640",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xeg0tvg6klf0afgddkq6"
+  },
+  {
+    "id": "gsis-00-0039491",
+    "name": "Jalen Coker",
+    "team": "CAR",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0039491",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yynz8rxen6tsvhojggiv"
+  },
+  {
+    "id": "gsis-00-0039855",
+    "name": "Jalen McMillan",
+    "team": "TB",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0039855",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/s8tlj5wsi6cq8kjhp06v"
+  },
+  {
+    "id": "gsis-00-0038740",
+    "name": "Jalen Moreno-Cropper",
+    "team": "NO",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0038740",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/key7qkukzlgva9oz7k2r"
+  },
+  {
+    "id": "gsis-00-0037291",
+    "name": "Jalen Nailor",
+    "team": "LV",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0037291",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/nojopyt8hxuwycxyaokb"
+  },
+  {
+    "id": "gsis-00-0040646",
+    "name": "Jalen Royals",
+    "team": "KC",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040646",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/sqrid1hnmwqymcp2vxfx"
+  },
+  {
+    "id": "gsis-00-0037666",
+    "name": "Jalen Tolbert",
+    "team": "MIA",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0037666",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dthrzudnyh1mcrh1det2"
+  },
+  {
+    "id": "gsis-00-0040405",
+    "name": "Jamaal Pritchett",
+    "team": "NYJ",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040405",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cskrvfgcpvpezccsdfky"
+  },
+  {
+    "id": "gsis-00-0037240",
+    "name": "Jameson Williams",
+    "team": "DET",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0037240",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/byiptqggtglvy5qrw5wp"
+  },
+  {
+    "id": "gsis-00-0038728",
+    "name": "Jared Wayne",
+    "team": "HOU",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0038728",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ykhrjnmqsqyprplhy6pl"
+  },
+  {
+    "id": "gsis-00-0036259",
+    "name": "Jauan Jennings",
+    "team": "MIN",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0036259",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ben8kbygzzlid6ltmdum"
+  },
+  {
+    "id": "gsis-00-0038543",
+    "name": "Jaxon Smith-Njigba",
+    "team": "SEA",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0038543",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yx1xjrupbqdknnjaq4a6"
+  },
+  {
+    "id": "gsis-00-0036613",
+    "name": "Jaylen Waddle",
+    "team": "DEN",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0036613",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gkh7m1jedon9mwn5jlf1"
+  },
+  {
+    "id": "gsis-00-0040164",
+    "name": "Jaylin Lane",
+    "team": "WAS",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040164",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/fa5ufxqxs3hzioih3cfb"
+  },
+  {
+    "id": "gsis-00-0040138",
+    "name": "Jaylin Noel",
+    "team": "HOU",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040138",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ehlm8w4afdqoisx1e6as"
+  },
+  {
+    "id": "gsis-00-0036407",
+    "name": "Jerry Jeudy",
+    "team": "CLE",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0036407",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/szca1v9butuqkjs7ekpm"
+  },
+  {
+    "id": "gsis-00-0037614",
+    "name": "John Metchie III",
+    "team": "CAR",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0037614",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/nsjpnskeldxzbzckpfgg"
+  },
+  {
+    "id": "gsis-00-0039062",
+    "name": "Jonathan Mingo",
+    "team": "DAL",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0039062",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/u2b8s2s0ix5hntyg3eog"
+  },
+  {
+    "id": "gsis-00-0038994",
+    "name": "Jordan Addison",
+    "team": "MIN",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0038994",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/mi4lzk9gvjrvo6rwdf1e"
+  },
+  {
+    "id": "gsis-00-0040172",
+    "name": "Jordan Watkins",
+    "team": "SF",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040172",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/agcwewjrj4dfssqkzksp"
+  },
+  {
+    "id": "gsis-00-0039751",
+    "name": "Jordan Whittington",
+    "team": "LA",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0039751",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/enqcg1lgjkuk0hqz3qjc"
+  },
+  {
+    "id": "gsis-00-0041100",
+    "name": "Josh Cameron",
+    "team": "JAX",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0041100",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jwb3wyhoqqq52mfiyxxc"
+  },
+  {
+    "id": "gsis-00-0038997",
+    "name": "Josh Downs",
+    "team": "IND",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0038997",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/z3wahaxpmc6d5lcxgh60"
+  },
+  {
+    "id": "gsis-00-0036988",
+    "name": "Josh Palmer",
+    "team": "BUF",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0036988",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/woswdfrtxnsfgzsjvsxx"
+  },
+  {
+    "id": "gsis-00-0041397",
+    "name": "Kaden Wetjen",
+    "team": "PIT",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0041397",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/s44clgjdvd1tuslyqimk"
+  },
+  {
+    "id": "gsis-00-0032464",
+    "name": "Kalif Raymond",
+    "team": "CHI",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0032464",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dpdv6dm0almcbjdppizx"
+  },
+  {
+    "id": "gsis-00-0039589",
+    "name": "Kameron Johnson",
+    "team": "TB",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0039589",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ms7auybbkq1nwbd2ev0d"
+  },
+  {
+    "id": "gsis-00-0037801",
+    "name": "KaVontae Turpin",
+    "team": "DAL",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0037801",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tayjlp1hgmm6rewgl1k4"
+  },
+  {
+    "id": "gsis-00-0038608",
+    "name": "Kayshon Boutte",
+    "team": "HOU",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0038608",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/mg4icjqhwhnc5uobmau5"
+  },
+  {
+    "id": "gsis-00-0041547",
+    "name": "KC Concepcion",
+    "team": "CLE",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0041547",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ztdyzyngqr1pexyghlt3"
+  },
+  {
+    "id": "gsis-00-0040534",
+    "name": "Ke'Shawn Williams",
+    "team": "CIN",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040534",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/r7enwgccqv93feuoeurz"
+  },
+  {
+    "id": "gsis-00-0030279",
+    "name": "Keenan Allen",
+    "team": "IND",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0030279",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ri267r6lzfwarh89hsn6"
+  },
+  {
+    "id": "gsis-00-0033307",
+    "name": "Kendrick Bourne",
+    "team": "ARI",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0033307",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yzfa94cmhpcqamrwzdzk"
+  },
+  {
+    "id": "gsis-00-0039901",
+    "name": "Keon Coleman",
+    "team": "BUF",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0039901",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cm7g87waetksjouyjgvg"
+  },
+  {
+    "id": "gsis-00-0037231",
+    "name": "Kevin Austin Jr.",
+    "team": "NO",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0037231",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/fh2yaqaxkornxeb7d9ie"
+  },
+  {
+    "id": "gsis-00-0041529",
+    "name": "Kevin Coleman Jr.",
+    "team": "MIA",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0041529",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/nqqd4zjnxephjb4qziww"
+  },
+  {
+    "id": "gsis-00-0034854",
+    "name": "KhaDarel Hodge",
+    "team": "SF",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0034854",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/mozew14dow474cun5eqp"
+  },
+  {
+    "id": "gsis-00-0037261",
+    "name": "Khalil Shakir",
+    "team": "BUF",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0037261",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/syvp3hficobwcsim3i9v"
+  },
+  {
+    "id": "gsis-00-0041292",
+    "name": "Kolbe Katsis",
+    "team": "DEN",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0041292",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/u3bhwno76vnuflla9jjg"
+  },
+  {
+    "id": "gsis-00-0040590",
+    "name": "Konata Mumpfield",
+    "team": "LA",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040590",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cehkowkvb4aujslmppbj"
+  },
+  {
+    "id": "gsis-00-0040131",
+    "name": "Kyle Williams",
+    "team": "NE",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040131",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xkicyhizq6sm86wr5osk"
+  },
+  {
+    "id": "gsis-00-0039915",
+    "name": "Ladd McConkey",
+    "team": "LAC",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0039915",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/q2sk7yforrkiusvruo1o"
+  },
+  {
+    "id": "gsis-00-0040075",
+    "name": "LaJohntay Wester",
+    "team": "BAL",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040075",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/t6cyhtqoihm88xppswud"
+  },
+  {
+    "id": "gsis-00-0032951",
+    "name": "Laquon Treadwell",
+    "team": "IND",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0032951",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xspi3oy2wlnszorzn6vk"
+  },
+  {
+    "id": "gsis-00-0041467",
+    "name": "Lewis Bond",
+    "team": "HOU",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0041467",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qm5q5iilnctaitwwscst"
+  },
+  {
+    "id": "gsis-00-0039355",
+    "name": "Luke McCaffrey",
+    "team": "WAS",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0039355",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xtxiwlkniuldrqg65n3q"
+  },
+  {
+    "id": "gsis-00-0040735",
+    "name": "Luther Burden III",
+    "team": "CHI",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040735",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/iyuwdz7pbowdkwzq2tg5"
+  },
+  {
+    "id": "gsis-00-0033555",
+    "name": "Mack Hollins",
+    "team": "NE",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0033555",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qbz7whjzsittudcecezw"
+  },
+  {
+    "id": "gsis-00-0040867",
+    "name": "Makai Lemon",
+    "team": "PHI",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040867",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ys2i2o7c0bl36xvlrojz"
+  },
+  {
+    "id": "gsis-00-0039920",
+    "name": "Malachi Corley",
+    "team": "CLE",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0039920",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/lay1p8pvwrglmqorc6ev"
+  },
+  {
+    "id": "gsis-00-0041042",
+    "name": "Malachi Fields",
+    "team": "NYG",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0041042",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tpls1aptxx9x8xaqvjtj"
+  },
+  {
+    "id": "gsis-00-0040894",
+    "name": "Malik Benson",
+    "team": "LV",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040894",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tndlq4zmq6r9nsvmzih6"
+  },
+  {
+    "id": "gsis-00-0041267",
+    "name": "Malik McClain",
+    "team": "NYJ",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0041267",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ekh5mirge1jmayln4tfe"
+  },
+  {
+    "id": "gsis-00-0039880",
+    "name": "Malik Washington",
+    "team": "MIA",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0039880",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dmaiwnmaal9nrwfskl28"
+  },
+  {
+    "id": "gsis-00-0034272",
+    "name": "Marquez Valdes-Scantling",
+    "team": "LAC",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0034272",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xkdli55uvkkffiq6fwnu"
+  },
+  {
+    "id": "gsis-00-0035662",
+    "name": "Marquise Brown",
+    "team": "PHI",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0035662",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/shkjxggufymydgp6wk3p"
+  },
+  {
+    "id": "gsis-00-0039849",
+    "name": "Marvin Harrison Jr.",
+    "team": "ARI",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0039849",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hwpoo1icpnh8emjvqaii"
+  },
+  {
+    "id": "gsis-00-0040667",
+    "name": "Matthew Golden",
+    "team": "GB",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040667",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dbjki6b0swksr7mk17wk"
+  },
+  {
+    "id": "gsis-00-0036252",
+    "name": "Michael Pittman",
+    "team": "PIT",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0036252",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/q1ythn05kwcmdr4mwzll"
+  },
+  {
+    "id": "gsis-00-0038559",
+    "name": "Michael Wilson",
+    "team": "ARI",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0038559",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hm2b9z4zujjmbiyldh8n"
+  },
+  {
+    "id": "gsis-00-0031408",
+    "name": "Mike Evans",
+    "team": "SF",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0031408",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zc4ujpmndyxrbiyyjomz"
+  },
+  {
+    "id": "gsis-00-0040506",
+    "name": "Myles Price",
+    "team": "MIN",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040506",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yi2pgwujy0lv9l3m3sig"
+  },
+  {
+    "id": "gsis-00-0036182",
+    "name": "Nick Westbrook-Ikhine",
+    "team": "IND",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0036182",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cyczwxlgfksrmurbb1ez"
+  },
+  {
+    "id": "gsis-00-0038519",
+    "name": "Nikko Remigio",
+    "team": "KC",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0038519",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/n6b1tsy32fswbd0xgsim"
+  },
+  {
+    "id": "gsis-00-0031235",
+    "name": "Odell Beckham Jr.",
+    "team": "NYG",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0031235",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ffmalg3wr7lwnsz59i7v"
+  },
+  {
+    "id": "gsis-00-0035208",
+    "name": "Olamide Zaccheaus",
+    "team": "ATL",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0035208",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zsnzd30ysrewgufbv06y"
+  },
+  {
+    "id": "gsis-00-0038606",
+    "name": "Parker Washington",
+    "team": "JAX",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0038606",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yn0hc5xrz5nqeccg8two"
+  },
+  {
+    "id": "gsis-00-0040134",
+    "name": "Pat Bryant",
+    "team": "DEN",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040134",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/n91hznzkfpftxhqt1qd9"
+  },
+  {
+    "id": "gsis-00-0038544",
+    "name": "Quentin Johnston",
+    "team": "LAC",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0038544",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/lyvsrjh4mjb4dqwp6shm"
+  },
+  {
+    "id": "gsis-00-0039067",
+    "name": "Rashee Rice",
+    "team": "KC",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0039067",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qhkbqrydjeur8zvrrmfl"
+  },
+  {
+    "id": "gsis-00-0037545",
+    "name": "Rashid Shaheed",
+    "team": "SEA",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0037545",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ku2naisfbxmzgagxojnm"
+  },
+  {
+    "id": "gsis-00-0036550",
+    "name": "Rashod Bateman",
+    "team": "BAL",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0036550",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gtktmsfcxc1eijwpwzyq"
+  },
+  {
+    "id": "gsis-00-0039739",
+    "name": "Roman Wilson",
+    "team": "PIT",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0039739",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xuhjoscmhmmsutbvfmrs"
+  },
+  {
+    "id": "gsis-00-0039919",
+    "name": "Rome Odunze",
+    "team": "CHI",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0039919",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/niewdl2p2325kpohbw9v"
+  },
+  {
+    "id": "gsis-00-0037816",
+    "name": "Romeo Doubs",
+    "team": "NE",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0037816",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yxvzijmgwyyigljxfmyb"
+  },
+  {
+    "id": "gsis-00-0039410",
+    "name": "Ryan Flournoy",
+    "team": "DAL",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0039410",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tqwq3cgpqu7j9hzoyicx"
+  },
+  {
+    "id": "gsis-00-0038824",
+    "name": "Ryan Miller",
+    "team": "MIA",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0038824",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/g7bpkzvg0xyww8weku0r"
+  },
+  {
+    "id": "gsis-00-0036646",
+    "name": "Simi Fehoko",
+    "team": "ARI",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0036646",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/eep30drknwucjdj6tivh"
+  },
+  {
+    "id": "gsis-00-0038090",
+    "name": "Skyy Moore",
+    "team": "GB",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0038090",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/id9k0aylvgyq8lulabe3"
+  },
+  {
+    "id": "gsis-00-0031588",
+    "name": "Stefon Diggs",
+    "team": "WAS",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0031588",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cemcexmscsarpvwhafln"
+  },
+  {
+    "id": "gsis-00-0032385",
+    "name": "Sterling Shepard",
+    "team": "NYJ",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0032385",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/l47czwi8aaznnit0se5h"
+  },
+  {
+    "id": "gsis-00-0040154",
+    "name": "Tai Felton",
+    "team": "MIN",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040154",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pyritorbaz2enqayclln"
+  },
+  {
+    "id": "gsis-00-0037524",
+    "name": "Tay Martin",
+    "team": "DET",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0037524",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ttdp5v9tl0zqmb0dmmuv"
+  },
+  {
+    "id": "gsis-00-0041048",
+    "name": "Ted Hurst III",
+    "team": "TB",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0041048",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/mmf6qmo6a2evw4feupcm"
+  },
+  {
+    "id": "gsis-00-0036410",
+    "name": "Tee Higgins",
+    "team": "CIN",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0036410",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gpwtyv3viwy9q4ewderl"
+  },
+  {
+    "id": "gsis-00-0035659",
+    "name": "Terry McLaurin",
+    "team": "WAS",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0035659",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tmfl2zruajmkrtcg4zxp"
+  },
+  {
+    "id": "gsis-00-0040124",
+    "name": "Tetairoa McMillan",
+    "team": "CAR",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040124",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gilgvjemumd6kpc9eiku"
+  },
+  {
+    "id": "gsis-00-0040237",
+    "name": "Tez Johnson",
+    "team": "TB",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040237",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ajbnpagviw0glrhf5a2e"
+  },
+  {
+    "id": "gsis-00-0035544",
+    "name": "Tom Kennedy",
+    "team": "DET",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0035544",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cbpuzvde5zqalmkjo0dv"
+  },
+  {
+    "id": "gsis-00-0040648",
+    "name": "Tory Horton",
+    "team": "SEA",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040648",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/lmsun4qzmk1rkgt4kw76"
+  },
+  {
+    "id": "gsis-00-0040718",
+    "name": "Travis Hunter",
+    "team": "JAX",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040718",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/absw1gfqoiztajjagmf6"
+  },
+  {
+    "id": "gsis-00-0040727",
+    "name": "Tre Harris",
+    "team": "LAC",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0040727",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/v5ofh8jggzo8rygtpwl7"
+  },
+  {
+    "id": "gsis-00-0038563",
+    "name": "Tre Tucker",
+    "team": "LV",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0038563",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hazzk3hrcequzosdgzgv"
+  },
+  {
+    "id": "gsis-00-0037742",
+    "name": "Treylon Burks",
+    "team": "WAS",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0037742",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/bmozbzdxgnnwdniuvgnn"
+  },
+  {
+    "id": "gsis-00-0039868",
+    "name": "Troy Franklin",
+    "team": "DEN",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0039868",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wgfbgxjntyqzojpizgaj"
+  },
+  {
+    "id": "gsis-00-0036630",
+    "name": "Tylan Wallace",
+    "team": "CLE",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0036630",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/rifnnpeub6okv41offnd"
+  },
+  {
+    "id": "gsis-00-0038104",
+    "name": "Tyquan Thornton",
+    "team": "KC",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0038104",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/bjqzuempyiwxe0hl7e5a"
+  },
+  {
+    "id": "gsis-00-0038117",
+    "name": "Wan'Dale Robinson",
+    "team": "TEN",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0038117",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yzcvyhmilvxedfjfjglc"
+  },
+  {
+    "id": "gsis-00-0038618",
+    "name": "Xavier Hutchinson",
+    "team": "HOU",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0038618",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/n5baiu6sg9wh3xhhewkd"
+  },
+  {
+    "id": "gsis-00-0038359",
+    "name": "Xavier Smith",
+    "team": "LA",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0038359",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hqvwpitewijx8bjrcofe"
+  },
+  {
+    "id": "gsis-00-0039894",
+    "name": "Xavier Worthy",
+    "team": "KC",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0039894",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/u6fmnffwteccoxn3uguq"
+  },
+  {
+    "id": "gsis-00-0041044",
+    "name": "Zachariah Branch",
+    "team": "ATL",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0041044",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qwbo8lgyd85dlwnbznsc"
+  },
+  {
+    "id": "gsis-00-0041051",
+    "name": "Zavion Thomas",
+    "team": "CHI",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0041051",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/lhodk54zsmznu4yxjoux"
+  },
+  {
+    "id": "gsis-00-0039064",
+    "name": "Zay Flowers",
+    "team": "BAL",
+    "position": "WR",
+    "price": 40,
+    "gsisId": "00-0039064",
+    "headshotUrl": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xzhto2dejy2pflkfx40c"
+  }
+]
