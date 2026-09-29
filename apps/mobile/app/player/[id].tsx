@@ -11,12 +11,15 @@ import {
 } from "react-native";
 import Animated from "react-native-reanimated";
 import { ElevatedCard } from "../../components/ElevatedCard";
+import { NewsCard } from "../../components/NewsCard";
 import { PressScale } from "../../components/PressScale";
 import { PriceChart } from "../../components/PriceChart";
 import { enterDown } from "../../constants/motion";
 import { colors, money, radii, spacing, changeColor, changeSoft, changeBorder } from "../../constants/theme";
-import { api, Player, PlayerProfile } from "../../lib/api";
+import { api, NewsArticle, Player, PlayerProfile } from "../../lib/api";
 import { useAuth } from "../../lib/auth-context";
+
+type TabKey = "market" | "news";
 
 export default function PlayerScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -33,6 +36,11 @@ export default function PlayerScreen() {
   const [busy, setBusy] = useState(false);
   const [loading, setLoading] = useState(true);
   const [chartScrubbing, setChartScrubbing] = useState(false);
+  const [tab, setTab] = useState<TabKey>("market");
+  const [news, setNews] = useState<NewsArticle[]>([]);
+  const [newsLoading, setNewsLoading] = useState(false);
+  const [newsError, setNewsError] = useState<string | null>(null);
+  const [newsLoadedFor, setNewsLoadedFor] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     if (!id) return;
@@ -63,8 +71,16 @@ export default function PlayerScreen() {
     load();
   }, [load]);
 
-  // Poll market data so bot trades show up; leave profile alone between polls.
   useEffect(() => {
+    setTab("market");
+    setNews([]);
+    setNewsError(null);
+    setNewsLoadedFor(null);
+  }, [id]);
+
+  // Poll market data so bot trades show up; leave profile/news alone between polls.
+  useEffect(() => {
+    if (tab !== "market") return;
     const intervalId = setInterval(async () => {
       if (!id) return;
       try {
@@ -82,7 +98,33 @@ export default function PlayerScreen() {
       }
     }, 4000);
     return () => clearInterval(intervalId);
-  }, [id]);
+  }, [id, tab]);
+
+  useEffect(() => {
+    if (tab !== "news" || !id) return;
+    if (newsLoadedFor === id) return;
+
+    let cancelled = false;
+    (async () => {
+      setNewsLoading(true);
+      setNewsError(null);
+      try {
+        const data = await api.playerNews(id);
+        if (cancelled) return;
+        setNews(data.articles.slice(0, 4));
+        setNewsLoadedFor(id);
+      } catch (e) {
+        if (cancelled) return;
+        setNewsError(e instanceof Error ? e.message : "Failed to load news");
+      } finally {
+        if (!cancelled) setNewsLoading(false);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [tab, id, newsLoadedFor]);
 
   async function trade(side: "buy" | "sell") {
     if (!id) return;
@@ -185,113 +227,147 @@ export default function PlayerScreen() {
         )}
       </Animated.View>
 
-      {profile ? (
-        <ElevatedCard float delay={20} style={styles.profileCard}>
-          <Text style={styles.sectionTitle}>
-            SEASON STATS
-            {profile.season != null ? ` · ${profile.season}` : ""}
-          </Text>
-          {profile.statsAvailable && profile.seasonChips.length > 0 ? (
-            <>
-              <View style={styles.chipRow}>
-                {profile.seasonChips.map((c) => (
-                  <View key={c.label} style={styles.statChip}>
-                    <Text style={styles.statChipLabel}>{c.label}</Text>
-                    <Text style={styles.statChipValue}>{c.value}</Text>
-                  </View>
-                ))}
-              </View>
-              {profile.recentGames.length > 0 ? (
-                <>
-                  <Text style={[styles.sectionTitle, styles.recentTitle]}>RECENT GAMES</Text>
-                  {profile.recentGames.map((g) => (
-                    <View key={`${g.season}-${g.week}`} style={styles.gameRow}>
-                      <Text style={styles.gameWeek}>W{g.week}</Text>
-                      <Text style={styles.gameDetail} numberOfLines={2}>
-                        {g.chips.length
-                          ? g.chips.map((c) => `${c.label} ${c.value}`).join(" · ")
-                          : "No counted stats"}
-                      </Text>
-                    </View>
-                  ))}
-                </>
-              ) : null}
-            </>
-          ) : (
-            <Text style={styles.statsEmpty}>
-              No basic stats available for this player yet.
-            </Text>
-          )}
-        </ElevatedCard>
-      ) : null}
-
-      <ElevatedCard float delay={40} style={styles.chartCard}>
-        <Text style={styles.chartTitle}>PRICE HISTORY</Text>
-        <PriceChart
-          data={chartData}
-          changePct={pct}
-          height={240}
-          onScrubChange={setChartScrubbing}
-        />
-      </ElevatedCard>
-
-      <View style={styles.stats}>
-        {[
-          { label: "Open", value: money(player.openPrice) },
-          { label: "Float left", value: player.freeFloat.toLocaleString() },
-          { label: "Your shares", value: String(holding?.shares ?? 0) },
-        ].map((s, i) => (
-          <ElevatedCard key={s.label} delay={70 + i * 30} style={styles.stat} padded={false}>
-            <View style={styles.statInner}>
-              <Text style={styles.statLabel}>{s.label}</Text>
-              <Text style={styles.statValue}>{s.value}</Text>
-            </View>
-          </ElevatedCard>
-        ))}
+      <View style={styles.tabRow}>
+        <PressScale
+          style={[styles.tabBtn, tab === "market" && styles.tabBtnActive]}
+          onPress={() => setTab("market")}
+        >
+          <Text style={[styles.tabText, tab === "market" && styles.tabTextActive]}>Market</Text>
+        </PressScale>
+        <PressScale
+          style={[styles.tabBtn, tab === "news" && styles.tabBtnActive]}
+          onPress={() => setTab("news")}
+        >
+          <Text style={[styles.tabText, tab === "news" && styles.tabTextActive]}>Recent News</Text>
+        </PressScale>
       </View>
 
-      <ElevatedCard float delay={140} style={styles.tradeCard}>
-        <View style={styles.tradeHeader}>
-          <Text style={styles.tradeTitle}>Trade</Text>
-          <View style={styles.tradeBadge}>
-            <Text style={styles.tradeBadgeText}>MARKET</Text>
+      {tab === "news" ? (
+        <ElevatedCard float delay={20} style={styles.newsCard}>
+          <Text style={styles.sectionTitle}>RECENT NEWS</Text>
+          {newsLoading ? (
+            <ActivityIndicator color={colors.orange} style={{ marginVertical: spacing.md }} />
+          ) : newsError ? (
+            <Text style={styles.statsEmpty}>{newsError}</Text>
+          ) : news.length === 0 ? (
+            <Text style={styles.statsEmpty}>No recent articles found for this player.</Text>
+          ) : (
+            news.map((article, index) => (
+              <NewsCard key={article.id} article={article} first={index === 0} />
+            ))
+          )}
+        </ElevatedCard>
+      ) : (
+        <>
+          {profile ? (
+            <ElevatedCard float delay={20} style={styles.profileCard}>
+              <Text style={styles.sectionTitle}>
+                SEASON STATS
+                {profile.season != null ? ` · ${profile.season}` : ""}
+              </Text>
+              {profile.statsAvailable && profile.seasonChips.length > 0 ? (
+                <>
+                  <View style={styles.chipRow}>
+                    {profile.seasonChips.map((c) => (
+                      <View key={c.label} style={styles.statChip}>
+                        <Text style={styles.statChipLabel}>{c.label}</Text>
+                        <Text style={styles.statChipValue}>{c.value}</Text>
+                      </View>
+                    ))}
+                  </View>
+                  {profile.recentGames.length > 0 ? (
+                    <>
+                      <Text style={[styles.sectionTitle, styles.recentTitle]}>RECENT GAMES</Text>
+                      {profile.recentGames.map((g) => (
+                        <View key={`${g.season}-${g.week}`} style={styles.gameRow}>
+                          <Text style={styles.gameWeek}>W{g.week}</Text>
+                          <Text style={styles.gameDetail} numberOfLines={2}>
+                            {g.chips.length
+                              ? g.chips.map((c) => `${c.label} ${c.value}`).join(" · ")
+                              : "No counted stats"}
+                          </Text>
+                        </View>
+                      ))}
+                    </>
+                  ) : null}
+                </>
+              ) : (
+                <Text style={styles.statsEmpty}>
+                  No basic stats available for this player yet.
+                </Text>
+              )}
+            </ElevatedCard>
+          ) : null}
+
+          <ElevatedCard float delay={40} style={styles.chartCard}>
+            <Text style={styles.chartTitle}>PRICE HISTORY</Text>
+            <PriceChart
+              data={chartData}
+              changePct={pct}
+              height={240}
+              onScrubChange={setChartScrubbing}
+            />
+          </ElevatedCard>
+
+          <View style={styles.stats}>
+            {[
+              { label: "Open", value: money(player.openPrice) },
+              { label: "Float left", value: player.freeFloat.toLocaleString() },
+              { label: "Your shares", value: String(holding?.shares ?? 0) },
+            ].map((s, i) => (
+              <ElevatedCard key={s.label} delay={70 + i * 30} style={styles.stat} padded={false}>
+                <View style={styles.statInner}>
+                  <Text style={styles.statLabel}>{s.label}</Text>
+                  <Text style={styles.statValue}>{s.value}</Text>
+                </View>
+              </ElevatedCard>
+            ))}
           </View>
-        </View>
-        <Text style={styles.label}>Shares</Text>
-        <View style={styles.inputShell}>
-          <TextInput
-            style={styles.input}
-            value={qty}
-            onChangeText={setQty}
-            keyboardType="number-pad"
-            placeholderTextColor={colors.textDim}
-            selectionColor={colors.orange}
-          />
-        </View>
-        <Text style={styles.est}>Est. notional · {money(estCost)}</Text>
-        <View style={styles.actions}>
-          <PressScale
-            style={[styles.btn, styles.buy]}
-            disabled={busy}
-            onPress={() => trade("buy")}
-          >
-            {busy ? <ActivityIndicator color={colors.bg} /> : <Text style={styles.buyText}>Buy</Text>}
-          </PressScale>
-          <PressScale
-            style={[styles.btn, styles.sell]}
-            disabled={busy}
-            onPress={() => trade("sell")}
-          >
-            {busy ? (
-              <ActivityIndicator color={colors.text} />
-            ) : (
-              <Text style={styles.sellText}>Sell</Text>
-            )}
-          </PressScale>
-        </View>
-        {error ? <Text style={styles.error}>{error}</Text> : null}
-        {message ? <Text style={styles.message}>{message}</Text> : null}
-      </ElevatedCard>
+
+          <ElevatedCard float delay={140} style={styles.tradeCard}>
+            <View style={styles.tradeHeader}>
+              <Text style={styles.tradeTitle}>Trade</Text>
+              <View style={styles.tradeBadge}>
+                <Text style={styles.tradeBadgeText}>MARKET</Text>
+              </View>
+            </View>
+            <Text style={styles.label}>Shares</Text>
+            <View style={styles.inputShell}>
+              <TextInput
+                style={styles.input}
+                value={qty}
+                onChangeText={setQty}
+                keyboardType="number-pad"
+                placeholderTextColor={colors.textDim}
+                selectionColor={colors.orange}
+              />
+            </View>
+            <Text style={styles.est}>Est. notional · {money(estCost)}</Text>
+            <View style={styles.actions}>
+              <PressScale
+                style={[styles.btn, styles.buy]}
+                disabled={busy}
+                onPress={() => trade("buy")}
+              >
+                {busy ? <ActivityIndicator color={colors.bg} /> : <Text style={styles.buyText}>Buy</Text>}
+              </PressScale>
+              <PressScale
+                style={[styles.btn, styles.sell]}
+                disabled={busy}
+                onPress={() => trade("sell")}
+              >
+                {busy ? (
+                  <ActivityIndicator color={colors.text} />
+                ) : (
+                  <Text style={styles.sellText}>Sell</Text>
+                )}
+              </PressScale>
+            </View>
+            {error ? <Text style={styles.error}>{error}</Text> : null}
+            {message ? <Text style={styles.message}>{message}</Text> : null}
+          </ElevatedCard>
+        </>
+      )}
     </ScrollView>
   );
 }
@@ -333,6 +409,27 @@ const styles = StyleSheet.create({
   chip: { borderRadius: radii.pill, paddingHorizontal: 10, paddingVertical: 4, borderWidth: 1 },
   youHold: { color: colors.textMuted, marginTop: 10, fontSize: 13, lineHeight: 18 },
   cashHint: { color: colors.textMuted, marginTop: 10 },
+  tabRow: {
+    flexDirection: "row",
+    gap: 8,
+    marginBottom: spacing.md,
+  },
+  tabBtn: {
+    flex: 1,
+    alignItems: "center",
+    paddingVertical: 10,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.borderStrong,
+    backgroundColor: colors.surface,
+  },
+  tabBtnActive: {
+    borderColor: colors.orange,
+    backgroundColor: colors.orangeSoft,
+  },
+  tabText: { color: colors.textMuted, fontWeight: "800", fontSize: 13 },
+  tabTextActive: { color: colors.orange },
+  newsCard: { marginBottom: spacing.md },
   profileCard: { marginBottom: spacing.md, zIndex: 3 },
   sectionTitle: {
     color: colors.textMuted,

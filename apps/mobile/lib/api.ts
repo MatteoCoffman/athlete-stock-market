@@ -53,6 +53,15 @@ export type PlayerProfile = {
   statsAvailable: boolean;
 };
 
+export type NewsArticle = {
+  id: string;
+  title: string;
+  url: string;
+  image: string | null;
+  published: string | null;
+  source: string | null;
+};
+
 async function getToken() {
   return AsyncStorage.getItem(TOKEN_KEY);
 }
@@ -120,6 +129,8 @@ export const api = {
       recentTrades: { id: string; side: string; qty: number; price: number; ts: string }[];
     }>(`/players/${id}`),
   playerProfile: (id: string) => request<PlayerProfile>(`/players/${id}/profile`),
+  playerNews: (id: string) =>
+    request<{ playerId: string; name: string; articles: NewsArticle[] }>(`/players/${id}/news`),
   trade: (playerId: string, side: "buy" | "sell", qty: number) =>
     request<{
       trade: unknown;

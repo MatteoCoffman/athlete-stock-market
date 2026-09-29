@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { openDb } from "../db/index.js";
+import { searchPlayerNews } from "../lib/currents.js";
 import { ensureMarketPlayer, mergeRosterWithMarket } from "../lib/marketPlayers.js";
 import { playerLibrary } from "../lib/playerLibrary.js";
 import { playerStatsService } from "../lib/playerStats.js";
@@ -9,6 +10,23 @@ import { playerPublic } from "../lib/trading.js";
 const router = Router();
 
 openDb();
+
+function resolveRosterPlayer(id) {
+  let roster = playerLibrary.getByKeyId(id);
+  if (roster) return roster;
+  const store = loadStore();
+  const market = store.players[id];
+  if (!market) return null;
+  return {
+    keyId: market.id,
+    name: market.name,
+    team: market.team,
+    teamAbbr: market.team,
+    positionAbbr: market.position,
+    sleeperId: market.sleeperId || null,
+    headshotUrl: market.headshotUrl || null,
+  };
+}
 
 router.get("/", (req, res) => {
   const q = typeof req.query.q === "string" ? req.query.q : "";
@@ -52,27 +70,39 @@ router.get("/", (req, res) => {
 
 router.get("/:id/profile", async (req, res) => {
   try {
-    let roster = playerLibrary.getByKeyId(req.params.id);
-    if (!roster) {
-      const store = loadStore();
-      const market = store.players[req.params.id];
-      if (!market) return res.status(404).json({ error: "Player not found" });
-      roster = {
-        keyId: market.id,
-        name: market.name,
-        team: market.team,
-        teamAbbr: market.team,
-        positionAbbr: market.position,
-        sleeperId: market.sleeperId || null,
-        headshotUrl: market.headshotUrl || null,
-      };
-    }
+    const roster = resolveRosterPlayer(req.params.id);
+    if (!roster) return res.status(404).json({ error: "Player not found" });
 
     const profile = await playerStatsService.buildProfile(roster);
     res.json(profile);
   } catch (err) {
     console.error("profile error", err);
     res.status(502).json({ error: err.message || "Failed to load profile stats" });
+  }
+});
+
+router.get("/:id/news", async (req, res) => {
+  try {
+    const roster = resolveRosterPlayer(req.params.id);
+    if (!roster) return res.status(404).json({ error: "Player not found" });
+
+    const articles = await searchPlayerNews(
+      {
+        name: roster.name,
+        team: roster.team,
+        teamAbbr: roster.teamAbbr,
+      },
+      { pageSize: 20, limit: 4 }
+    );
+    res.json({
+      playerId: roster.keyId,
+      name: roster.name,
+      articles,
+    });
+  } catch (err) {
+    console.error("news error", err);
+    const status = err.status && Number.isInteger(err.status) ? err.status : 502;
+    res.status(status).json({ error: err.message || "Failed to load player news" });
   }
 });
 
