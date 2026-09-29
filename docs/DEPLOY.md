@@ -117,14 +117,4 @@ The legacy `JockExchangeStack` (Lambda/Dynamo/Cognito) is **not** required for t
 
 ## Updating the API image after code changes
 
-CDK publishes a new **linux/amd64** image, but EC2 user-data only runs on first boot — pull + recreate the container afterward:
-
-```bash
-cd infra
-JOCK_BUDGET_EMAIL=you@example.com npx cdk deploy JockExchangeMarketStack
-# Print pull/restart commands:
-INSTANCE_ID=<InstanceId> IMAGE_URI=<ApiImageUri> ./scripts/redeploy-api.sh
-# Or run them via: aws ssm start-session --target <InstanceId>
-```
-
-Always pass `JOCK_BUDGET_EMAIL` on deploy so the $8 budget is not dropped from the stack.
+CDK publishes a new image, but the instance does not pick it up on its own. Follow **[UPDATE-EC2.md](UPDATE-EC2.md)** (publish, `sudo -i`, recreate `jock-api`, include the news key). Always pass `JOCK_BUDGET_EMAIL` on deploy so the $8 budget is not dropped from the stack. Do not replace the EC2 instance; that wipes `jock.db`.
