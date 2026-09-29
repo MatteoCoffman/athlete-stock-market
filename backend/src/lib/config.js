@@ -43,3 +43,6 @@ export const BOTS_ENABLED = process.env.BOTS_ENABLED !== "0";
 export const BOT_COUNT = Math.max(1, Number(process.env.BOT_COUNT || 12));
 export const BOT_INTERVAL_MS = Math.max(800, Number(process.env.BOT_INTERVAL_MS || 2800));
 export const BOT_CASH = Number(process.env.BOT_CASH || 250_000);
+
+/** PostgreSQL URL for athlete_market_app (optional until runtime cutover). */
+export const DATABASE_URL = process.env.DATABASE_URL || "";

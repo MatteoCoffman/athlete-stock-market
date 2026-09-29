@@ -10,13 +10,18 @@
     "import-roster": "node src/import-roster.js",
     "seed": "node src/seed.js",
     "reset": "node src/reset.js",
-    "dividend": "node src/pay-dividends.js"
+    "dividend": "node src/pay-dividends.js",
+    "db:ping": "node scripts/db-ping.js",
+    "db:migrate": "node scripts/db-migrate.js",
+    "db:status": "node scripts/db-status.js",
+    "db:reset": "node scripts/db-reset.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
+    "pg": "^8.23.0",
     "serverless-http": "^3.2.0",
     "uuid": "^11.0.5"
   }

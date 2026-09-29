@@ -33,6 +33,12 @@ backend/data/*.db
 backend/data/*.db-*
 !backend/data/.gitkeep
 
+# Local Postgres dumps / backups (never commit credentials or live data)
+*.dump
+*.sql.gz
+backend/data/*.dump
+backend/data/pg-dumps/
+
 # AWS CDK
 cdk.out/
 infra/cdk.out/

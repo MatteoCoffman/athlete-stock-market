@@ -5,7 +5,7 @@ Stock market for NFL athletes — buy and sell shares with virtual credits, earn
 ## What's running (prototype)
 
 - **Expo app** (`apps/mobile`) — navy + orange UI for web / iOS / Android (**Expo SDK 57**, matches current Expo Go)
-- **Local API** (`backend`) — Express + JWT auth + JSON store + bots
+- **Local API** (`backend`) — Express + JWT auth + SQLite market (`jock.db`) + bots; PostgreSQL `athlete_market_app` schema/migrations ready (see [docs/DATABASE.md](docs/DATABASE.md))
 - **Shared deploy** — EC2 `t3.micro` (Docker + bots) + Cloudflare Tunnel HTTPS + **Vercel** web — see [docs/DEPLOY.md](docs/DEPLOY.md)
 - **Native installs** — EAS Build → TestFlight / Play Internal (no Metro) — see [docs/MOBILE.md](docs/MOBILE.md)
 - **AWS CDK** (`infra`) — `JockExchangeMarketStack` (always-on market) and legacy `JockExchangeStack` (Lambda/Dynamo skeleton, not required for bots)
@@ -121,8 +121,18 @@ Pause costs: stop the EC2 instance, or `cd infra && npm run destroy:market`.
 | `master` | Stable (protected) |
 | `alpha` | Active prototype work |
 | `beta` | Pre-release |
+| `db-post-migration` | PostgreSQL `athlete_market_app` migrations (additive; SQLite still live) |
 
-## Product notes
+## PostgreSQL (optional until cutover)
+
+See **[docs/DATABASE.md](docs/DATABASE.md)** for creating `athlete_market_app`, setting `DATABASE_URL`, and running:
+
+```bash
+cd backend
+npm run db:ping
+npm run db:migrate
+npm run db:status
+```
 
 - NFL offensive players only (QB / RB / WR / TE) — seeded from nflverse `roster_2026.csv` (~455 ACT)
 - Fake currency only
