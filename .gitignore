@@ -43,3 +43,6 @@ infra/cdk.out/
 venv/
 __pycache__/
 *.pyc
+
+# Cursor Rules
+.cursorrules

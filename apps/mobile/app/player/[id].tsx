@@ -1,8 +1,11 @@
-import { useLocalSearchParams } from "expo-router";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { Ionicons } from "@expo/vector-icons";
+import { router, Stack, useLocalSearchParams, useNavigation } from "expo-router";
+import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 import {
   ActivityIndicator,
   Image,
+  Platform,
+  Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -24,6 +27,33 @@ type TabKey = "market" | "news";
 
 /** Side-by-side identity + season stats on tablet/desktop web. */
 const WIDE_BREAKPOINT = 720;
+
+function HomeHeaderButton() {
+  return (
+    <Pressable
+      accessibilityRole="button"
+      accessibilityLabel="Home"
+      hitSlop={12}
+      onPress={() => router.replace("/(tabs)/portfolio")}
+      style={({ pressed }) => [styles.homeButton, pressed && styles.homeButtonPressed]}
+    >
+      <Ionicons name="home" size={22} color={colors.text} />
+    </Pressable>
+  );
+}
+
+/** Keep the stack back arrow when there is history; otherwise offer a way home. */
+function PlayerChrome({ children }: { children: ReactNode }) {
+  const navigation = useNavigation();
+  return (
+    <>
+      {navigation.canGoBack() ? null : (
+        <Stack.Screen options={{ headerLeft: () => <HomeHeaderButton /> }} />
+      )}
+      {children}
+    </>
+  );
+}
 
 export default function PlayerScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -160,17 +190,21 @@ export default function PlayerScreen() {
 
   if (loading) {
     return (
-      <View style={styles.center}>
-        <ActivityIndicator color={colors.orange} />
-      </View>
+      <PlayerChrome>
+        <View style={styles.center}>
+          <ActivityIndicator color={colors.orange} />
+        </View>
+      </PlayerChrome>
     );
   }
 
   if (!player) {
     return (
-      <View style={styles.center}>
-        <Text style={styles.error}>{error || "Player not found"}</Text>
-      </View>
+      <PlayerChrome>
+        <View style={styles.center}>
+          <Text style={styles.error}>{error || "Player not found"}</Text>
+        </View>
+      </PlayerChrome>
     );
   }
 
@@ -178,6 +212,7 @@ export default function PlayerScreen() {
   const estCost = Number(qty) > 0 ? Number(qty) * player.price : 0;
 
   return (
+    <PlayerChrome>
     <ScrollView
       style={styles.container}
       contentContainerStyle={styles.content}
@@ -424,10 +459,19 @@ export default function PlayerScreen() {
         </>
       )}
     </ScrollView>
+    </PlayerChrome>
   );
 }
 
 const styles = StyleSheet.create({
+  homeButton: {
+    width: 40,
+    height: 40,
+    alignItems: "center",
+    justifyContent: "center",
+    marginLeft: Platform.OS === "web" ? 8 : 4,
+  },
+  homeButtonPressed: { opacity: 0.65 },
   container: { flex: 1, backgroundColor: colors.bg },
   content: { padding: spacing.md, paddingBottom: spacing.xl },
   center: { flex: 1, backgroundColor: colors.bg, alignItems: "center", justifyContent: "center" },
