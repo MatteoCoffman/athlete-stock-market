@@ -1,10 +1,10 @@
 import { Router } from "express";
 import { openDb } from "../db/index.js";
 import { searchPlayerNews } from "../lib/currents.js";
-import { ensureMarketPlayer, mergeRosterWithMarket } from "../lib/marketPlayers.js";
+import { getPlayerIdentity, getPricedPlayer, listPricedPlayersByIds, recentTrades } from "../lib/market.js";
+import { ensureMarketPlayers, mergeRosterWithMarket } from "../lib/marketPlayers.js";
 import { playerLibrary } from "../lib/playerLibrary.js";
 import { playerStatsService } from "../lib/playerStats.js";
-import { loadStore, saveStore } from "../lib/store.js";
 import { playerPublic } from "../lib/trading.js";
 
 const router = Router();
@@ -12,20 +12,17 @@ const router = Router();
 openDb();
 
 function resolveRosterPlayer(id) {
-  let roster = playerLibrary.getByKeyId(id);
-  if (roster) return roster;
-  const store = loadStore();
-  const market = store.players[id];
-  if (!market) return null;
-  return {
-    keyId: market.id,
-    name: market.name,
-    team: market.team,
-    teamAbbr: market.team,
-    positionAbbr: market.position,
-    sleeperId: market.sleeperId || null,
-    headshotUrl: market.headshotUrl || null,
-  };
+  return playerLibrary.getByKeyId(id) || getPlayerIdentity(id);
+}
+
+function publicTrades(playerId) {
+  return recentTrades(playerId, 30).map((trade) => ({
+    id: trade.id,
+    side: trade.side,
+    qty: trade.qty,
+    price: trade.price,
+    ts: trade.ts,
+  }));
 }
 
 router.get("/", (req, res) => {
@@ -33,7 +30,7 @@ router.get("/", (req, res) => {
   const team = typeof req.query.team === "string" ? req.query.team : "";
   const rawPos = req.query.position ?? req.query.positions;
   const position = Array.isArray(rawPos)
-    ? rawPos.filter((p) => typeof p === "string").join(",")
+    ? rawPos.filter((entry) => typeof entry === "string").join(",")
     : typeof rawPos === "string"
       ? rawPos
       : "";
@@ -41,11 +38,15 @@ router.get("/", (req, res) => {
   const offset = req.query.offset;
 
   const rosterCount = playerLibrary.count({ activeOnly: true });
-  const store = loadStore();
 
-  // Fallback: if SQL empty, serve JSON market store (legacy)
   if (rosterCount === 0) {
-    const players = Object.values(store.players)
+    const ids = listPricedPlayersByIds(
+      openDb()
+        .prepare("SELECT key_id FROM players WHERE price IS NOT NULL")
+        .all()
+        .map((row) => row.key_id)
+    );
+    const players = ids
       .map(playerPublic)
       .sort((a, b) => a.name.localeCompare(b.name));
     return res.json({ players, total: players.length, limit: players.length, offset: 0 });
@@ -54,15 +55,17 @@ router.get("/", (req, res) => {
   const filter = { q, team, position, activeOnly: true, limit, offset };
   const roster = playerLibrary.search(filter);
   const total = playerLibrary.count({ q, team, position, activeOnly: true });
+  ensureMarketPlayers(roster);
 
-  let dirty = false;
-  for (const r of roster) {
-    if (ensureMarketPlayer(store, r)) dirty = true;
-  }
-  if (dirty) saveStore(store);
-
+  const marketById = new Map(
+    listPricedPlayersByIds(roster.map((player) => player.keyId)).map((player) => [player.id, player])
+  );
   const players = roster
-    .map((r) => playerPublic(mergeRosterWithMarket(r, store.players[r.keyId])))
+    .map((player) => {
+      const merged = mergeRosterWithMarket(player, marketById.get(player.keyId));
+      return merged ? playerPublic(merged) : null;
+    })
+    .filter(Boolean)
     .sort((a, b) => a.name.localeCompare(b.name));
 
   res.json({ players, total, limit: players.length, offset: Number(offset) || 0 });
@@ -107,26 +110,18 @@ router.get("/:id/news", async (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-  const store = loadStore();
   const roster = playerLibrary.getByKeyId(req.params.id);
-
   if (roster) {
-    if (ensureMarketPlayer(store, roster)) saveStore(store);
-    const merged = mergeRosterWithMarket(roster, store.players[roster.keyId]);
-    const recentTrades = store.trades
-      .filter((t) => t.playerId === roster.keyId)
-      .slice(0, 30)
-      .map((t) => ({ id: t.id, side: t.side, qty: t.qty, price: t.price, ts: t.ts }));
-    return res.json({ player: playerPublic(merged), recentTrades });
+    ensureMarketPlayers([roster]);
+    const market = getPricedPlayer(roster.keyId);
+    const merged = mergeRosterWithMarket(roster, market);
+    if (!merged) return res.status(404).json({ error: "Player not found" });
+    return res.json({ player: playerPublic(merged), recentTrades: publicTrades(roster.keyId) });
   }
 
-  const player = store.players[req.params.id];
+  const player = getPricedPlayer(req.params.id);
   if (!player) return res.status(404).json({ error: "Player not found" });
-  const recentTrades = store.trades
-    .filter((t) => t.playerId === player.id)
-    .slice(0, 30)
-    .map((t) => ({ id: t.id, side: t.side, qty: t.qty, price: t.price, ts: t.ts }));
-  res.json({ player: playerPublic(player), recentTrades });
+  res.json({ player: playerPublic(player), recentTrades: publicTrades(player.id) });
 });
 
 export default router;

@@ -1,55 +1,61 @@
 import { Router } from "express";
 import { authMiddleware, publicUser } from "../lib/auth.js";
+import { dayChangePct, equityChartSeries, recordEquitySnapshot } from "../lib/equity.js";
 import {
-  dayChangePct,
-  equityChartSeries,
-  portfolioTotalValue,
-  recordEquitySnapshot,
-} from "../lib/equity.js";
-import { loadStore, saveStore } from "../lib/store.js";
+  getPricedPlayer,
+  getUserById,
+  listUserHoldings,
+  positionsMarketValue,
+  readEquity,
+  withTx,
+  writeEquity,
+} from "../lib/market.js";
 import { playerPublic } from "../lib/trading.js";
 
 const router = Router();
 
 router.get("/", authMiddleware, (req, res) => {
-  const store = loadStore();
-  const user = store.users[req.userId];
-  if (!user) return res.status(404).json({ error: "User not found" });
+  try {
+    const body = withTx(() => {
+      const user = getUserById(req.userId);
+      if (!user) return null;
 
-  const positions = Object.values(store.holdings)
-    .filter((h) => h.userId === req.userId && h.shares > 0)
-    .map((h) => {
-      const player = store.players[h.playerId];
-      const marketValue = player ? Number((player.price * h.shares).toFixed(2)) : 0;
+      const positions = listUserHoldings(req.userId)
+        .map((holding) => {
+          const player = getPricedPlayer(holding.playerId);
+          const marketValue = player ? Number((player.price * holding.shares).toFixed(2)) : 0;
+          return {
+            playerId: holding.playerId,
+            shares: holding.shares,
+            avgCost: holding.avgCost,
+            marketValue,
+            player: player ? playerPublic(player) : null,
+          };
+        })
+        .sort((a, b) => (b.marketValue || 0) - (a.marketValue || 0));
+
+      const positionsValue = Number(positionsMarketValue(req.userId).toFixed(2));
+      const totalValue = Number((user.cashBalance + positionsValue).toFixed(2));
+      const equityUser = { ...user, equityHistory: readEquity(user.id) };
+      recordEquitySnapshot(equityUser, totalValue);
+      writeEquity(user.id, equityUser.equityHistory);
+
       return {
-        playerId: h.playerId,
-        shares: h.shares,
-        avgCost: h.avgCost,
-        marketValue,
-        player: player ? playerPublic(player) : null,
+        user: publicUser(user),
+        cashBalance: user.cashBalance,
+        positionsValue,
+        totalValue,
+        dayChangePct: dayChangePct(equityUser.equityHistory, totalValue),
+        equityHistory: equityChartSeries(equityUser.equityHistory),
+        positions,
       };
-    })
-    .sort((a, b) => (b.marketValue || 0) - (a.marketValue || 0));
+    });
 
-  const positionsValue = Number(
-    positions.reduce((s, p) => s + p.marketValue, 0).toFixed(2)
-  );
-  const totalValue = Number((user.cashBalance + positionsValue).toFixed(2));
-
-  recordEquitySnapshot(user, totalValue);
-  saveStore(store);
-
-  const dayPct = dayChangePct(user.equityHistory, totalValue);
-
-  res.json({
-    user: publicUser(user),
-    cashBalance: user.cashBalance,
-    positionsValue,
-    totalValue,
-    dayChangePct: dayPct,
-    equityHistory: equityChartSeries(user.equityHistory),
-    positions,
-  });
+    if (!body) return res.status(404).json({ error: "User not found" });
+    res.json(body);
+  } catch (err) {
+    res.status(err.status || 500).json({ error: err.message });
+  }
 });
 
 export default router;

@@ -9,20 +9,16 @@ if [ "$ROSTER_COUNT" = "0" ]; then
   npm run import-roster
 fi
 
-# Seed market store on first boot (empty or missing store)
-NEED_SEED=0
-if [ ! -f /app/data/store.json ]; then
-  NEED_SEED=1
-else
-  PLAYERS=$(node -e "try{const s=require('./data/store.json');process.stdout.write(String(Object.keys(s.players||{}).length))}catch{process.stdout.write('0')}")
-  if [ "$PLAYERS" = "0" ]; then
-    NEED_SEED=1
+# Seed prices only when the market is empty. A missing store.json must not wipe jock.db.
+MARKET_COUNT=$(node -e "try{const {openDb}=await import('./src/db/index.js');const {countPricedPlayers}=await import('./src/lib/market.js');openDb();process.stdout.write(String(countPricedPlayers()))}catch{process.stdout.write('0')}")
+if [ "$MARKET_COUNT" = "0" ]; then
+  if [ -f /app/data/store.json ]; then
+    echo "[entrypoint] Importing store.json into jock.db..."
+    node src/import-market.js
+  else
+    echo "[entrypoint] Seeding market prices from roster..."
+    npm run reset
   fi
-fi
-
-if [ "$NEED_SEED" = "1" ]; then
-  echo "[entrypoint] Seeding market store (npm run reset)..."
-  npm run reset
 fi
 
 echo "[entrypoint] Starting Jock Exchange API on :${PORT:-4000} (bots=${BOTS_ENABLED:-on})"

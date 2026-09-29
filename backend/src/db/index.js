@@ -26,6 +26,8 @@ export function openDb(dbPath = getDbPath()) {
   fs.mkdirSync(path.dirname(dbPath), { recursive: true });
   const db = new DatabaseSync(dbPath);
   db.exec("PRAGMA foreign_keys = ON;");
+  db.exec("PRAGMA journal_mode = WAL;");
+  db.exec("PRAGMA busy_timeout = 5000;");
   migrate(db);
 
   if (dbPath === getDbPath()) {

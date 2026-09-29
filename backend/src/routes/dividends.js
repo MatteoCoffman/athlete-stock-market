@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { ADMIN_TOKEN } from "../lib/config.js";
-import { loadStore, withStore } from "../lib/store.js";
+import { setPerformanceScore } from "../lib/market.js";
 import { payDividends, playerPublic } from "../lib/trading.js";
 
 const router = Router();
@@ -16,15 +16,8 @@ function adminAuth(req, res, next) {
 router.post("/pay", adminAuth, (req, res) => {
   try {
     const { playerId, payoutPerShare } = req.body;
-    const result = withStore((store) =>
-      payDividends(store, playerId, Number(payoutPerShare))
-    );
-    const store = loadStore();
-    const player = store.players[playerId];
-    res.json({
-      ...result,
-      player: player ? playerPublic(player) : null,
-    });
+    const result = payDividends(playerId, Number(payoutPerShare));
+    res.json(result);
   } catch (err) {
     res.status(err.status || 500).json({ error: err.message });
   }
@@ -33,17 +26,9 @@ router.post("/pay", adminAuth, (req, res) => {
 router.post("/score", adminAuth, (req, res) => {
   try {
     const { playerId, performanceScore } = req.body;
-    const player = withStore((store) => {
-      const p = store.players[playerId];
-      if (!p) {
-        const err = new Error("Player not found");
-        err.status = 404;
-        throw err;
-      }
-      p.performanceScore = Number(performanceScore);
-      return playerPublic(p);
-    });
-    res.json({ player });
+    const player = setPerformanceScore(playerId, Number(performanceScore));
+    if (!player) return res.status(404).json({ error: "Player not found" });
+    res.json({ player: playerPublic(player) });
   } catch (err) {
     res.status(err.status || 500).json({ error: err.message });
   }

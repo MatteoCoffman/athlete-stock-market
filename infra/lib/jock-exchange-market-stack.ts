@@ -17,7 +17,7 @@ export interface JockExchangeMarketStackProps extends cdk.StackProps {
 
 /**
  * Always-on shared market: t3.micro EC2 running Dockerized Express + bots.
- * Persist store.json on the instance volume. Expose HTTPS via Cloudflare Tunnel
+ * Persist jock.db on the instance volume. Expose HTTPS via Cloudflare Tunnel
  * (no ALB — keeps cost under ~$10/mo). Access the box with SSM Session Manager (no SSH).
  *
  * The older JockExchangeStack (Lambda/API GW/Dynamo/Cognito) stays for a future serverless path.

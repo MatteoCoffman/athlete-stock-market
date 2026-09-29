@@ -1,6 +1,6 @@
 # Deploy shared market (EC2 + bots) + Vercel web
 #
-# Architecture: t3.micro runs Dockerized Express + bots; store.json on disk;
+# Architecture: t3.micro runs Dockerized Express + bots; jock.db on disk;
 # Cloudflare Tunnel provides HTTPS for Vercel (no ALB). Target ~$5–10/mo.
 # Set an $8 AWS Budget email when deploying.
 
@@ -40,7 +40,7 @@ Or: `JOCK_BUDGET_EMAIL=... CLOUDFLARE_TUNNEL_TOKEN=... npm run deploy:market`
 
 Outputs include `InstanceId` and `SsmConnectHint`.
 
-First boot installs Docker, pulls the image, seeds the roster if `store.json` is empty, starts bots. Wait 3–5 minutes after create.
+First boot installs Docker, pulls the image, imports the roster if `jock.db` has none, imports a leftover `store.json` once if the market is empty, otherwise seeds prices from the roster, then starts bots. Wait 3–5 minutes after create.
 
 ### Health check (on the instance)
 

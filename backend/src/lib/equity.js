@@ -3,22 +3,6 @@ import { STARTING_CASH } from "./config.js";
 const SNAPSHOT_MIN_MS = 60_000;
 const MAX_POINTS = 2500;
 
-export function positionsMarketValue(store, userId) {
-  return Object.values(store.holdings)
-    .filter((h) => h.userId === userId && h.shares > 0)
-    .reduce((sum, h) => {
-      const player = store.players[h.playerId];
-      if (!player) return sum;
-      return sum + player.price * h.shares;
-    }, 0);
-}
-
-export function portfolioTotalValue(store, userId) {
-  const user = store.users[userId];
-  if (!user) return 0;
-  return Number((user.cashBalance + positionsMarketValue(store, userId)).toFixed(2));
-}
-
 /**
  * Append / refresh equity curve for a user. Mutates user.equityHistory.
  * @param {object} user

@@ -1,7 +1,5 @@
 import { Router } from "express";
-import { login, signup, publicUser } from "../lib/auth.js";
-import { loadStore } from "../lib/store.js";
-import { authMiddleware } from "../lib/auth.js";
+import { authMiddleware, getUserById, login, publicUser, signup } from "../lib/auth.js";
 
 const router = Router();
 
@@ -24,8 +22,7 @@ router.post("/login", (req, res) => {
 });
 
 router.get("/me", authMiddleware, (req, res) => {
-  const store = loadStore();
-  const user = store.users[req.userId];
+  const user = getUserById(req.userId);
   if (!user) return res.status(404).json({ error: "User not found" });
   res.json({ user: publicUser(user) });
 });
