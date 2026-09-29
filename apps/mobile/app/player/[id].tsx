@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Text,
   TextInput,
+  useWindowDimensions,
   View,
 } from "react-native";
 import Animated from "react-native-reanimated";
@@ -21,8 +22,13 @@ import { useAuth } from "../../lib/auth-context";
 
 type TabKey = "market" | "news";
 
+/** Side-by-side identity + season stats on tablet/desktop web. */
+const WIDE_BREAKPOINT = 720;
+
 export default function PlayerScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
+  const { width } = useWindowDimensions();
+  const wide = width >= WIDE_BREAKPOINT;
   const { refresh, user } = useAuth();
   const [player, setPlayer] = useState<Player | null>(null);
   const [profile, setProfile] = useState<PlayerProfile | null>(null);
@@ -180,52 +186,101 @@ export default function PlayerScreen() {
       showsVerticalScrollIndicator={false}
       showsHorizontalScrollIndicator={false}
     >
-      <Animated.View entering={enterDown(0)} style={styles.header}>
-        <View style={styles.identityRow}>
-          {headshot ? (
-            <Image source={{ uri: headshot }} style={styles.headshot} />
-          ) : (
-            <View style={[styles.headshot, styles.headshotFallback]}>
-              <Text style={styles.headshotInitials}>
-                {player.name
-                  .split(" ")
-                  .map((n) => n[0])
-                  .join("")
-                  .slice(0, 2)}
+      <View style={[styles.topRow, wide && styles.topRowWide]}>
+        <Animated.View
+          entering={enterDown(0)}
+          style={[styles.header, wide && styles.headerWide]}
+        >
+          <View style={styles.identityRow}>
+            {headshot ? (
+              <Image source={{ uri: headshot }} style={styles.headshot} />
+            ) : (
+              <View style={[styles.headshot, styles.headshotFallback]}>
+                <Text style={styles.headshotInitials}>
+                  {player.name
+                    .split(" ")
+                    .map((n) => n[0])
+                    .join("")
+                    .slice(0, 2)}
+                </Text>
+              </View>
+            )}
+            <View style={styles.identityText}>
+              <View style={styles.posTeam}>
+                <Text style={styles.pos}>{player.position}</Text>
+                <Text style={styles.team}>{player.team}</Text>
+              </View>
+              <Text style={styles.name}>{player.name}</Text>
+            </View>
+          </View>
+          <View style={styles.priceRow}>
+            <Text style={styles.price}>{money(player.price)}</Text>
+            <View
+              style={[
+                styles.chip,
+                { backgroundColor: changeSoft(pct), borderColor: changeBorder(pct) },
+              ]}
+            >
+              <Text style={{ color: changeColor(pct), fontWeight: "800" }}>
+                {pct > 0 ? "+" : ""}
+                {pct.toFixed(2)}%
               </Text>
             </View>
-          )}
-          <View style={styles.identityText}>
-            <View style={styles.posTeam}>
-              <Text style={styles.pos}>{player.position}</Text>
-              <Text style={styles.team}>{player.team}</Text>
-            </View>
-            <Text style={styles.name}>{player.name}</Text>
           </View>
-        </View>
-        <View style={styles.priceRow}>
-          <Text style={styles.price}>{money(player.price)}</Text>
-          <View
-            style={[
-              styles.chip,
-              { backgroundColor: changeSoft(pct), borderColor: changeBorder(pct) },
-            ]}
-          >
-            <Text style={{ color: changeColor(pct), fontWeight: "800" }}>
-              {pct > 0 ? "+" : ""}
-              {pct.toFixed(2)}%
+          {holding ? (
+            <Text style={styles.youHold}>
+              You hold {holding.shares} sh · avg {money(holding.avgCost)} ·{" "}
+              {money(holding.marketValue)}
             </Text>
-          </View>
-        </View>
-        {holding ? (
-          <Text style={styles.youHold}>
-            You hold {holding.shares} sh · avg {money(holding.avgCost)} ·{" "}
-            {money(holding.marketValue)}
-          </Text>
-        ) : (
-          <Text style={styles.cashHint}>Cash · {money(user?.cashBalance ?? 0)}</Text>
-        )}
-      </Animated.View>
+          ) : (
+            <Text style={styles.cashHint}>Cash · {money(user?.cashBalance ?? 0)}</Text>
+          )}
+        </Animated.View>
+
+        {wide && profile ? (
+          <ElevatedCard
+            float
+            delay={20}
+            style={[styles.profileCard, styles.profileCardWide]}
+          >
+            <Text style={styles.sectionTitle}>
+              SEASON STATS
+              {profile.season != null ? ` · ${profile.season}` : ""}
+            </Text>
+            {profile.statsAvailable && profile.seasonChips.length > 0 ? (
+              <>
+                <View style={styles.chipRow}>
+                  {profile.seasonChips.map((c) => (
+                    <View key={c.label} style={styles.statChip}>
+                      <Text style={styles.statChipLabel}>{c.label}</Text>
+                      <Text style={styles.statChipValue}>{c.value}</Text>
+                    </View>
+                  ))}
+                </View>
+                {profile.recentGames.length > 0 ? (
+                  <>
+                    <Text style={[styles.sectionTitle, styles.recentTitle]}>RECENT GAMES</Text>
+                    {profile.recentGames.map((g) => (
+                      <View key={`${g.season}-${g.week}`} style={styles.gameRow}>
+                        <Text style={styles.gameWeek}>W{g.week}</Text>
+                        <Text style={styles.gameDetail} numberOfLines={2}>
+                          {g.chips.length
+                            ? g.chips.map((c) => `${c.label} ${c.value}`).join(" · ")
+                            : "No counted stats"}
+                        </Text>
+                      </View>
+                    ))}
+                  </>
+                ) : null}
+              </>
+            ) : (
+              <Text style={styles.statsEmpty}>
+                No basic stats available for this player yet.
+              </Text>
+            )}
+          </ElevatedCard>
+        ) : null}
+      </View>
 
       <View style={styles.tabRow}>
         <PressScale
@@ -259,7 +314,7 @@ export default function PlayerScreen() {
         </ElevatedCard>
       ) : (
         <>
-          {profile ? (
+          {!wide && profile ? (
             <ElevatedCard float delay={20} style={styles.profileCard}>
               <Text style={styles.sectionTitle}>
                 SEASON STATS
@@ -376,7 +431,17 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.bg },
   content: { padding: spacing.md, paddingBottom: spacing.xl },
   center: { flex: 1, backgroundColor: colors.bg, alignItems: "center", justifyContent: "center" },
-  header: { marginBottom: spacing.md },
+  topRow: { marginBottom: spacing.md, gap: spacing.md },
+  topRowWide: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+  },
+  header: {},
+  headerWide: {
+    flex: 1,
+    minWidth: 260,
+    paddingTop: 4,
+  },
   identityRow: { flexDirection: "row", alignItems: "center", gap: 14 },
   identityText: { flex: 1 },
   headshot: {
@@ -431,6 +496,11 @@ const styles = StyleSheet.create({
   tabTextActive: { color: colors.orange },
   newsCard: { marginBottom: spacing.md },
   profileCard: { marginBottom: spacing.md, zIndex: 3 },
+  profileCardWide: {
+    flex: 1.15,
+    minWidth: 280,
+    marginBottom: 0,
+  },
   sectionTitle: {
     color: colors.textMuted,
     fontWeight: "800",

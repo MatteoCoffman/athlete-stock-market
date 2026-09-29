@@ -7,6 +7,7 @@ Stock market for NFL athletes — buy and sell shares with virtual credits, earn
 - **Expo app** (`apps/mobile`) — navy + orange UI for web / iOS / Android (**Expo SDK 57**, matches current Expo Go)
 - **Local API** (`backend`) — Express + JWT auth + JSON store + bots
 - **Shared deploy** — EC2 `t3.micro` (Docker + bots) + Cloudflare Tunnel HTTPS + **Vercel** web — see [docs/DEPLOY.md](docs/DEPLOY.md)
+- **Native installs** — EAS Build → TestFlight / Play Internal (no Metro) — see [docs/MOBILE.md](docs/MOBILE.md)
 - **AWS CDK** (`infra`) — `JockExchangeMarketStack` (always-on market) and legacy `JockExchangeStack` (Lambda/Dynamo skeleton, not required for bots)
 
 New accounts receive **100,000** virtual credits. Trading uses instant market orders with price impact against a fixed 10,000-share float per player.

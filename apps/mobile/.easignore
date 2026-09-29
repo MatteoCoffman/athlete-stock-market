@@ -1,0 +1,9 @@
+# Keep EAS uploads lean (local caches / web export)
+.expo/
+dist/
+web-build/
+node_modules/
+npm-install.log
+*.log
+.env
+.env.*
