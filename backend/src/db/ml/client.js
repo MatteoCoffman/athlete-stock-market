@@ -22,6 +22,25 @@ export function getMlDatabaseUrl() {
   return url;
 }
 
+/** Refuse writers that are pointed at any database other than athlete_market_ml. */
+export function assertMlDatabaseName() {
+  const url = getMlDatabaseUrl();
+  let dbName = "";
+  try {
+    dbName = decodeURIComponent(new URL(url).pathname.replace(/^\//, ""));
+  } catch {
+    dbName = "";
+  }
+  if (dbName !== "athlete_market_ml") {
+    const err = new Error(
+      `Refusing to write ML data to database "${dbName || "(unknown)"}". ML_DATABASE_URL must point at athlete_market_ml.`
+    );
+    err.code = "ML_DATABASE_REFUSED";
+    throw err;
+  }
+  return url;
+}
+
 /**
  * @param {{ max?: number }} [opts]
  * @returns {import('pg').Pool}

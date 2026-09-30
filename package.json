@@ -14,6 +14,8 @@
     "db:ml:migrate": "npm run db:ml:migrate --prefix backend",
     "db:ml:status": "npm run db:ml:status --prefix backend",
     "db:ml:reset": "npm run db:ml:reset --prefix backend",
+    "db:ml:import-raw": "npm run db:ml:import-raw --prefix backend --",
+    "db:ml:promote": "npm run db:ml:promote --prefix backend --",
     "mobile": "npm run start --prefix apps/mobile",
     "mobile:web": "npm run web --prefix apps/mobile",
     "web": "npm run web --prefix apps/mobile",

@@ -39,6 +39,10 @@ backend/data/*.db-*
 backend/data/*.dump
 backend/data/pg-dumps/
 
+# ML sheet exports (load with npm run db:ml:import-raw)
+backend/data/ml-sheets/*
+!backend/data/ml-sheets/.gitkeep
+
 # AWS CDK
 cdk.out/
 infra/cdk.out/

@@ -133,6 +133,8 @@ npm run db:ping
 npm run db:migrate
 npm run db:ml:ping
 npm run db:ml:migrate
+npm run db:ml:import-raw -- data/ml-sheets
+npm run db:ml:promote
 npm run db:status
 npm run db:ml:status
 ```

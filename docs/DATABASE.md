@@ -202,6 +202,20 @@ Core tables created by `003_core_tables.sql`:
 
 Migrations live in `backend/src/db/ml/migrations/`.
 
+## Load a sheet export
+
+Export each Google Sheet tab as CSV. Name the files after the raw tables (`player_input_table.csv`, `qb_college_seasons.csv`, and the rest of the list above). Headers can be snake_case or the same words with spaces (`Player ID`). Put the files in one folder, for example `backend/data/ml-sheets/` (that folder is gitignored).
+
+```bash
+cd backend
+npm run db:ml:import-raw -- data/ml-sheets
+npm run db:ml:promote
+```
+
+`import-raw` appends a new batch and leaves every cell as text. `promote` copies the latest row for each key into `core`, turning blanks and `N/A` into null. A bad required value (missing player, position outside QB/RB/WR/TE, bad season) stays in `raw` and is skipped. A bad optional value is stored as null and printed as a warning.
+
+`npm run db:ml:promote -- --rebuild` clears `core` first, then loads again. It does not delete `raw`, and it does not touch `athlete_market_app`.
+
 ## Local reset
 
 ```bash
@@ -215,7 +229,7 @@ Only allowed when the database name is `athlete_market_ml`.
 
 - Social, contracts/orders book, baskets, notifications
 - Any further `core.*` ML tables beyond `003_core_tables.sql`
-- Import/ETL jobs that load sheets into `raw.*` and promote into `core.*`
+- A scheduled or in-app upload for the sheet CSVs (the load is a local script today)
 - The live EC2 market. jockex.dev still reads SQLite until that box is switched on purpose
 
 ## Auth note

@@ -19,7 +19,10 @@
     "db:ml:ping": "node scripts/db-ml-ping.js",
     "db:ml:migrate": "node scripts/db-ml-migrate.js",
     "db:ml:status": "node scripts/db-ml-status.js",
-    "db:ml:reset": "node scripts/db-ml-reset.js"
+    "db:ml:reset": "node scripts/db-ml-reset.js",
+    "db:ml:import-raw": "node scripts/ml-import-raw.js",
+    "db:ml:promote": "node scripts/ml-promote-core.js",
+    "test:ml": "node --test src/db/ml/sheet.test.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
