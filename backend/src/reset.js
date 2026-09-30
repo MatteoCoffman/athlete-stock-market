@@ -1,28 +1,33 @@
 /**
  * Wipe users, holdings, trades, prices, and chart history, then reseed prices
- * from the SQL roster. Roster rows and week-stat cache stay.
+ * from the Postgres roster. Roster rows and week-stat cache stay.
  * Usage: npm run reset
  */
-import { openDb } from "./db/index.js";
+import { closePool } from "./db/pg/client.js";
 import { clearMarketTables, withTx } from "./lib/market.js";
 import { syncMarketPlayers } from "./lib/marketPlayers.js";
 import { playerLibrary } from "./lib/playerLibrary.js";
 
-openDb();
+try {
+  if ((await playerLibrary.count({ activeOnly: true })) === 0) {
+    console.warn("No players in Postgres. Run: npm run roster && npm run import-roster");
+    process.exitCode = 1;
+  } else {
+    const { total } = await withTx(async () => {
+      await clearMarketTables();
+      return syncMarketPlayers({ rebuildHistory: true });
+    });
 
-if (playerLibrary.count({ activeOnly: true }) === 0) {
-  console.warn("No players in SQLite. Run: npm run roster && npm run import-roster");
-  process.exit(1);
-}
-
-const { total } = withTx(() => {
-  clearMarketTables();
-  return syncMarketPlayers({ rebuildHistory: true });
-});
-
-console.log(`Reset complete.
+    console.log(`Reset complete.
   Users: 0
   Holdings: 0
   Trades: 0
   Players: ${total} (prices reseeded, roster kept)
 `);
+  }
+} catch (err) {
+  console.error(err.message || err);
+  process.exitCode = 1;
+} finally {
+  await closePool();
+}

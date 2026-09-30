@@ -5,7 +5,7 @@ Stock market for NFL athletes — buy and sell shares with virtual credits, earn
 ## What's running (prototype)
 
 - **Expo app** (`apps/mobile`) — navy + orange UI for web / iOS / Android (**Expo SDK 57**, matches current Expo Go)
-- **Local API** (`backend`) — Express + JWT auth + SQLite market (`jock.db`) + bots; PostgreSQL `athlete_market_app` schema/migrations ready (see [docs/DATABASE.md](docs/DATABASE.md))
+- **Local API** (`backend`) — Express + JWT auth + Postgres `athlete_market_app` + bots (see [docs/DATABASE.md](docs/DATABASE.md)). The deployed site still uses SQLite on EC2 until a later cutover.
 - **Shared deploy** — EC2 `t3.micro` (Docker + bots) + Cloudflare Tunnel HTTPS + **Vercel** web — see [docs/DEPLOY.md](docs/DEPLOY.md)
 - **Native installs** — EAS Build → TestFlight / Play Internal (no Metro) — see [docs/MOBILE.md](docs/MOBILE.md)
 - **AWS CDK** (`infra`) — `JockExchangeMarketStack` (always-on market) and legacy `JockExchangeStack` (Lambda/Dynamo skeleton, not required for bots)
@@ -121,11 +121,11 @@ Pause costs: stop the EC2 instance, or `cd infra && npm run destroy:market`.
 | `master` | Stable (protected) |
 | `alpha` | Active prototype work |
 | `beta` | Pre-release |
-| `db-post-migration` | PostgreSQL `athlete_market_app` migrations (additive; SQLite still live) |
+| `db-post-migration` | Local API on Postgres `athlete_market_app` (do not deploy this image to the current EC2) |
 
-## PostgreSQL (optional until cutover)
+## PostgreSQL
 
-See **[docs/DATABASE.md](docs/DATABASE.md)** for creating `athlete_market_app`, setting `DATABASE_URL`, and running:
+The local API reads `DATABASE_URL` and will not start without it. See **[docs/DATABASE.md](docs/DATABASE.md)**. jockex.dev is still the EC2 SQLite market.
 
 ```bash
 cd backend

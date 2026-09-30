@@ -1,4 +1,4 @@
-import { openDb } from "../db/index.js";
+import { iso, query, queryOne, queryRows, withTx } from "../db/pg/client.js";
 
 const TRADE_CAP = 500;
 const HISTORY_IN_CHUNK = 400;
@@ -8,45 +8,12 @@ const PLAYER_COLUMNS = `
   shares_outstanding, shares_held, performance_score, gsis_id, sleeper_id, headshot_url
 `;
 
-let txDepth = 0;
+export { withTx };
 
-/**
- * One immediate write transaction. Nested calls join the open transaction
- * so a trade and its bot setup commit or roll back together.
- */
-export function withTx(fn) {
-  const db = openDb();
-  const outer = txDepth === 0;
-  if (outer) db.exec("BEGIN IMMEDIATE");
-  txDepth += 1;
-  try {
-    const result = fn(db);
-    if (outer) db.exec("COMMIT");
-    return result;
-  } catch (err) {
-    if (outer) {
-      try {
-        db.exec("ROLLBACK");
-      } catch {
-        /* already closed */
-      }
-    }
-    throw err;
-  } finally {
-    txDepth -= 1;
-  }
-}
-
-function db() {
-  return openDb();
-}
-
-export function countUsers() {
-  return db().prepare("SELECT COUNT(*) AS n FROM users").get().n;
-}
-
-export function countPricedPlayers() {
-  return db().prepare("SELECT COUNT(*) AS n FROM players WHERE price IS NOT NULL").get().n;
+function num(value) {
+  if (value == null) return value;
+  const n = Number(value);
+  return Number.isFinite(n) ? n : value;
 }
 
 function mapUser(row) {
@@ -55,8 +22,8 @@ function mapUser(row) {
     id: row.id,
     email: row.email,
     passwordHash: row.password_hash,
-    cashBalance: row.cash_balance,
-    createdAt: row.created_at,
+    cashBalance: num(row.cash_balance),
+    createdAt: iso(row.created_at),
     isBot: Boolean(row.is_bot),
   };
 }
@@ -68,11 +35,11 @@ function mapPlayer(row, history = []) {
     name: row.name,
     team: row.team_abbr,
     position: row.position_abbr,
-    price: row.price,
-    openPrice: row.open_price,
-    sharesOutstanding: row.shares_outstanding,
-    sharesHeld: row.shares_held,
-    performanceScore: row.performance_score,
+    price: num(row.price),
+    openPrice: num(row.open_price),
+    sharesOutstanding: num(row.shares_outstanding),
+    sharesHeld: num(row.shares_held),
+    performanceScore: num(row.performance_score),
     gsisId: row.gsis_id || null,
     sleeperId: row.sleeper_id || null,
     headshotUrl: row.headshot_url || null,
@@ -80,155 +47,159 @@ function mapPlayer(row, history = []) {
   };
 }
 
-export function getUserById(id) {
-  return mapUser(db().prepare("SELECT * FROM users WHERE id = ?").get(id));
-}
-
-export function getUserByEmail(email) {
-  return mapUser(db().prepare("SELECT * FROM users WHERE email = ?").get(email));
-}
-
-export function insertUser(user) {
-  db()
-    .prepare(
-      `INSERT INTO users (id, email, password_hash, cash_balance, created_at, is_bot)
-       VALUES (?, ?, ?, ?, ?, ?)`
-    )
-    .run(
-      user.id,
-      user.email,
-      user.passwordHash,
-      user.cashBalance,
-      user.createdAt,
-      user.isBot ? 1 : 0
-    );
-  if (Array.isArray(user.equityHistory) && user.equityHistory.length) {
-    writeEquity(user.id, user.equityHistory);
-  }
-}
-
-export function updateUserCash(id, cashBalance) {
-  db().prepare("UPDATE users SET cash_balance = ? WHERE id = ?").run(cashBalance, id);
-}
-
-export function markUserBot(id) {
-  db().prepare("UPDATE users SET is_bot = 1 WHERE id = ?").run(id);
-}
-
-export function getHolding(userId, playerId) {
-  const row = db()
-    .prepare("SELECT user_id, player_id, shares, avg_cost FROM holdings WHERE user_id = ? AND player_id = ?")
-    .get(userId, playerId);
-  if (!row) return { userId, playerId, shares: 0, avgCost: 0 };
+function mapHolding(row) {
   return {
     userId: row.user_id,
     playerId: row.player_id,
-    shares: row.shares,
-    avgCost: row.avg_cost,
+    shares: num(row.shares),
+    avgCost: num(row.avg_cost),
   };
 }
 
-export function upsertHolding({ userId, playerId, shares, avgCost }) {
-  db()
-    .prepare(
-      `INSERT INTO holdings (user_id, player_id, shares, avg_cost)
-       VALUES (?, ?, ?, ?)
-       ON CONFLICT(user_id, player_id) DO UPDATE SET
-         shares = excluded.shares,
-         avg_cost = excluded.avg_cost`
-    )
-    .run(userId, playerId, shares, avgCost);
+function mapPoint(row, valueKey) {
+  return { t: iso(row.t), [valueKey]: num(row[valueKey]) };
 }
 
-export function listUserHoldings(userId) {
-  return db()
-    .prepare(
-      `SELECT user_id, player_id, shares, avg_cost
-       FROM holdings WHERE user_id = ? AND shares > 0`
-    )
-    .all(userId)
-    .map((row) => ({
-      userId: row.user_id,
-      playerId: row.player_id,
-      shares: row.shares,
-      avgCost: row.avg_cost,
-    }));
+export async function countUsers() {
+  const row = await queryOne("SELECT COUNT(*)::int AS n FROM users");
+  return row?.n ?? 0;
 }
 
-export function listHoldingsForPlayer(playerId) {
-  return db()
-    .prepare(
-      `SELECT user_id, player_id, shares, avg_cost
-       FROM holdings WHERE player_id = ? AND shares > 0`
-    )
-    .all(playerId)
-    .map((row) => ({
-      userId: row.user_id,
-      playerId: row.player_id,
-      shares: row.shares,
-      avgCost: row.avg_cost,
-    }));
+export async function countPricedPlayers() {
+  const row = await queryOne("SELECT COUNT(*)::int AS n FROM players WHERE price IS NOT NULL");
+  return row?.n ?? 0;
 }
 
-export function listPositiveHoldingsForUsers(userIds) {
+export async function listPricedPlayerIds() {
+  const rows = await queryRows("SELECT key_id FROM players WHERE price IS NOT NULL");
+  return rows.map((row) => row.key_id);
+}
+
+/**
+ * @param {string} id
+ * @param {{ forUpdate?: boolean }} [opts]
+ */
+export async function getUserById(id, { forUpdate = false } = {}) {
+  const lock = forUpdate ? " FOR UPDATE" : "";
+  return mapUser(await queryOne(`SELECT * FROM users WHERE id = $1${lock}`, [id]));
+}
+
+export async function getUserByEmail(email) {
+  return mapUser(await queryOne("SELECT * FROM users WHERE email = $1", [email]));
+}
+
+export async function insertUser(user) {
+  await query(
+    `INSERT INTO users (id, email, password_hash, cash_balance, created_at, is_bot)
+     VALUES ($1, $2, $3, $4, $5, $6)`,
+    [user.id, user.email, user.passwordHash, user.cashBalance, user.createdAt, Boolean(user.isBot)]
+  );
+  if (Array.isArray(user.equityHistory) && user.equityHistory.length) {
+    await writeEquity(user.id, user.equityHistory);
+  }
+}
+
+export async function updateUserCash(id, cashBalance) {
+  await query("UPDATE users SET cash_balance = $1 WHERE id = $2", [cashBalance, id]);
+}
+
+export async function markUserBot(id) {
+  await query("UPDATE users SET is_bot = true WHERE id = $1", [id]);
+}
+
+export async function getHolding(userId, playerId) {
+  const row = await queryOne(
+    "SELECT user_id, player_id, shares, avg_cost FROM holdings WHERE user_id = $1 AND player_id = $2",
+    [userId, playerId]
+  );
+  if (!row) return { userId, playerId, shares: 0, avgCost: 0 };
+  return mapHolding(row);
+}
+
+export async function upsertHolding({ userId, playerId, shares, avgCost }) {
+  await query(
+    `INSERT INTO holdings (user_id, player_id, shares, avg_cost)
+     VALUES ($1, $2, $3, $4)
+     ON CONFLICT (user_id, player_id) DO UPDATE SET
+       shares = EXCLUDED.shares,
+       avg_cost = EXCLUDED.avg_cost`,
+    [userId, playerId, shares, avgCost]
+  );
+}
+
+export async function listUserHoldings(userId) {
+  const rows = await queryRows(
+    `SELECT user_id, player_id, shares, avg_cost
+     FROM holdings WHERE user_id = $1 AND shares > 0`,
+    [userId]
+  );
+  return rows.map(mapHolding);
+}
+
+export async function listHoldingsForPlayer(playerId) {
+  const rows = await queryRows(
+    `SELECT user_id, player_id, shares, avg_cost
+     FROM holdings WHERE player_id = $1 AND shares > 0`,
+    [playerId]
+  );
+  return rows.map(mapHolding);
+}
+
+export async function listPositiveHoldingsForUsers(userIds) {
   if (!userIds.length) return [];
-  const marks = userIds.map(() => "?").join(", ");
-  return db()
-    .prepare(
-      `SELECT user_id, player_id, shares, avg_cost
-       FROM holdings
-       WHERE shares > 0 AND user_id IN (${marks})`
-    )
-    .all(...userIds)
-    .map((row) => ({
-      userId: row.user_id,
-      playerId: row.player_id,
-      shares: row.shares,
-      avgCost: row.avg_cost,
-    }));
+  const rows = await queryRows(
+    `SELECT user_id, player_id, shares, avg_cost
+     FROM holdings
+     WHERE shares > 0 AND user_id = ANY($1::text[])`,
+    [userIds]
+  );
+  return rows.map(mapHolding);
 }
 
-export function positionsMarketValue(userId) {
-  const row = db()
-    .prepare(
-      `SELECT COALESCE(SUM(h.shares * p.price), 0) AS value
-       FROM holdings h
-       JOIN players p ON p.key_id = h.player_id
-       WHERE h.user_id = ? AND h.shares > 0`
-    )
-    .get(userId);
-  return row?.value ?? 0;
+export async function positionsMarketValue(userId) {
+  const row = await queryOne(
+    `SELECT COALESCE(SUM(h.shares * p.price), 0) AS value
+     FROM holdings h
+     JOIN players p ON p.key_id = h.player_id
+     WHERE h.user_id = $1 AND h.shares > 0`,
+    [userId]
+  );
+  return num(row?.value) ?? 0;
 }
 
-export function insertTrade(trade, { cap = true } = {}) {
-  db()
-    .prepare(
-      `INSERT INTO trades (id, user_id, player_id, side, qty, price, ts)
-       VALUES (?, ?, ?, ?, ?, ?, ?)`
-    )
-    .run(trade.id, trade.userId, trade.playerId, trade.side, trade.qty, trade.price, trade.ts);
-  if (cap) capTrades();
+export async function insertTrade(trade, { cap = true } = {}) {
+  await query(
+    `INSERT INTO trades (id, user_id, player_id, side, qty, price, ts)
+     VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+    [trade.id, trade.userId, trade.playerId, trade.side, trade.qty, trade.price, trade.ts]
+  );
+  if (cap) await capTrades();
 }
 
-export function capTrades() {
-  db()
-    .prepare(
-      `DELETE FROM trades WHERE rowid NOT IN (
-         SELECT rowid FROM trades ORDER BY ts DESC, rowid DESC LIMIT ?
-       )`
-    )
-    .run(TRADE_CAP);
+export async function capTrades() {
+  await query(
+    `DELETE FROM trades WHERE id NOT IN (
+       SELECT id FROM trades ORDER BY ts DESC, id DESC LIMIT $1
+     )`,
+    [TRADE_CAP]
+  );
 }
 
-export function recentTrades(playerId, limit = 30) {
-  return db()
-    .prepare(
-      `SELECT id, side, qty, price, ts
-       FROM trades WHERE player_id = ?
-       ORDER BY ts DESC, rowid DESC
-       LIMIT ?`
-    )
-    .all(playerId, limit);
+export async function recentTrades(playerId, limit = 30) {
+  const rows = await queryRows(
+    `SELECT id, side, qty, price, ts
+     FROM trades WHERE player_id = $1
+     ORDER BY ts DESC, id DESC
+     LIMIT $2`,
+    [playerId, limit]
+  );
+  return rows.map((row) => ({
+    id: row.id,
+    side: row.side,
+    qty: num(row.qty),
+    price: num(row.price),
+    ts: iso(row.ts),
+  }));
 }
 
 function normalizePoints(points, valueKey) {
@@ -244,97 +215,113 @@ function normalizePoints(points, valueKey) {
   return out;
 }
 
-export function readPriceHistory(playerId) {
-  return db()
-    .prepare("SELECT t, price FROM price_points WHERE player_id = ? ORDER BY t")
-    .all(playerId)
-    .map((row) => ({ t: row.t, price: row.price }));
+export async function readPriceHistory(playerId) {
+  const rows = await queryRows(
+    "SELECT t, price FROM price_points WHERE player_id = $1 ORDER BY t",
+    [playerId]
+  );
+  return rows.map((row) => mapPoint(row, "price"));
 }
 
-export function readPriceHistories(playerIds) {
+export async function readPriceHistories(playerIds) {
   const map = new Map();
   if (!playerIds.length) return map;
   for (let i = 0; i < playerIds.length; i += HISTORY_IN_CHUNK) {
     const chunk = playerIds.slice(i, i + HISTORY_IN_CHUNK);
-    const marks = chunk.map(() => "?").join(", ");
-    const rows = db()
-      .prepare(
-        `SELECT player_id, t, price FROM price_points
-         WHERE player_id IN (${marks})
-         ORDER BY player_id, t`
-      )
-      .all(...chunk);
+    const rows = await queryRows(
+      `SELECT player_id, t, price FROM price_points
+       WHERE player_id = ANY($1::text[])
+       ORDER BY player_id, t`,
+      [chunk]
+    );
     for (const row of rows) {
       let series = map.get(row.player_id);
       if (!series) {
         series = [];
         map.set(row.player_id, series);
       }
-      series.push({ t: row.t, price: row.price });
+      series.push(mapPoint(row, "price"));
     }
   }
   return map;
 }
 
-export function writePriceHistory(playerId, points) {
+async function insertSeries(table, idColumn, id, points, valueKey) {
+  const chunkSize = 200;
+  for (let i = 0; i < points.length; i += chunkSize) {
+    const chunk = points.slice(i, i + chunkSize);
+    const params = [];
+    const values = chunk.map((point, index) => {
+      const base = index * 3;
+      params.push(id, point.t, point[valueKey]);
+      return `($${base + 1}, $${base + 2}, $${base + 3})`;
+    });
+    await query(
+      `INSERT INTO ${table} (${idColumn}, t, ${valueKey}) VALUES ${values.join(", ")}`,
+      params
+    );
+  }
+}
+
+export async function writePriceHistory(playerId, points) {
   const series = normalizePoints(points, "price");
-  const conn = db();
-  conn.prepare("DELETE FROM price_points WHERE player_id = ?").run(playerId);
-  const insert = conn.prepare("INSERT INTO price_points (player_id, t, price) VALUES (?, ?, ?)");
-  for (const point of series) insert.run(playerId, point.t, point.price);
+  await query("DELETE FROM price_points WHERE player_id = $1", [playerId]);
+  await insertSeries("price_points", "player_id", playerId, series, "price");
 }
 
-export function readEquity(userId) {
-  return db()
-    .prepare("SELECT t, value FROM equity_points WHERE user_id = ? ORDER BY t")
-    .all(userId)
-    .map((row) => ({ t: row.t, value: row.value }));
+export async function readEquity(userId) {
+  const rows = await queryRows(
+    "SELECT t, value FROM equity_points WHERE user_id = $1 ORDER BY t",
+    [userId]
+  );
+  return rows.map((row) => mapPoint(row, "value"));
 }
 
-export function writeEquity(userId, points) {
+export async function writeEquity(userId, points) {
   const series = normalizePoints(points, "value");
-  const conn = db();
-  conn.prepare("DELETE FROM equity_points WHERE user_id = ?").run(userId);
-  const insert = conn.prepare("INSERT INTO equity_points (user_id, t, value) VALUES (?, ?, ?)");
-  for (const point of series) insert.run(userId, point.t, point.value);
+  await query("DELETE FROM equity_points WHERE user_id = $1", [userId]);
+  await insertSeries("equity_points", "user_id", userId, series, "value");
 }
 
-export function getPricedPlayer(id) {
-  const row = db().prepare(`SELECT ${PLAYER_COLUMNS} FROM players WHERE key_id = ?`).get(id);
+/**
+ * @param {string} id
+ * @param {{ forUpdate?: boolean }} [opts]
+ */
+export async function getPricedPlayer(id, { forUpdate = false } = {}) {
+  const lock = forUpdate ? " FOR UPDATE" : "";
+  const row = await queryOne(`SELECT ${PLAYER_COLUMNS} FROM players WHERE key_id = $1${lock}`, [id]);
   if (!row || row.price == null) return null;
-  return mapPlayer(row, readPriceHistory(id));
+  return mapPlayer(row, await readPriceHistory(id));
 }
 
-export function listPricedPlayers() {
-  return db()
-    .prepare(`SELECT ${PLAYER_COLUMNS} FROM players WHERE price IS NOT NULL AND active = 1`)
-    .all()
-    .map((row) => mapPlayer(row, []));
+export async function listPricedPlayers() {
+  const rows = await queryRows(
+    `SELECT ${PLAYER_COLUMNS} FROM players WHERE price IS NOT NULL AND active = true`
+  );
+  return rows.map((row) => mapPlayer(row, []));
 }
 
-export function listPricedPlayersByIds(ids) {
+export async function listPricedPlayersByIds(ids) {
   if (!ids.length) return [];
-  const histories = readPriceHistories(ids);
+  const histories = await readPriceHistories(ids);
   const rows = [];
   for (let i = 0; i < ids.length; i += HISTORY_IN_CHUNK) {
     const chunk = ids.slice(i, i + HISTORY_IN_CHUNK);
-    const marks = chunk.map(() => "?").join(", ");
     rows.push(
-      ...db()
-        .prepare(`SELECT ${PLAYER_COLUMNS} FROM players WHERE key_id IN (${marks})`)
-        .all(...chunk)
+      ...(await queryRows(`SELECT ${PLAYER_COLUMNS} FROM players WHERE key_id = ANY($1::text[])`, [
+        chunk,
+      ]))
     );
   }
   return rows.map((row) => mapPlayer(row, histories.get(row.key_id) || []));
 }
 
-export function getPlayerIdentity(id) {
-  const row = db()
-    .prepare(
-      `SELECT key_id, name, team, team_abbr, position_abbr, sleeper_id, headshot_url
-       FROM players WHERE key_id = ?`
-    )
-    .get(id);
+export async function getPlayerIdentity(id) {
+  const row = await queryOne(
+    `SELECT key_id, name, team, team_abbr, position_abbr, sleeper_id, headshot_url
+     FROM players WHERE key_id = $1`,
+    [id]
+  );
   if (!row) return null;
   return {
     keyId: row.key_id,
@@ -347,18 +334,18 @@ export function getPlayerIdentity(id) {
   };
 }
 
-export function playerPrice(id) {
-  const row = db().prepare("SELECT price FROM players WHERE key_id = ?").get(id);
-  return row ? row.price : undefined;
+export async function playerPrice(id) {
+  const row = await queryOne("SELECT price FROM players WHERE key_id = $1", [id]);
+  if (!row) return undefined;
+  return row.price == null ? null : num(row.price);
 }
 
-export function writePlayerMarket(keyId, fields) {
-  const current = db()
-    .prepare(
-      `SELECT price, open_price, shares_outstanding, shares_held, performance_score
-       FROM players WHERE key_id = ?`
-    )
-    .get(keyId);
+export async function writePlayerMarket(keyId, fields) {
+  const current = await queryOne(
+    `SELECT price, open_price, shares_outstanding, shares_held, performance_score
+     FROM players WHERE key_id = $1`,
+    [keyId]
+  );
   if (!current) {
     const err = new Error("Player not found");
     err.status = 404;
@@ -371,26 +358,25 @@ export function writePlayerMarket(keyId, fields) {
   const sharesHeld = fields.sharesHeld !== undefined ? fields.sharesHeld : current.shares_held;
   const performanceScore =
     fields.performanceScore !== undefined ? fields.performanceScore : current.performance_score;
-  db()
-    .prepare(
-      `UPDATE players
-       SET price = ?, open_price = ?, shares_outstanding = ?, shares_held = ?, performance_score = ?
-       WHERE key_id = ?`
-    )
-    .run(price, openPrice, sharesOutstanding, sharesHeld, performanceScore, keyId);
-  if (fields.history) writePriceHistory(keyId, fields.history);
+  await query(
+    `UPDATE players
+     SET price = $1, open_price = $2, shares_outstanding = $3, shares_held = $4,
+         performance_score = $5, updated_at = now()
+     WHERE key_id = $6`,
+    [price, openPrice, sharesOutstanding, sharesHeld, performanceScore, keyId]
+  );
+  if (fields.history) await writePriceHistory(keyId, fields.history);
 }
 
-export function insertBarePlayer(player) {
+export async function insertBarePlayer(player) {
   const team = player.team || "FA";
   const position = player.position || "UNK";
-  db()
-    .prepare(
-      `INSERT OR IGNORE INTO players (
-         key_id, name, team, team_abbr, position_abbr, gsis_id, sleeper_id, headshot_url, opening_price, active
-       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 1)`
-    )
-    .run(
+  await query(
+    `INSERT INTO players (
+       key_id, name, team, team_abbr, position_abbr, gsis_id, sleeper_id, headshot_url, opening_price, active
+     ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, true)
+     ON CONFLICT (key_id) DO NOTHING`,
+    [
       player.id,
       player.name || player.id,
       team,
@@ -399,19 +385,21 @@ export function insertBarePlayer(player) {
       player.gsisId || null,
       player.sleeperId || null,
       player.headshotUrl || null,
-      player.openPrice ?? player.price ?? null
-    );
+      player.openPrice ?? player.price ?? null,
+    ]
+  );
 }
 
-export function resetOpenPrices() {
-  db().exec("UPDATE players SET open_price = price WHERE price IS NOT NULL");
+export async function resetOpenPrices() {
+  await query("UPDATE players SET open_price = price WHERE price IS NOT NULL");
 }
 
-export function setPerformanceScore(playerId, performanceScore) {
-  const info = db()
-    .prepare("UPDATE players SET performance_score = ? WHERE key_id = ? AND price IS NOT NULL")
-    .run(performanceScore, playerId);
-  if (!info.changes) return null;
+export async function setPerformanceScore(playerId, performanceScore) {
+  const result = await query(
+    "UPDATE players SET performance_score = $1, updated_at = now() WHERE key_id = $2 AND price IS NOT NULL",
+    [performanceScore, playerId]
+  );
+  if (!result.rowCount) return null;
   return getPricedPlayer(playerId);
 }
 
@@ -419,15 +407,15 @@ export function setPerformanceScore(playerId, performanceScore) {
  * Wipe accounts, holdings, trades, prices, and chart history.
  * Roster rows and week-stat cache stay.
  */
-export function clearMarketTables() {
-  const conn = db();
-  conn.exec("DELETE FROM equity_points");
-  conn.exec("DELETE FROM trades");
-  conn.exec("DELETE FROM holdings");
-  conn.exec("DELETE FROM price_points");
-  conn.exec("DELETE FROM users");
-  conn.exec(
+export async function clearMarketTables() {
+  await query("DELETE FROM equity_points");
+  await query("DELETE FROM trades");
+  await query("DELETE FROM holdings");
+  await query("DELETE FROM price_points");
+  await query("DELETE FROM users");
+  await query(
     `UPDATE players
-     SET price = NULL, open_price = NULL, shares_held = 0, performance_score = 0, shares_outstanding = 10000`
+     SET price = NULL, open_price = NULL, shares_held = 0, performance_score = 0,
+         shares_outstanding = 10000, updated_at = now()`
   );
 }

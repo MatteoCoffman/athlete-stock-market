@@ -45,18 +45,18 @@ function pickWeighted(items, weightFn) {
  * History backfill stays on startup; a tick only touches accounts and cash.
  */
 export function ensureBots() {
-  return withTx(() => {
-    const players = listPricedPlayers();
+  return withTx(async () => {
+    const players = await listPricedPlayers();
     if (players.length === 0) return [];
 
     const bots = [];
     for (let i = 1; i <= BOT_COUNT; i += 1) {
       const email = `bot${i}@jock.exchange`;
-      let bot = getUserByEmail(email);
+      let bot = await getUserByEmail(email);
       if (!bot) {
         const id = uuidv4();
         const createdAt = new Date().toISOString();
-        insertUser({
+        await insertUser({
           id,
           email,
           passwordHash: BOT_PASSWORD_HASH,
@@ -70,21 +70,21 @@ export function ensureBots() {
         const starters = [...players].sort(() => Math.random() - 0.5).slice(0, 6);
         for (const starter of starters) {
           const qty = randInt(20, 80);
-          const fresh = getPricedPlayer(starter.id);
+          const fresh = await getPricedPlayer(starter.id);
           if (!fresh || freeFloat(fresh) < qty) continue;
           const cost = Number((qty * fresh.price).toFixed(2));
-          upsertHolding({ userId: id, playerId: fresh.id, shares: qty, avgCost: fresh.price });
-          writePlayerMarket(fresh.id, { sharesHeld: fresh.sharesHeld + qty });
+          await upsertHolding({ userId: id, playerId: fresh.id, shares: qty, avgCost: fresh.price });
+          await writePlayerMarket(fresh.id, { sharesHeld: fresh.sharesHeld + qty });
           cash = Number((cash - cost).toFixed(2));
           starter.sharesHeld += qty;
         }
-        updateUserCash(id, cash);
-        bot = getUserById(id);
+        await updateUserCash(id, cash);
+        bot = await getUserById(id);
       } else {
-        if (!bot.isBot) markUserBot(bot.id);
+        if (!bot.isBot) await markUserBot(bot.id);
         if (bot.cashBalance < BOT_CASH * 0.15) {
-          updateUserCash(bot.id, Number((bot.cashBalance + BOT_CASH * 0.5).toFixed(2)));
-          bot = getUserById(bot.id);
+          await updateUserCash(bot.id, Number((bot.cashBalance + BOT_CASH * 0.5).toFixed(2)));
+          bot = await getUserById(bot.id);
         }
       }
       bots.push(bot);
@@ -125,9 +125,9 @@ function desiredSide() {
   return Math.random() < 0.5 ? "buy" : "sell";
 }
 
-export function runBotTick() {
-  const bots = ensureBots();
-  const players = listPricedPlayers();
+export async function runBotTick() {
+  const bots = await ensureBots();
+  const players = await listPricedPlayers();
   if (!bots.length || !players.length) return null;
 
   const side = desiredSide();
@@ -136,19 +136,19 @@ export function runBotTick() {
   let held = 0;
 
   if (side === "sell") {
-    const lots = listPositiveHoldingsForUsers(bots.map((entry) => entry.id)).filter((lot) =>
+    const lots = (await listPositiveHoldingsForUsers(bots.map((entry) => entry.id))).filter((lot) =>
       players.some((candidate) => candidate.id === lot.playerId)
     );
     if (lots.length === 0) return null;
     const byId = new Map(players.map((candidate) => [candidate.id, candidate]));
     const lot = pickWeighted(lots, (entry) => Math.pow(Math.max(byId.get(entry.playerId).price, 1), 1.2));
-    bot = bots.find((entry) => entry.id === lot.userId) || getUserById(lot.userId);
+    bot = bots.find((entry) => entry.id === lot.userId) || (await getUserById(lot.userId));
     player = byId.get(lot.playerId);
     held = lot.shares;
   } else {
     bot = bots[randInt(0, bots.length - 1)];
     player = pickWeighted(players, (candidate) => Math.pow(Math.max(candidate.price, 1), 1.4));
-    held = getHolding(bot.id, player.id).shares || 0;
+    held = (await getHolding(bot.id, player.id)).shares || 0;
     if (freeFloat(player) <= 0) return null;
   }
 
@@ -157,7 +157,7 @@ export function runBotTick() {
   if (qty <= 0) return null;
 
   try {
-    const result = executeTrade({
+    const result = await executeTrade({
       userId: bot.id,
       playerId: player.id,
       side,
@@ -183,8 +183,9 @@ export function runBotTick() {
 }
 
 let timer = null;
+let ticking = false;
 
-export function startBotMarket() {
+export async function startBotMarket() {
   if (!BOTS_ENABLED) {
     console.log("Bot market disabled (BOTS_ENABLED=0)");
     return;
@@ -194,27 +195,33 @@ export function startBotMarket() {
   sideStats.buy = 0;
   sideStats.sell = 0;
 
-  withTx(() => {
-    ensureBots();
-    resetOpenPrices();
+  await withTx(async () => {
+    await ensureBots();
+    await resetOpenPrices();
   });
-  backfillLongHistories();
+  await backfillLongHistories();
 
   console.log(
     `Bot market on · ${BOT_COUNT} bots · ~50/50 buy/sell · every ${BOT_INTERVAL_MS}ms (BOTS_ENABLED=0 to stop)`
   );
 
   timer = setInterval(() => {
-    try {
-      const result = runBotTick();
-      if (result) {
-        console.log(
-          `[bot] ${result.bot} ${result.side} ${result.qty} ${result.playerId} @ ${result.price} → ${result.newPrice} (${result.balance})`
-        );
-      }
-    } catch (err) {
-      console.error("[bot] tick failed", err.message);
-    }
+    if (ticking) return;
+    ticking = true;
+    runBotTick()
+      .then((result) => {
+        if (result) {
+          console.log(
+            `[bot] ${result.bot} ${result.side} ${result.qty} ${result.playerId} @ ${result.price} → ${result.newPrice} (${result.balance})`
+          );
+        }
+      })
+      .catch((err) => {
+        console.error("[bot] tick failed", err.message);
+      })
+      .finally(() => {
+        ticking = false;
+      });
   }, BOT_INTERVAL_MS);
 
   if (typeof timer.unref === "function") timer.unref();

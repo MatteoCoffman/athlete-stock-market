@@ -1,7 +1,11 @@
-import { openDb } from "../db/index.js";
+import { query, queryOne, queryRows } from "../db/pg/client.js";
 
 const DEFAULT_LIMIT = 50;
 const MAX_LIMIT = 500;
+const ROSTER_COLUMNS = `
+  key_id, name, team, team_abbr, position_abbr,
+  gsis_id, sleeper_id, espn_id, headshot_url, opening_price, active
+`;
 
 function mapRow(row) {
   if (!row) return null;
@@ -36,41 +40,31 @@ function clampOffset(offset) {
  * SQL-backed roster lookup.
  */
 export class PlayerLibrary {
-  /** @param {import('node:sqlite').DatabaseSync} [db] */
-  constructor(db = openDb()) {
-    this.db = db;
-  }
-
-  getByKeyId(keyId) {
-    const row = this.db
-      .prepare(
-        `SELECT key_id, name, team, team_abbr, position_abbr,
-                gsis_id, sleeper_id, espn_id, headshot_url, opening_price, active
-         FROM players WHERE key_id = ? LIMIT 1`
-      )
-      .get(String(keyId));
+  async getByKeyId(keyId) {
+    const row = await queryOne(
+      `SELECT ${ROSTER_COLUMNS} FROM players WHERE key_id = $1 LIMIT 1`,
+      [String(keyId)]
+    );
     return mapRow(row);
   }
 
-  search(opts = {}) {
+  async search(opts = {}) {
     const { where, params } = this._buildFilter(opts);
     const limit = clampLimit(opts.limit);
     const offset = clampOffset(opts.offset);
-    const rows = this.db
-      .prepare(
-        `SELECT key_id, name, team, team_abbr, position_abbr,
-                gsis_id, sleeper_id, espn_id, headshot_url, opening_price, active
-         FROM players ${where}
-         ORDER BY name COLLATE NOCASE
-         LIMIT ? OFFSET ?`
-      )
-      .all(...params, limit, offset);
+    const rows = await queryRows(
+      `SELECT ${ROSTER_COLUMNS}
+       FROM players ${where}
+       ORDER BY lower(name)
+       LIMIT $${params.length + 1} OFFSET $${params.length + 2}`,
+      [...params, limit, offset]
+    );
     return rows.map(mapRow);
   }
 
-  count(opts = {}) {
+  async count(opts = {}) {
     const { where, params } = this._buildFilter(opts);
-    const row = this.db.prepare(`SELECT COUNT(*) AS n FROM players ${where}`).get(...params);
+    const row = await queryOne(`SELECT COUNT(*)::int AS n FROM players ${where}`, params);
     return row?.n ?? 0;
   }
 
@@ -83,12 +77,12 @@ export class PlayerLibrary {
   }
 
   /** All active roster rows (paginated internally — not for public list APIs). */
-  allActive() {
+  async allActive() {
     const out = [];
     const pageSize = 500;
     let offset = 0;
     for (;;) {
-      const batch = this.search({ activeOnly: true, limit: pageSize, offset });
+      const batch = await this.search({ activeOnly: true, limit: pageSize, offset });
       out.push(...batch);
       if (batch.length < pageSize) break;
       offset += pageSize;
@@ -103,13 +97,13 @@ export class PlayerLibrary {
    *   headshotUrl?: string|null, openingPrice?: number|null, active?: boolean
    * }} player
    */
-  upsert(player) {
+  async upsert(player) {
     const keyId = String(player.keyId).trim();
     const name = String(player.name).trim();
     const team = String(player.team).trim();
     const teamAbbr = String(player.teamAbbr).trim().toUpperCase();
     const positionAbbr = String(player.positionAbbr).trim().toUpperCase();
-    const active = player.active === false ? 0 : 1;
+    const active = player.active !== false;
     const gsisId = player.gsisId ? String(player.gsisId).trim() : null;
     const sleeperId = player.sleeperId ? String(player.sleeperId).trim() : null;
     const espnId = player.espnId ? String(player.espnId).trim() : null;
@@ -123,26 +117,24 @@ export class PlayerLibrary {
       throw new Error("upsert requires keyId, name, team, teamAbbr, positionAbbr");
     }
 
-    this.db
-      .prepare(
-        `INSERT INTO players (
-           key_id, name, team, team_abbr, position_abbr,
-           gsis_id, sleeper_id, espn_id, headshot_url, opening_price, active, updated_at
-         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now'))
-         ON CONFLICT(key_id) DO UPDATE SET
-           name = excluded.name,
-           team = excluded.team,
-           team_abbr = excluded.team_abbr,
-           position_abbr = excluded.position_abbr,
-           gsis_id = excluded.gsis_id,
-           sleeper_id = excluded.sleeper_id,
-           espn_id = excluded.espn_id,
-           headshot_url = excluded.headshot_url,
-           opening_price = excluded.opening_price,
-           active = excluded.active,
-           updated_at = datetime('now')`
-      )
-      .run(
+    await query(
+      `INSERT INTO players (
+         key_id, name, team, team_abbr, position_abbr,
+         gsis_id, sleeper_id, espn_id, headshot_url, opening_price, active, updated_at
+       ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, now())
+       ON CONFLICT (key_id) DO UPDATE SET
+         name = EXCLUDED.name,
+         team = EXCLUDED.team,
+         team_abbr = EXCLUDED.team_abbr,
+         position_abbr = EXCLUDED.position_abbr,
+         gsis_id = EXCLUDED.gsis_id,
+         sleeper_id = EXCLUDED.sleeper_id,
+         espn_id = EXCLUDED.espn_id,
+         headshot_url = EXCLUDED.headshot_url,
+         opening_price = EXCLUDED.opening_price,
+         active = EXCLUDED.active,
+         updated_at = now()`,
+      [
         keyId,
         name,
         team,
@@ -153,8 +145,9 @@ export class PlayerLibrary {
         espnId,
         headshotUrl,
         openingPrice,
-        active
-      );
+        active,
+      ]
+    );
 
     return this.getByKeyId(keyId);
   }
@@ -164,25 +157,27 @@ export class PlayerLibrary {
     const params = [];
 
     if (opts.activeOnly !== false) {
-      clauses.push("active = 1");
+      clauses.push("active = true");
     }
 
     const q = String(opts.q ?? "").trim();
     if (q) {
       const like = `%${q}%`;
       clauses.push(
-        `(name LIKE ? COLLATE NOCASE
-          OR team LIKE ? COLLATE NOCASE
-          OR team_abbr LIKE ? COLLATE NOCASE
-          OR position_abbr LIKE ? COLLATE NOCASE
-          OR key_id LIKE ? COLLATE NOCASE)`
+        `(name ILIKE $${params.length + 1}
+          OR team ILIKE $${params.length + 2}
+          OR team_abbr ILIKE $${params.length + 3}
+          OR position_abbr ILIKE $${params.length + 4}
+          OR key_id ILIKE $${params.length + 5})`
       );
       params.push(like, like, like, like, like);
     }
 
     const team = String(opts.team ?? "").trim();
     if (team) {
-      clauses.push("(team_abbr = ? COLLATE NOCASE OR team = ? COLLATE NOCASE)");
+      clauses.push(
+        `(lower(team_abbr) = lower($${params.length + 1}) OR lower(team) = lower($${params.length + 2}))`
+      );
       params.push(team, team);
     }
 
@@ -192,10 +187,11 @@ export class PlayerLibrary {
         .map((p) => String(p).trim().toUpperCase())
         .filter(Boolean);
       if (list.length === 1) {
-        clauses.push("position_abbr = ? COLLATE NOCASE");
+        clauses.push(`position_abbr = $${params.length + 1}`);
         params.push(list[0]);
       } else if (list.length > 1) {
-        clauses.push(`(${list.map(() => "position_abbr = ? COLLATE NOCASE").join(" OR ")})`);
+        const marks = list.map((_, index) => `$${params.length + index + 1}`);
+        clauses.push(`position_abbr IN (${marks.join(", ")})`);
         params.push(...list);
       }
     }

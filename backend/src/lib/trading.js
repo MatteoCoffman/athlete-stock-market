@@ -60,19 +60,20 @@ function httpError(message, status) {
   return err;
 }
 
-export function executeTrade({ userId, playerId, side, qty }) {
+export async function executeTrade({ userId, playerId, side, qty }) {
   if (!Number.isInteger(qty) || qty <= 0) throw httpError("Quantity must be a positive integer", 400);
   if (side !== "buy" && side !== "sell") throw httpError("Side must be buy or sell", 400);
 
-  return withTx(() => {
-    const user = getUserById(userId);
-    const player = getPricedPlayer(playerId);
+  return withTx(async () => {
+    // Lock the player first, then the user, so trades and dividends take locks in the same order.
+    const player = await getPricedPlayer(playerId, { forUpdate: true });
+    const user = await getUserById(userId, { forUpdate: true });
     if (!user) throw httpError("User not found", 404);
     if (!player) throw httpError("Player not found", 404);
 
     const fillPrice = player.price;
     const cost = Number((fillPrice * qty).toFixed(2));
-    const holding = getHolding(userId, playerId);
+    const holding = await getHolding(userId, playerId);
 
     if (side === "buy") {
       if (user.cashBalance < cost) throw httpError("Insufficient cash", 400);
@@ -96,10 +97,10 @@ export function executeTrade({ userId, playerId, side, qty }) {
     player.price = nextPrice(player, side, qty);
     appendPricePoint(player, player.price);
 
-    updateUserCash(userId, user.cashBalance);
-    upsertHolding(holding);
-    writePlayerMarket(playerId, { price: player.price, sharesHeld: player.sharesHeld });
-    writePriceHistory(playerId, player.priceHistory);
+    await updateUserCash(userId, user.cashBalance);
+    await upsertHolding(holding);
+    await writePlayerMarket(playerId, { price: player.price, sharesHeld: player.sharesHeld });
+    await writePriceHistory(playerId, player.priceHistory);
 
     const trade = {
       id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
@@ -110,12 +111,12 @@ export function executeTrade({ userId, playerId, side, qty }) {
       price: fillPrice,
       ts: new Date().toISOString(),
     };
-    insertTrade(trade);
+    await insertTrade(trade);
 
-    const totalValue = Number((user.cashBalance + positionsMarketValue(userId)).toFixed(2));
-    const equityUser = { ...user, equityHistory: readEquity(userId) };
+    const totalValue = Number((user.cashBalance + (await positionsMarketValue(userId))).toFixed(2));
+    const equityUser = { ...user, equityHistory: await readEquity(userId) };
     recordEquitySnapshot(equityUser, totalValue);
-    writeEquity(userId, equityUser.equityHistory);
+    await writeEquity(userId, equityUser.equityHistory);
 
     return {
       trade,
@@ -126,25 +127,34 @@ export function executeTrade({ userId, playerId, side, qty }) {
   });
 }
 
-export function payDividends(playerId, payoutPerShare) {
+export async function payDividends(playerId, payoutPerShare) {
   if (!(payoutPerShare > 0)) throw httpError("payoutPerShare must be positive", 400);
 
-  return withTx(() => {
-    const player = getPricedPlayer(playerId);
+  return withTx(async () => {
+    const player = await getPricedPlayer(playerId, { forUpdate: true });
     if (!player) throw httpError("Player not found", 404);
 
+    const holdings = await listHoldingsForPlayer(playerId);
+    const userIds = [...new Set(holdings.map((holding) => holding.userId))].sort();
+    const users = new Map();
+    for (const id of userIds) {
+      const user = await getUserById(id, { forUpdate: true });
+      if (user) users.set(id, user);
+    }
+
     const payments = [];
-    for (const holding of listHoldingsForPlayer(playerId)) {
-      const user = getUserById(holding.userId);
+    for (const holding of holdings) {
+      const user = users.get(holding.userId);
       if (!user) continue;
       const amount = Number((holding.shares * payoutPerShare).toFixed(2));
       const cash = Number((user.cashBalance + amount).toFixed(2));
-      updateUserCash(user.id, cash);
+      user.cashBalance = cash;
+      await updateUserCash(user.id, cash);
       payments.push({ userId: holding.userId, shares: holding.shares, amount });
     }
 
     const performanceScore = Number((player.performanceScore + payoutPerShare).toFixed(2));
-    writePlayerMarket(playerId, { performanceScore });
+    await writePlayerMarket(playerId, { performanceScore });
     player.performanceScore = performanceScore;
 
     return {

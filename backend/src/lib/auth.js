@@ -24,15 +24,15 @@ export function authMiddleware(req, res, next) {
   }
 }
 
-export function signup(email, password) {
+export async function signup(email, password) {
   const normalized = String(email || "").trim().toLowerCase();
   if (!normalized || !password || password.length < 6) {
     const err = new Error("Email and password (min 6 chars) required");
     err.status = 400;
     throw err;
   }
-  return withTx(() => {
-    if (getUserByEmail(normalized)) {
+  return withTx(async () => {
+    if (await getUserByEmail(normalized)) {
       const err = new Error("Email already registered");
       err.status = 409;
       throw err;
@@ -47,14 +47,14 @@ export function signup(email, password) {
       isBot: false,
       equityHistory: [{ t: now, value: STARTING_CASH }],
     };
-    insertUser(user);
+    await insertUser(user);
     return { user: publicUser(user), token: signToken(user) };
   });
 }
 
-export function login(email, password) {
+export async function login(email, password) {
   const normalized = String(email || "").trim().toLowerCase();
-  const user = getUserByEmail(normalized);
+  const user = await getUserByEmail(normalized);
   if (!user || !bcrypt.compareSync(password, user.passwordHash)) {
     const err = new Error("Invalid email or password");
     err.status = 401;

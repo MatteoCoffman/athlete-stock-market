@@ -3,7 +3,7 @@
  * LOCAL DEV ONLY: wipe athlete_market_app public schema and re-apply migrations.
  * Usage: npm run db:reset
  *
- * Does not touch SQLite (jock.db) or athlete_market_ml.
+ * Does not touch athlete_market_ml.
  */
 import { closePool, resetLocalDatabase } from "../src/db/pg/migrate.js";
 

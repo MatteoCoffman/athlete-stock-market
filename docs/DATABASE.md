@@ -7,11 +7,11 @@ ML / research data belongs in a **separate** database: `athlete_market_ml` (not 
 
 | Layer | Technology | Role today |
 | --- | --- | --- |
-| Live market + auth | **SQLite** `backend/data/jock.db` | Users, holdings, trades, prices, roster, week-stats cache |
-| Target app DB | **PostgreSQL** `athlete_market_app` | Schema + migrations ready; **not** wired into request handlers yet |
+| Local API | **PostgreSQL** `athlete_market_app` | Users, holdings, trades, prices, roster, week-stats cache |
+| Live site (jockex.dev) | **SQLite** on the EC2 volume | Unchanged until a later deploy. Do not recreate that container from this branch |
 | Auth | Email + **bcrypt** password hash + JWT | Preserved as-is (see `backend/src/lib/auth.js`) |
 
-The API still starts and runs against SQLite. Postgres setup is additive so every developer can share the same schema via Git migrations before we cut over.
+The API requires `DATABASE_URL`. It does not open a SQLite file. `npm run db:import-sqlite -- path/to/jock.db` copies a snapshot into the local database once. ML data stays in `athlete_market_ml`.
 
 ## Prerequisites
 
@@ -117,11 +117,11 @@ npm run db:reset
 
 The reset script refuses to run if `DATABASE_URL` points at a database name other than `athlete_market_app`.
 
-This does **not** wipe SQLite (`jock.db`). For the live prototype store:
+`npm run reset` wipes users, holdings, trades, prices, and chart history in `athlete_market_app`, keeps the roster and week-stat cache, and reseeds prices:
 
 ```bash
 cd backend
-npm run reset        # SQLite market wipe + reseed
+npm run reset
 ```
 
 ## 9. Package scripts
@@ -132,16 +132,16 @@ npm run reset        # SQLite market wipe + reseed
 | `npm run db:migrate` | Apply pending Postgres migrations |
 | `npm run db:status` | List applied / pending |
 | `npm run db:reset` | Local wipe + remigrate `athlete_market_app` |
-| `npm run reset` | **SQLite** market reset (existing prototype) |
-| `npm run seed` | **SQLite** price seed |
+| `npm run db:import-sqlite` | Copy a SQLite `jock.db` snapshot into `athlete_market_app` |
+| `npm run reset` | Wipe market rows and reseed prices (roster stays) |
+| `npm run seed` | Seed prices for roster players that do not have one |
 
-## What was intentionally not migrated yet
+## What is not in this database yet
 
-- Runtime cutover of Express routes from SQLite → Postgres
-- Data copy from `jock.db` / legacy `store.json` into Postgres
 - Social, contracts/orders book, baskets, notifications
 - Anything for `athlete_market_ml` (separate database)
+- The live EC2 market. jockex.dev still reads SQLite until that box is switched on purpose
 
 ## Auth note
 
-Password hashing stays in the existing Express signup/login path. The Postgres `users` table includes nullable `auth_provider` / `auth_subject` for a future external IdP without inventing a second password system. Until cutover, the live `users` table is still the SQLite one.
+Password hashing stays in the existing Express signup/login path. The Postgres `users` table includes nullable `auth_provider` / `auth_subject` for a future external IdP without inventing a second password system.

@@ -2,23 +2,20 @@
 set -e
 cd /app
 
-# Ensure SQLite roster exists (persisted on the data volume)
-ROSTER_COUNT=$(node -e "try{const {openDb}=await import('./src/db/index.js');const {playerLibrary}=await import('./src/lib/playerLibrary.js');openDb();process.stdout.write(String(playerLibrary.count({activeOnly:true})))}catch{process.stdout.write('0')}")
+echo "[entrypoint] Applying Postgres migrations..."
+npm run db:migrate
+
+ROSTER_COUNT=$(node --input-type=module -e 'import { playerLibrary } from "./src/lib/playerLibrary.js"; process.stdout.write(String(await playerLibrary.count({ activeOnly: true })))')
 if [ "$ROSTER_COUNT" = "0" ]; then
-  echo "[entrypoint] Importing roster into SQLite..."
+  echo "[entrypoint] Importing roster into Postgres..."
   npm run import-roster
 fi
 
-# Seed prices only when the market is empty. A missing store.json must not wipe jock.db.
-MARKET_COUNT=$(node -e "try{const {openDb}=await import('./src/db/index.js');const {countPricedPlayers}=await import('./src/lib/market.js');openDb();process.stdout.write(String(countPricedPlayers()))}catch{process.stdout.write('0')}")
+# Seed prices only when the market is empty. Do not wipe a database that already has prices.
+MARKET_COUNT=$(node --input-type=module -e 'import { countPricedPlayers } from "./src/lib/market.js"; process.stdout.write(String(await countPricedPlayers()))')
 if [ "$MARKET_COUNT" = "0" ]; then
-  if [ -f /app/data/store.json ]; then
-    echo "[entrypoint] Importing store.json into jock.db..."
-    node src/import-market.js
-  else
-    echo "[entrypoint] Seeding market prices from roster..."
-    npm run reset
-  fi
+  echo "[entrypoint] Seeding market prices from roster..."
+  npm run reset
 fi
 
 echo "[entrypoint] Starting Jock Exchange API on :${PORT:-4000} (bots=${BOTS_ENABLED:-on})"

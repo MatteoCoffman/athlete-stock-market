@@ -1,14 +1,19 @@
-import { openDb } from "./db/index.js";
+import { closePool } from "./db/pg/client.js";
 import { backfillLongHistories, syncMarketPlayers } from "./lib/marketPlayers.js";
 import { playerLibrary } from "./lib/playerLibrary.js";
 
-openDb();
-
-if (playerLibrary.count({ activeOnly: true }) === 0) {
-  console.warn("No players in SQLite. Run: npm run roster && npm run import-roster");
-  process.exit(1);
+try {
+  if ((await playerLibrary.count({ activeOnly: true })) === 0) {
+    console.warn("No players in Postgres. Run: npm run roster && npm run import-roster");
+    process.exitCode = 1;
+  } else {
+    const { added, total } = await syncMarketPlayers();
+    const updated = await backfillLongHistories();
+    console.log(`Seed complete. Added ${added}, backfilled history on ${updated}. Total: ${total}`);
+  }
+} catch (err) {
+  console.error(err.message || err);
+  process.exitCode = 1;
+} finally {
+  await closePool();
 }
-
-const { added, total } = syncMarketPlayers();
-const updated = backfillLongHistories();
-console.log(`Seed complete. Added ${added}, backfilled history on ${updated}. Total: ${total}`);

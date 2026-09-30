@@ -13,20 +13,20 @@ function adminAuth(req, res, next) {
   return next();
 }
 
-router.post("/pay", adminAuth, (req, res) => {
+router.post("/pay", adminAuth, async (req, res) => {
   try {
     const { playerId, payoutPerShare } = req.body;
-    const result = payDividends(playerId, Number(payoutPerShare));
+    const result = await payDividends(playerId, Number(payoutPerShare));
     res.json(result);
   } catch (err) {
     res.status(err.status || 500).json({ error: err.message });
   }
 });
 
-router.post("/score", adminAuth, (req, res) => {
+router.post("/score", adminAuth, async (req, res) => {
   try {
     const { playerId, performanceScore } = req.body;
-    const player = setPerformanceScore(playerId, Number(performanceScore));
+    const player = await setPerformanceScore(playerId, Number(performanceScore));
     if (!player) return res.status(404).json({ error: "Player not found" });
     res.json({ player: playerPublic(player) });
   } catch (err) {

@@ -14,7 +14,8 @@
     "db:ping": "node scripts/db-ping.js",
     "db:migrate": "node scripts/db-migrate.js",
     "db:status": "node scripts/db-status.js",
-    "db:reset": "node scripts/db-reset.js"
+    "db:reset": "node scripts/db-reset.js",
+    "db:import-sqlite": "node scripts/import-from-sqlite.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

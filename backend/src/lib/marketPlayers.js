@@ -16,8 +16,8 @@ function resolveOpeningPrice(rosterPlayer) {
   return 50;
 }
 
-function seedMarket(rosterPlayer, price) {
-  writePlayerMarket(rosterPlayer.keyId, {
+async function seedMarket(rosterPlayer, price) {
+  await writePlayerMarket(rosterPlayer.keyId, {
     price,
     openPrice: price,
     sharesOutstanding: SHARES_OUTSTANDING,
@@ -34,10 +34,10 @@ function historySignature(history) {
 }
 
 /** Ensure one roster player has a live price. Returns true when a price was created. */
-function ensureMarketPlayerInTx(rosterPlayer) {
+async function ensureMarketPlayerInTx(rosterPlayer) {
   if (!rosterPlayer) return false;
-  if (playerPrice(rosterPlayer.keyId) != null) return false;
-  seedMarket(rosterPlayer, resolveOpeningPrice(rosterPlayer));
+  if ((await playerPrice(rosterPlayer.keyId)) != null) return false;
+  await seedMarket(rosterPlayer, resolveOpeningPrice(rosterPlayer));
   return true;
 }
 
@@ -46,29 +46,29 @@ export function ensureMarketPlayer(rosterPlayer) {
 }
 
 export function ensureMarketPlayers(rosterPlayers) {
-  return withTx(() => {
+  return withTx(async () => {
     let created = 0;
     for (const rosterPlayer of rosterPlayers) {
-      if (ensureMarketPlayerInTx(rosterPlayer)) created += 1;
+      if (await ensureMarketPlayerInTx(rosterPlayer)) created += 1;
     }
     return created;
   });
 }
 
 export function syncMarketPlayers({ rebuildHistory = false } = {}) {
-  return withTx(() => {
-    const roster = playerLibrary.allActive();
+  return withTx(async () => {
+    const roster = await playerLibrary.allActive();
     let added = 0;
     let synced = 0;
     for (const rosterPlayer of roster) {
       const price = resolveOpeningPrice(rosterPlayer);
-      const existing = playerPrice(rosterPlayer.keyId);
+      const existing = await playerPrice(rosterPlayer.keyId);
       if (existing == null) {
-        seedMarket(rosterPlayer, price);
+        await seedMarket(rosterPlayer, price);
         added += 1;
         continue;
       }
-      if (rebuildHistory) seedMarket(rosterPlayer, price);
+      if (rebuildHistory) await seedMarket(rosterPlayer, price);
       synced += 1;
     }
     return { added, synced, total: roster.length };
@@ -76,17 +76,17 @@ export function syncMarketPlayers({ rebuildHistory = false } = {}) {
 }
 
 export function backfillLongHistories() {
-  return withTx(() => {
-    const roster = playerLibrary.allActive();
+  return withTx(async () => {
+    const roster = await playerLibrary.allActive();
     let updated = 0;
     for (const rosterPlayer of roster) {
-      const priced = getPricedPlayer(rosterPlayer.keyId);
+      const priced = await getPricedPlayer(rosterPlayer.keyId);
       if (!priced) continue;
       const before = historySignature(priced.priceHistory);
       const draft = { price: priced.price, priceHistory: priced.priceHistory };
       ensureLongHistory(draft);
       if (historySignature(draft.priceHistory) === before) continue;
-      writePriceHistory(rosterPlayer.keyId, draft.priceHistory);
+      await writePriceHistory(rosterPlayer.keyId, draft.priceHistory);
       updated += 1;
     }
     return updated;

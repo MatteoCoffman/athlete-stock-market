@@ -4,10 +4,10 @@ import { executeTrade } from "../lib/trading.js";
 
 const router = Router();
 
-router.post("/", authMiddleware, (req, res) => {
+router.post("/", authMiddleware, async (req, res) => {
   try {
     const { playerId, side, qty } = req.body;
-    const result = executeTrade({
+    const result = await executeTrade({
       userId: req.userId,
       playerId,
       side,

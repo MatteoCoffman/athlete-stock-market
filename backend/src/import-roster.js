@@ -1,5 +1,5 @@
 /**
- * Import roster into SQLite `players`.
+ * Import roster into Postgres `players`.
  *
  * Usage:
  *   npm run import-roster
@@ -13,7 +13,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { SEED_PLAYERS } from "./data/players.js";
 import { teamFullName } from "./data/teams.js";
-import { closeDb, openDb } from "./db/index.js";
+import { closePool } from "./db/pg/client.js";
 import { PlayerLibrary } from "./lib/playerLibrary.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -163,22 +163,27 @@ function loadRows(filePath) {
 
 const fileArg = process.argv[2] || (fs.existsSync(DEFAULT_ROSTER) ? DEFAULT_ROSTER : null);
 
-openDb();
-const library = new PlayerLibrary();
-const rows = loadRows(fileArg);
+try {
+  const library = new PlayerLibrary();
+  const rows = loadRows(fileArg);
 
-let upserted = 0;
-for (const row of rows) {
-  library.upsert(row);
-  upserted += 1;
+  let upserted = 0;
+  for (const row of rows) {
+    await library.upsert(row);
+    upserted += 1;
+  }
+
+  const active = await library.allActive();
+  const withSleeper = active.filter((p) => p.sleeperId).length;
+
+  console.log(
+    `Import complete. Upserted ${upserted} players` +
+      (fileArg ? ` from ${path.resolve(fileArg)}` : " (SEED_PLAYERS)")
+  );
+  console.log(`Active: ${active.length} · with sleeper_id: ${withSleeper}`);
+} catch (err) {
+  console.error(err.message || err);
+  process.exitCode = 1;
+} finally {
+  await closePool();
 }
-
-const withSleeper = library.allActive().filter((p) => p.sleeperId).length;
-
-console.log(
-  `Import complete. Upserted ${upserted} players` +
-    (fileArg ? ` from ${path.resolve(fileArg)}` : " (SEED_PLAYERS)")
-);
-console.log(`Active: ${library.count({ activeOnly: true })} · with sleeper_id: ${withSleeper}`);
-
-closeDb();
