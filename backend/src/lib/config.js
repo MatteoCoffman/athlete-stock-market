@@ -46,3 +46,6 @@ export const BOT_CASH = Number(process.env.BOT_CASH || 250_000);
 
 /** PostgreSQL URL for athlete_market_app. Required to start the API. */
 export const DATABASE_URL = process.env.DATABASE_URL || "";
+
+/** PostgreSQL URL for athlete_market_ml (raw/core research schemas). */
+export const ML_DATABASE_URL = process.env.ML_DATABASE_URL || "";

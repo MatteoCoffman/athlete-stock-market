@@ -5,7 +5,7 @@ Stock market for NFL athletes — buy and sell shares with virtual credits, earn
 ## What's running (prototype)
 
 - **Expo app** (`apps/mobile`) — navy + orange UI for web / iOS / Android (**Expo SDK 57**, matches current Expo Go)
-- **Local API** (`backend`) — Express + JWT auth + Postgres `athlete_market_app` + bots (see [docs/DATABASE.md](docs/DATABASE.md)). The deployed site still uses SQLite on EC2 until a later cutover.
+- **Local API** (`backend`) — Express + JWT auth + Postgres `athlete_market_app` + bots; `athlete_market_ml` for research (see [docs/DATABASE.md](docs/DATABASE.md)). The deployed site still uses SQLite on EC2 until a later cutover.
 - **Shared deploy** — EC2 `t3.micro` (Docker + bots) + Cloudflare Tunnel HTTPS + **Vercel** web — see [docs/DEPLOY.md](docs/DEPLOY.md)
 - **Native installs** — EAS Build → TestFlight / Play Internal (no Metro) — see [docs/MOBILE.md](docs/MOBILE.md)
 - **AWS CDK** (`infra`) — `JockExchangeMarketStack` (always-on market) and legacy `JockExchangeStack` (Lambda/Dynamo skeleton, not required for bots)
@@ -125,14 +125,19 @@ Pause costs: stop the EC2 instance, or `cd infra && npm run destroy:market`.
 
 ## PostgreSQL
 
-The local API reads `DATABASE_URL` and will not start without it. See **[docs/DATABASE.md](docs/DATABASE.md)**. jockex.dev is still the EC2 SQLite market.
+The local API reads `DATABASE_URL` and will not start without it. ML research uses `ML_DATABASE_URL` → `athlete_market_ml`. See **[docs/DATABASE.md](docs/DATABASE.md)**. jockex.dev is still the EC2 SQLite market.
 
 ```bash
 cd backend
 npm run db:ping
 npm run db:migrate
+npm run db:ml:ping
+npm run db:ml:migrate
 npm run db:status
+npm run db:ml:status
 ```
+
+## Product notes
 
 - NFL offensive players only (QB / RB / WR / TE) — seeded from nflverse `roster_2026.csv` (~455 ACT)
 - Fake currency only

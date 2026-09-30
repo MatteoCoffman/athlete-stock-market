@@ -1,7 +1,7 @@
 # PostgreSQL (athlete_market_app)
 
 Local development database for the Jock Exchange **application**.  
-ML / research data belongs in a **separate** database: `athlete_market_ml` (not managed here).
+ML / research data lives in a **separate** database: [`athlete_market_ml`](#postgresql-athlete_market_ml).
 
 ## Current architecture (important)
 
@@ -9,6 +9,7 @@ ML / research data belongs in a **separate** database: `athlete_market_ml` (not 
 | --- | --- | --- |
 | Local API | **PostgreSQL** `athlete_market_app` | Users, holdings, trades, prices, roster, week-stats cache |
 | Live site (jockex.dev) | **SQLite** on the EC2 volume | Unchanged until a later deploy. Do not recreate that container from this branch |
+| ML / research DB | **PostgreSQL** `athlete_market_ml` | `raw` import staging + `core` typed entities |
 | Auth | Email + **bcrypt** password hash + JWT | Preserved as-is (see `backend/src/lib/auth.js`) |
 
 The API requires `DATABASE_URL`. It does not open a SQLite file. `npm run db:import-sqlite -- path/to/jock.db` copies a snapshot into the local database once. ML data stays in `athlete_market_ml`.
@@ -133,13 +134,88 @@ npm run reset
 | `npm run db:status` | List applied / pending |
 | `npm run db:reset` | Local wipe + remigrate `athlete_market_app` |
 | `npm run db:import-sqlite` | Copy a SQLite `jock.db` snapshot into `athlete_market_app` |
+| `npm run db:ml:ping` | Test `ML_DATABASE_URL` |
+| `npm run db:ml:migrate` | Apply pending ML migrations |
+| `npm run db:ml:status` | List applied / pending ML migrations |
+| `npm run db:ml:reset` | Local wipe + remigrate `athlete_market_ml` |
 | `npm run reset` | Wipe market rows and reseed prices (roster stays) |
 | `npm run seed` | Seed prices for roster players that do not have one |
 
-## What is not in this database yet
+---
+
+# PostgreSQL (athlete_market_ml)
+
+Separate research / ML database. **Do not** put ML tables in `athlete_market_app`.
+
+Schemas:
+
+| Schema | Purpose |
+| --- | --- |
+| `raw` | Sheet/CSV import staging (TEXT-heavy + lineage columns) |
+| `core` | Cleaned / typed entities (players, draft, college seasons, combine, accolades, team offense) |
+
+## Create the database
+
+```bash
+psql -U postgres -h localhost -c "CREATE DATABASE athlete_market_ml;"
+```
+
+## Configure
+
+In `backend/.env`:
+
+```env
+ML_DATABASE_URL=postgresql://USERNAME:PASSWORD@localhost:5432/athlete_market_ml
+```
+
+## Migrate / verify
+
+```bash
+cd backend
+npm run db:ml:ping
+npm run db:ml:migrate
+npm run db:ml:migrate   # second run should be a no-op
+npm run db:ml:status
+```
+
+Raw tables created by `002_raw_tables.sql`:
+
+- `raw.player_input_table`
+- `raw.qb_college_seasons`
+- `raw.rb_college_seasons`
+- `raw.wr_college_seasons`
+- `raw.te_college_seasons`
+- `raw.player_combine_measurables`
+- `raw.player_college_accolades`
+- `raw.nfl_team_reference_table`
+- `raw.nfl_team_offensive_performance`
+
+Core tables created by `003_core_tables.sql`:
+
+- `core.players`
+- `core.nfl_teams`
+- `core.player_draft`
+- `core.player_college_seasons`
+- `core.player_combine_measurables`
+- `core.player_college_accolades`
+- `core.nfl_team_offensive_seasons`
+
+Migrations live in `backend/src/db/ml/migrations/`.
+
+## Local reset
+
+```bash
+cd backend
+npm run db:ml:reset
+```
+
+Only allowed when the database name is `athlete_market_ml`.
+
+## What is not in this stack yet
 
 - Social, contracts/orders book, baskets, notifications
-- Anything for `athlete_market_ml` (separate database)
+- Any further `core.*` ML tables beyond `003_core_tables.sql`
+- Import/ETL jobs that load sheets into `raw.*` and promote into `core.*`
 - The live EC2 market. jockex.dev still reads SQLite until that box is switched on purpose
 
 ## Auth note
